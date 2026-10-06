@@ -1,0 +1,139 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <!--
+        FutureDigitalPlus: a small excerpt of Assets/Showcase/Resources/DesignSystemShowcase.uxml from
+        sinanata/unity-ui-toolkit-design-system (MIT, (c) 2026 Sinan Ata / Leap of Legends), commit
+        65f621155ba757c181829b406f65786c85199554. The upstream page has 36 sections; this keeps
+        buttons, inputs, tabs, toggles, meters, badges, icons and toasts, plus a theme switch.
+        The design system stylesheet is NOT referenced here: DesignSystemShowcase.cs puts it on the panel root,
+        because a class-scoped theme (.theme-light) only outranks the base tokens from a descendant of the element
+        that holds the base sheet (verified on Unity 6000.3.25f1). A <Style> in this file would shadow the theme.
+    -->
+    <ui:ScrollView mode="Vertical" class="ds-root">
+        <ui:VisualElement style="padding: 24px; align-items: center;">
+            <ui:VisualElement style="max-width: 760px; align-items: center; margin-bottom: 16px;">
+                <ui:Label text="Design System sample" class="ds-h1" style="margin-bottom: 6px; -unity-text-align: middle-center;"/>
+                <ui:Label text="Tokens, components and icons from the DesignSystem module, themed at runtime. The switch below applies the bundled Light theme with ThemeRuntime.Apply." class="ds-body-1" style="-unity-text-align: middle-center; margin-bottom: 12px;"/>
+                <ui:Button name="theme-toggle" text="Switch to Light theme" class="ds-btn ds-btn--primary"/>
+            </ui:VisualElement>
+
+            <ui:VisualElement style="flex-direction: row; flex-wrap: wrap; justify-content: center;">
+
+                <ui:VisualElement class="ds-section" style="width: 420px;">
+                    <ui:Label text="BUTTONS" class="ds-section__title"/>
+                    <ui:VisualElement class="ds-row">
+                        <ui:Button text="Primary" class="ds-btn ds-btn--primary" style="margin-right: 6px;"/>
+                        <ui:Button text="Secondary" class="ds-btn ds-btn--secondary" style="margin-right: 6px;"/>
+                        <ui:Button text="Ghost" class="ds-btn ds-btn--ghost" style="margin-right: 6px;"/>
+                        <ui:Button text="Danger" class="ds-btn ds-btn--danger"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ds-row">
+                        <ui:Button text="Disabled" enabled="false" class="ds-btn ds-btn--primary" style="margin-right: 6px;"/>
+                        <ui:Button class="ds-btn ds-btn--icon" style="margin-right: 4px;">
+                            <ui:VisualElement class="ds-icon ds-icon--play"/>
+                        </ui:Button>
+                        <ui:Button class="ds-btn ds-btn--icon" style="margin-right: 4px;">
+                            <ui:VisualElement class="ds-icon ds-icon--settings"/>
+                        </ui:Button>
+                        <ui:Button class="ds-btn ds-btn--icon">
+                            <ui:VisualElement class="ds-icon ds-icon--trophy"/>
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="ds-section" style="width: 420px;">
+                    <ui:Label text="INPUTS" class="ds-section__title"/>
+                    <ui:VisualElement class="ds-search" style="margin-bottom: 8px;">
+                        <ui:VisualElement class="ds-icon ds-icon--sm ds-icon--search ds-search__icon"/>
+                        <ui:TextField value="Search" class="ds-search__field"/>
+                    </ui:VisualElement>
+                    <ui:TextField value="Player one" class="ds-input" style="margin-bottom: 8px;"/>
+                    <ui:DropdownField choices="Common,Rare,Epic,Legendary" index="0" label="" class="ds-dropdown"/>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="ds-section" style="width: 420px;">
+                    <ui:Label text="TABBED PANELS" class="ds-section__title"/>
+                    <ui:VisualElement class="ds-tabs" style="margin-bottom: 12px;">
+                        <ui:Button text="Graphics" class="ds-tab is-active"/>
+                        <ui:Button text="Audio" class="ds-tab"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ds-tabpanels">
+                        <ui:VisualElement class="ds-tabpanel is-active">
+                            <ui:VisualElement class="ds-row">
+                                <ui:Label text="Quality" class="ds-body-1" style="flex-grow: 1;"/>
+                                <ui:DropdownField choices="Low,Medium,High,Ultra" index="2" class="ds-dropdown" style="width: 140px;"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="ds-row">
+                                <ui:Label text="Fullscreen" class="ds-body-1" style="flex-grow: 1;"/>
+                                <ui:Toggle class="ds-toggle" value="true">
+                                    <ui:VisualElement class="ds-toggle__knob"/>
+                                </ui:Toggle>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ds-tabpanel">
+                            <ui:VisualElement class="ds-row">
+                                <ui:Label text="Master" class="ds-body-1" style="flex-grow: 1;"/>
+                                <ui:Slider low-value="0" high-value="100" value="80" class="ds-slider ds-slider--filled" style="width: 140px;"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="ds-row">
+                                <ui:Label text="Music" class="ds-body-1" style="flex-grow: 1;"/>
+                                <ui:Slider low-value="0" high-value="100" value="55" class="ds-slider ds-slider--filled" style="width: 140px;"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="ds-section" style="width: 420px;">
+                    <ui:Label text="GAME METERS" class="ds-section__title"/>
+                    <ui:VisualElement class="ds-meter ds-meter--danger" style="margin-bottom: 12px;">
+                        <ui:VisualElement class="ds-meter__fill" style="width: 62%;"/>
+                        <ui:Label text="184 / 240" class="ds-meter__label"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ds-meter ds-meter--secondary" style="margin-bottom: 12px;">
+                        <ui:VisualElement class="ds-meter__fill" style="width: 80%;"/>
+                        <ui:Label text="96 / 120" class="ds-meter__label"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ds-progress-row">
+                        <ui:VisualElement class="ds-progress-row__head">
+                            <ui:Label text="Progress" class="ds-body-2"/>
+                            <ui:Label text="68%" class="ds-body-2 ds-text-primary"/>
+                        </ui:VisualElement>
+                        <ui:ProgressBar value="68" low-value="0" high-value="100" class="ds-progress"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="ds-section" style="width: 420px;">
+                    <ui:Label text="BADGES" class="ds-section__title"/>
+                    <ui:VisualElement class="ds-row">
+                        <ui:Label text="COMMON" class="ds-badge ds-badge--common" style="margin-right: 8px;"/>
+                        <ui:Label text="RARE" class="ds-badge ds-badge--rare" style="margin-right: 8px;"/>
+                        <ui:Label text="EPIC" class="ds-badge ds-badge--epic" style="margin-right: 8px;"/>
+                        <ui:Label text="LEGENDARY" class="ds-badge ds-badge--legendary"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ds-row">
+                        <ui:VisualElement class="ds-chip ds-chip--new" style="margin-right: 8px;">
+                            <ui:VisualElement class="ds-icon ds-icon--xs ds-icon--sparkle ds-chip__icon"/>
+                            <ui:Label text="New"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ds-chip ds-chip--sale">
+                            <ui:VisualElement class="ds-icon ds-icon--xs ds-icon--gift ds-chip__icon"/>
+                            <ui:Label text="Sale"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="ds-section" style="width: 420px;">
+                    <ui:Label text="TOASTS" class="ds-section__title"/>
+                    <ui:VisualElement class="ds-toast ds-toast--success">
+                        <ui:VisualElement class="ds-icon ds-icon--sm ds-icon--check ds-toast__icon"/>
+                        <ui:Label text="Saved successfully." class="ds-toast__message"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ds-toast ds-toast--warning">
+                        <ui:VisualElement class="ds-icon ds-icon--sm ds-icon--warning ds-toast__icon"/>
+                        <ui:Label text="Low storage." class="ds-toast__message"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

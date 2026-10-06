@@ -1,0 +1,368 @@
+/* ============================================================================
+   TOUCH TIER (.fdp-input-touch)
+   The base ds-* components are sized for a pointer (36 px buttons, 14 px body text) on a canvas where 1 USS px = 1 dp
+   (1/160 inch, see Documentation~/DesignSystem/THEMING.md). On a handheld that is already readable, so this tier does NOT
+   change font sizes any more (a brand theme's --fdp-font-size-* tokens apply everywhere). It only makes controls easier
+   to hit: the control-height tokens below grow, and a few layout rules tighten for narrow screens.
+
+   Every rule is scoped under `.fdp-input-touch`, a class the UIKit facade (or the game) puts on the root. Desktop is
+   unaffected.
+   ============================================================================ */
+
+/* FutureDigitalPlus: the touch tier redefines TOKENS instead of 40 per-component heights. These tokens are not part of
+   ThemeData, so a theme sheet on the same element cannot outrank this rule. */
+.fdp-input-touch {
+    --fdp-control-h-sm: 36px;
+    --fdp-control-h-md: 48px;
+    --fdp-control-h-lg: 56px;
+    --fdp-field-h:      48px;
+    --fdp-tab-h:        40px;
+    --fdp-chip-h:       26px;
+}
+
+/* ── Root padding floor for screens authored with .ds-root ── */
+.fdp-input-touch.ds-root,
+.fdp-input-touch .ds-root {
+    /* Compensate for tighter mobile reference: smaller outer gutters so cards
+       and panels still fit. */
+    flex-grow: 1;
+}
+
+/* ── Section gutters ──
+   Desktop margin is 8px per side; on a 390px-wide iPhone that pushes a
+   `max-width: 100%` section past the parent's inner content area by 16px.
+   Halve to 4px so each section + margins fits the viewport. */
+.fdp-input-touch .ds-section {
+    margin: var(--fdp-space-1);
+}
+
+/* ── Row reflow ──
+   .ds-row defaults to a single non-wrapping row. On mobile, button rows can
+   exceed the section's narrowed content width; let them wrap to a new line
+   instead of overflowing horizontally. */
+.fdp-input-touch .ds-row {
+    flex-wrap: wrap;
+}
+
+/* ── Buttons ──
+   Height comes from --fdp-control-h-* (above). Chunkier horizontal padding only. */
+.fdp-input-touch .ds-btn {
+    padding-left: var(--fdp-space-5);
+    padding-right: var(--fdp-space-5);
+}
+
+.fdp-input-touch .ds-btn--sm {
+    padding-left: var(--fdp-space-3);
+    padding-right: var(--fdp-space-3);
+}
+
+.fdp-input-touch .ds-btn--lg {
+    padding-left: var(--fdp-space-6);
+    padding-right: var(--fdp-space-6);
+}
+
+/* ── Inputs ── (height from --fdp-field-h) */
+.fdp-input-touch .ds-input .unity-text-input,
+.fdp-input-touch .ds-input .unity-text-field__input,
+.fdp-input-touch .ds-input .unity-base-text-field__input,
+.fdp-input-touch .ds-input .unity-base-field__input,
+.fdp-input-touch .ds-search,
+.fdp-input-touch .ds-dropdown .unity-popup-field__input,
+.fdp-input-touch .ds-dropdown .unity-base-popup-field__input,
+.fdp-input-touch .ds-dropdown .unity-base-field__input,
+.fdp-input-touch .ds-textarea .unity-text-input,
+.fdp-input-touch .ds-textarea .unity-text-field__input {
+    padding-left: var(--fdp-space-3);
+    padding-right: var(--fdp-space-3);
+}
+
+.fdp-input-touch .ds-textarea {
+    min-height: 120px;
+}
+
+.fdp-input-touch .ds-search__icon {
+    width: 22px;
+    height: 22px;
+    margin-right: var(--fdp-space-3);
+}
+
+/* ── Tabs ──
+   Height from --fdp-tab-h (40 px here; with the strip's padding the hit area clears 44 px). */
+.fdp-input-touch .ds-tabs {
+    padding: 4px;
+}
+.fdp-input-touch .ds-tab {
+    padding-left: var(--fdp-space-2);
+    padding-right: var(--fdp-space-2);
+}
+.fdp-input-touch .ds-view-toggle__btn {
+    width: 44px;
+    height: 40px;
+}
+
+/* ── Toggle / Check / Radio ──
+   The legacy Toggle on mobile was 38×38; ds-toggle is a 44×24 track. Bump
+   to 52×30 for easier thumb taps without changing the design language. */
+.fdp-input-touch .ds-toggle .unity-toggle__checkmark {
+    width: 52px;
+    height: 30px;
+    border-radius: 15px; /* half-height pill */
+}
+.fdp-input-touch .ds-toggle__knob {
+    width: 24px;
+    height: 24px;
+    top: 3px;
+    left: 3px;
+    border-radius: 12px;
+}
+.fdp-input-touch .ds-toggle:checked .ds-toggle__knob {
+    translate: 22px 0;
+}
+
+.fdp-input-touch .ds-check .unity-toggle__checkmark {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--fdp-radius-sm);
+}
+
+.fdp-input-touch .ds-radio .unity-radio-button__checkmark-background {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+}
+.fdp-input-touch .ds-radio .unity-radio-button__checkmark {
+    width: 12px;
+    height: 12px;
+    top: 6px;
+    left: 6px;
+    border-radius: 6px;
+}
+
+/* ── Slider / Range ── */
+.fdp-input-touch .ds-slider,
+.fdp-input-touch .ds-range {
+    height: 32px;
+}
+.fdp-input-touch .ds-slider .unity-base-slider__dragger,
+.fdp-input-touch .ds-range .unity-min-max-slider__min-thumb,
+.fdp-input-touch .ds-range .unity-min-max-slider__max-thumb {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    max-width: 24px;
+    max-height: 24px;
+    border-radius: 12px;
+    /* -height/2; recomputed for the bigger 24px touch target. The desktop
+       rule sets margin-top: -9px which would only half-correct here. */
+    margin-top: -12px;
+}
+
+/* ── Progress ──
+   Same `min-height: 0` story as the desktop rule in Controls.uss — the
+   compound progress-bar element reserves Unity's default 21px until every
+   layer is collapsed. Mobile bumps the visible height to 10px. */
+.fdp-input-touch .ds-progress {
+    height: 10px;
+    min-height: 0;
+    max-height: 10px;
+}
+.fdp-input-touch .ds-progress .unity-progress-bar__container {
+    height: 10px;
+    min-height: 0;
+    max-height: 10px;
+}
+.fdp-input-touch .ds-progress .unity-progress-bar__background {
+    height: 10px;
+    min-height: 0;
+    max-height: 10px;
+    border-radius: 5px;
+}
+.fdp-input-touch .ds-progress .unity-progress-bar__progress {
+    border-radius: 5px;
+}
+
+/* ── Cards ──
+   Mobile cards live in tighter grids; shrink overall footprint and image
+   area so multiple cards fit on a 360-wide canvas. */
+.fdp-input-touch .ds-animal-card {
+    width: 140px;
+    padding: var(--fdp-space-2);
+}
+.fdp-input-touch .ds-animal-card__image {
+    height: 80px;
+    margin-bottom: var(--fdp-space-2);
+}
+.fdp-input-touch .ds-animal-card__check {
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+}
+
+/* Generic card padding compresses so the inner content has more room. */
+.fdp-input-touch .ds-card {
+    padding: var(--fdp-space-3);
+}
+.fdp-input-touch .ds-card--padded {
+    padding: var(--fdp-space-4);
+}
+
+/* ── Tags / Chips / Badges ──
+   Chip and tag height from --fdp-chip-h; padding bigger so they are tap targets; type stays at caption size. */
+.fdp-input-touch .ds-tag,
+.fdp-input-touch .ds-chip {
+    padding-left: var(--fdp-space-3);
+    padding-right: var(--fdp-space-3);
+}
+
+/* ── Avatars (kept) ── */
+.fdp-input-touch .ds-avatar--xl { width: 64px; height: 64px; border-radius: 32px; }
+.fdp-input-touch .ds-avatar--lg { width: 48px; height: 48px; border-radius: 24px; }
+
+/* ── Modals & dialogs ──
+   Mobile is height-starved in landscape (360 ref); shrink padding and pin
+   widths to a percentage of the viewport so content doesn't run off. */
+.fdp-input-touch .ds-modal {
+    width: 90%;
+    max-width: 360px;
+    padding: var(--fdp-space-3);
+}
+.fdp-input-touch .ds-dialog {
+    width: 88%;
+    max-width: 320px;
+    padding: var(--fdp-space-4);
+}
+/* Animal detail card defaults to width: 360px from Cards.uss; on mobile let
+   it shrink to its parent (clamped at 360px so it doesn't grow on tablet). */
+.fdp-input-touch .ds-animal-detail {
+    width: 100%;
+    max-width: 360px;
+}
+
+/* ── Toasts ──
+   Allow more room for wrapped sentence-length messages on a narrow phone. */
+.fdp-input-touch .ds-toast {
+    min-height: 44px;
+    padding-left: var(--fdp-space-3);
+    padding-right: var(--fdp-space-3);
+}
+
+/* ── Empty states ── */
+.fdp-input-touch .ds-empty {
+    padding: var(--fdp-space-3);
+}
+.fdp-input-touch .ds-empty__icon-bg {
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+}
+.fdp-input-touch .ds-empty__message {
+}
+
+/* ── Bottom sheet ──
+   Handle stays narrow; row height bumps for comfortable tap. */
+.fdp-input-touch .ds-sheet__row {
+    height: 52px;
+}
+
+/* ── Bottom tab bar ──
+   Already mobile-first, but reduce padding so labels fit. */
+.fdp-input-touch .ds-bottom-nav {
+    height: 60px;
+    padding: var(--fdp-space-1);
+}
+.fdp-input-touch .ds-bottom-nav__item {
+    height: 52px;
+}
+.fdp-input-touch .ds-bottom-nav__icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* ── Side nav / rail ──
+   Side panels are desktop-leaning; mobile typically uses bottom-nav. When
+   they DO appear, narrow the rail and shrink fonts. */
+.fdp-input-touch .ds-side-nav {
+    width: 140px;
+    padding: var(--fdp-space-1);
+}
+.fdp-input-touch .ds-nav-item {
+    height: 36px;
+    padding-left: var(--fdp-space-2);
+    padding-right: var(--fdp-space-2);
+}
+
+.fdp-input-touch .ds-side-rail {
+    width: 48px;
+    padding: var(--fdp-space-1);
+}
+.fdp-input-touch .ds-rail-item {
+    width: 36px;
+    height: 36px;
+}
+
+/* ── Profile chip ── */
+.fdp-input-touch .ds-profile {
+    height: 44px;
+    padding: var(--fdp-space-2);
+}
+.fdp-input-touch .ds-profile__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+}
+
+/* ── Stepper / Pagination ── */
+.fdp-input-touch .ds-stepper__btn,
+.fdp-input-touch .ds-pagination__btn {
+    width: 36px;
+    height: 36px;
+}
+.fdp-input-touch .ds-stepper__value,
+.fdp-input-touch .ds-pagination__ellipsis {
+    min-width: 44px;
+}
+
+/* ── Notification badge stays the same; small but readable ── */
+.fdp-input-touch .ds-notif-wrap {
+    width: 44px;
+    height: 44px;
+}
+.fdp-input-touch .ds-notif-icon {
+    width: 26px;
+    height: 26px;
+}
+
+/* ── Drawers / Burger panels ──
+   On a 360-wide reference, a 280-px side drawer eats most of the viewport
+   and leaves ~80 px for the underlying content. Cap left/right drawers at
+   88% of the viewport so the user keeps a peek of the page behind, and
+   shrink the default top/bottom drawer height a bit so it doesn't crowd
+   the action button below. Author-supplied inline widths still win — these
+   are defaults for unsized drawers. */
+.fdp-input-touch .ds-drawer--left,
+.fdp-input-touch .ds-drawer--right {
+    width: 88%;
+    max-width: 320px;
+}
+.fdp-input-touch .ds-drawer--top,
+.fdp-input-touch .ds-drawer--bottom {
+    height: 60%;
+    max-height: 280px;
+}
+/* Push drawers on mobile keep their max-width animation but the open size
+   tracks 88% of the wrapper instead of 280 px so a long drawer still leaves
+   the user a visible sliver of the underlying content. */
+.fdp-input-touch .ds-drawer--push.ds-drawer--left.ds-drawer--open,
+.fdp-input-touch .ds-drawer--push.ds-drawer--right.ds-drawer--open,
+.fdp-input-touch .ds-drawer-wrap.is-open .ds-drawer--push.ds-drawer--left,
+.fdp-input-touch .ds-drawer-wrap.is-open .ds-drawer--push.ds-drawer--right {
+    max-width: 88%;
+}
+.fdp-input-touch .ds-drawer__header {
+    padding-top: var(--fdp-space-2);
+    padding-bottom: var(--fdp-space-2);
+}
+.fdp-input-touch .ds-drawer__body {
+    padding: var(--fdp-space-3);
+}

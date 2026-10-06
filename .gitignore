@@ -1,0 +1,65 @@
+# Future Digital Plus UI Kit: the repository root is the package root (package.json is here).
+#
+# Rules for this file:
+#   - never ignore *.meta (GUIDs must be committed, Unity needs them in every consumer)
+#   - never ignore a '<name>~' folder (Samples~, Documentation~, Tools~ are part of the package) and so never add a catch-all '*~'
+#   - never ignore *.dll or *.pdb (the four UIComponents Roslyn DLLs and the NSubstitute test DLLs are needed)
+#   - never ignore *.csproj below Tools~ (CompileCheck, LintRunner and PureTests are dotnet projects of the kit)
+
+# macOS, editors
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.vscode/
+.idea/
+.vs/
+*.swp
+*.swo
+
+# Unity output: only appears when the repository root is opened as a Unity project (normally it is referenced by a game or a scratch project)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+/*.csproj
+/*.sln
+/*.slnx
+/*.suo
+/*.user
+/*.pidb
+/*.booproj
+/*.unityproj
+sysinfo.txt
+crashlytics-build.properties
+
+# Build and test output of the Tools~ projects and scripts
+bin/
+obj/
+__pycache__/
+*.pyc
+TestResults/
+*.trx
+
+# Secrets and local configuration: never commit
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist
+*.secret
+
+# FutureDigitalPlus: the same re-includes the package always carried. This file is also copied into a classic Assets copy of the kit
+# (Tools~/make_classic_kit.py), and a game repository's own .gitignore often has a catch-all '*~' (backup files) and '*.dll', which would silently
+# drop Documentation~/, Samples~/, Tools~/ and the Roslyn DLLs. These two lines win over such a pattern in the game repository.
+!*~/
+!*.dll

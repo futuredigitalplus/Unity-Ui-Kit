@@ -1,0 +1,31 @@
+.fdp-slider-2d {
+    overflow: visible;
+    background-color: black;
+}
+
+.fdp-slider-2d__dragger {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: var(--fdp-color-primary-drk, var(--fdp-color-primary-press, rgb(150, 112, 86)));
+}
+
+.fdp-slider-2d__dragger-border {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: -5px 0 0 -5px;
+    border-radius: 15px;
+    background-color: var(--fdp-color-primary-lit, var(--fdp-color-text-primary, rgb(255, 224, 204)));
+}
+
+/* FutureDigitalPlus: focus and editing feedback for keyboard and gamepad use (Submit starts editing, see Slider2D). */
+.fdp-slider-2d:focus .fdp-slider-2d__dragger-border {
+    border-width: 1px;
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary, white));
+}
+
+.fdp-slider-2d--editing .fdp-slider-2d__dragger-border {
+    border-width: 3px;
+}

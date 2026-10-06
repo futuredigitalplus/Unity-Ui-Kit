@@ -1,0 +1,56 @@
+/* FutureDigitalPlus: class names prefixed fdp-; colours read the design system colour tokens, with the upstream demo colour as the last fallback. See SOURCE.md "Local modifications". */
+.fdp-popup-textfield__heading-area {
+    padding: 10px 20px;
+    height: 60px;
+    width: 100%;
+    border-width: 0;
+    background-color: var(--fdp-color-back-drk, var(--fdp-color-surface, rgb(40, 35, 35)));
+}
+
+.fdp-popup-textfield__text-area {
+    padding: 20px;
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 20px;
+    background-color: var(--fdp-color-back-lit, var(--fdp-color-surface-hover, rgba(40, 35, 35, 0.7)));
+}
+
+.fdp-popup-textfield__heading {
+    flex-grow: 1;
+    font-size: 25px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    color: var(--fdp-color-txt-drk, var(--fdp-color-text-secondary, rgb(172, 172, 172)));
+}
+
+.fdp-popup-textfield__text {
+    flex-grow: 1;
+    font-size: 18px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+    color: var(--fdp-color-txt-mid, var(--fdp-color-text-primary, rgb(240, 240, 240)));
+}
+
+.fdp-popup-textfield__edit {
+
+}
+
+.fdp-popup-textfield__buttons-bar {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    height: 65px;
+    background-color: var(--fdp-color-back-mid, var(--fdp-color-surface-elev, rgba(40, 35, 35, 0.85)));
+}
+
+.fdp-popup-textfield__buttons-bar .unity-button {
+    margin: 0 20px;
+}
+
+.fdp-popup-textfield__submit-button,
+.fdp-popup-textfield__cancel-button {
+    
+}

@@ -1,0 +1,17 @@
+# Files and folders (package relative prefixes) whose public API must be fully documented:
+# CS1591 (missing XML comment) and the malformed-comment warnings CS1570-CS1587 are errors there.
+# A line "!suffix" excludes the files that end with it (test classes need no docs).
+# Upstream-derived files are not listed unless this work package rewrote them.
+Runtime/Foundation/
+Runtime/Interaction/
+Runtime/Language/
+Runtime/Hud/
+Runtime/Controls/
+Runtime/Gameplay/
+Runtime/UIKit/
+Runtime/Bootstrap/
+Editor/Location/
+Runtime/Extras/BlurOrGlassEffect/BlurSource.cs
+Runtime/Animation/Enhancements/Tasks/WaitUntil.cs
+Tests/Editor/Lint/Pure/
+!Tests.cs

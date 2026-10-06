@@ -1,0 +1,46 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.Smoke.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.Smoke.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Foundation",
+        "FutureDigitalPlus.UIKit.Hud.Core",
+        "FutureDigitalPlus.UIKit.Hud",
+        "FutureDigitalPlus.UIKit.Controls.Core",
+        "FutureDigitalPlus.UIKit.Controls",
+        "FutureDigitalPlus.UIKit.Gameplay.Core",
+        "FutureDigitalPlus.UIKit.Gameplay",
+        "FutureDigitalPlus.UIKit.Language",
+        "FutureDigitalPlus.UIKit.Samples.ShellQuickStart",
+        "FutureDigitalPlus.UIKit.Samples.RpgInventory",
+        "FutureDigitalPlus.UIKit.Samples.ActionHud",
+        "FutureDigitalPlus.UIKit.Samples.GamepadMenu",
+        "FutureDigitalPlus.UIKit.Samples.Responsive",
+        "FutureDigitalPlus.UIKit.Samples.ThemingLanguage",
+        "FutureDigitalPlus.UIKit",
+        "FutureDigitalPlus.UIKit.Components",
+        "FutureDigitalPlus.UIKit.Animation",
+        "FutureDigitalPlus.UIKit.Samples.QuickStart",
+        "FutureDigitalPlus.UIKit.Samples.DesignSystemShowcase",
+        "FutureDigitalPlus.UIKit.Samples.Animation",
+        "FutureDigitalPlus.UIKit.Components.Samples.Counter",
+        "FutureDigitalPlus.UIKit.Components.Samples.Query",
+        "FutureDigitalPlus.UIKit.Components.Samples.Resources",
+        "FutureDigitalPlus.UIKit.Components.Samples.EventInterfaces",
+        "FutureDigitalPlus.UIKit.Components.Samples.UxmlTraits"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

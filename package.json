@@ -1,0 +1,87 @@
+{
+  "name": "com.futuredigitalplus.uikit",
+  "version": "0.2.2",
+  "displayName": "Future Digital Plus UI Kit",
+  "description": "A modular UI Toolkit kit for Unity 6, for any genre and platform: a design system (tokens, themes, components, icons), the UIComponents framework with its source generators, an animation toolkit, small UI extras (tooltip, popup, colour picker, blur), and modules for screens and dialogs, gamepad and accessibility, localization, HUD widgets, menu controls and inventories, a ready-made shell host, plus a thin facade. Built from four open-source projects; see THIRD_PARTY_NOTICES.md.",
+  "unity": "6000.3",
+  "dependencies": {
+    "com.unity.modules.unitywebrequest": "1.0.0",
+    "com.unity.modules.vectorgraphics": "1.0.0"
+  },
+  "keywords": [
+    "ui",
+    "uitoolkit",
+    "uielements",
+    "design-system",
+    "theme",
+    "components",
+    "animation",
+    "hud",
+    "inventory",
+    "gamepad",
+    "localization",
+    "accessibility",
+    "shell"
+  ],
+  "author": {
+    "name": "Future Digital Plus"
+  },
+  "license": "See THIRD_PARTY_NOTICES.md for bundled components. Package license: TODO (owner to decide).",
+  "samples": [
+    {
+      "displayName": "UI Kit Quick Start",
+      "description": "The smallest themed screen using the facade: UIKitHost, a Light/Dark switch, an Extras tooltip and a fade-in.",
+      "path": "Samples~/UIKitQuickStart"
+    },
+    {
+      "displayName": "Design System Showcase",
+      "description": "A small page showing the DesignSystem module: buttons, inputs, tabs, meters, badges, icons, toasts and a runtime Light/Dark theme switch.",
+      "path": "Samples~/DesignSystemShowcase"
+    },
+    {
+      "displayName": "Components Samples",
+      "description": "The six UIComponents samples (Counter, Query, Resources, EventInterfaces, UxmlTraits, Addressables), each with its own assembly and UXML.",
+      "path": "Samples~/Components"
+    },
+    {
+      "displayName": "Animation Toolkit Demo",
+      "description": "A runtime page that shows the Animation module: a fading message, a hover colour, an animated bar, a self-hiding toast, a pulsing border and an AnimatedFoldout.",
+      "path": "Samples~/Animation"
+    },
+    {
+      "displayName": "Extras Stylesheets",
+      "description": "Optional stylesheets and a UXML example for the Extras module (theme variables, a design system bridge, upstream misc styles).",
+      "path": "Samples~/Extras"
+    },
+    {
+      "displayName": "Shell Quick Start",
+      "description": "Screens, dialogs, toasts, a loading overlay and back handling on a UiShell, with a tab bar and localized texts that switch language at run time.",
+      "path": "Samples~/ShellQuickStart"
+    },
+    {
+      "displayName": "RPG Inventory",
+      "description": "A backpack and a chest with drag and drop, keyboard and gamepad pick-up, a context menu, tooltips and a tab bar with badges.",
+      "path": "Samples~/RpgInventory"
+    },
+    {
+      "displayName": "Action HUD",
+      "description": "A HUD over a 3D scene: meters, cooldowns, floating damage numbers, a name plate pinned to an enemy, a feed and a pause menu on the router.",
+      "path": "Samples~/ActionHud"
+    },
+    {
+      "displayName": "Gamepad Menu",
+      "description": "A menu for gamepad, keyboard, mouse and touch: focus ring, focus trap, back handling, Activate on a plain element and a title-safe margin.",
+      "path": "Samples~/GamepadMenu"
+    },
+    {
+      "displayName": "Responsive",
+      "description": "One UI for phone, tablet, foldable, desktop window and TV: panel scale, size-class classes, a safe area with a fake notch and touch targets.",
+      "path": "Samples~/Responsive"
+    },
+    {
+      "displayName": "Theming and Language",
+      "description": "Dark, light and run-time brand themes, high contrast, text size, reduced motion and a language switch with a right-to-left language.",
+      "path": "Samples~/ThemingLanguage"
+    }
+  ]
+}

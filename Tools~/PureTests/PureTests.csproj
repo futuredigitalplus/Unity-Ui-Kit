@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Fast, Unity-free run of the pure tests: compiles the SAME source files Unity compiles (Runtime/<Module>/Core/**/*.cs and Tests/Pure/<Module>/**/*.cs of the modules listed below)
+    with LangVersion 9 (Unity 6) and runs NUnit. Takes seconds, needs no Unity.
+
+      dotnet test Tools~/PureTests                        all modules
+      dotnet test Tools~/PureTests -p:Module=Foundation   one module (Foundation, Interaction, Hud, Controls, Gameplay, Typography)
+
+    Pass an artifacts path option with your own temp folder, so parallel runs never share build output.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Module Condition="'$(Module)' == ''">*</Module>
+    <PackageRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../../'))</PackageRoot>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Foundation'">
+    <Compile Include="$(PackageRoot)Runtime/Foundation/Core/**/*.cs" />
+    <Compile Include="$(PackageRoot)Tests/Pure/Foundation/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Interaction'">
+    <Compile Include="$(PackageRoot)Runtime/Interaction/Core/**/*.cs" />
+    <Compile Include="$(PackageRoot)Tests/Pure/Interaction/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Hud'">
+    <Compile Include="$(PackageRoot)Runtime/Hud/Core/**/*.cs" />
+    <Compile Include="$(PackageRoot)Tests/Pure/Hud/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Controls'">
+    <Compile Include="$(PackageRoot)Runtime/Controls/Core/**/*.cs" />
+    <Compile Include="$(PackageRoot)Tests/Pure/Controls/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Gameplay'">
+    <Compile Include="$(PackageRoot)Runtime/Gameplay/Core/**/*.cs" />
+    <Compile Include="$(PackageRoot)Tests/Pure/Gameplay/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Typography'">
+    <!-- The system-font order is pure data and logic that lives next to the font code of the design system and its tests next to the Language tests. -->
+    <Compile Include="$(PackageRoot)Runtime/DesignSystem/Typography/DsOsFontOrder.cs" />
+    <Compile Include="$(PackageRoot)Tests/Editor/Language/Pure/DsOsFontOrderTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+  </ItemGroup>
+</Project>

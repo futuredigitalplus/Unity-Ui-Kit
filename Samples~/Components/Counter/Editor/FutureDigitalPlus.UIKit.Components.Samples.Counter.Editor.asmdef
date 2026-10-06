@@ -1,0 +1,19 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Components.Samples.Counter.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Components.Samples",
+    "references": [
+        "FutureDigitalPlus.UIKit.Components",
+        "FutureDigitalPlus.UIKit.Components.Samples.Counter"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

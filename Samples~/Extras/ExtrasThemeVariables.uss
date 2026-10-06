@@ -1,0 +1,32 @@
+/* ============================================================================
+   Extras: theme variables
+   The style sheets of the Extras module (tooltip, popup panels, colour field and
+   picker, slider 2D) are written against these USS custom properties but do not
+   define them. Define them once, on :root, in the style sheet of the panel that
+   hosts the elements.
+
+   This file holds the palette of the upstream project (plyoung/UIElements, file
+   _misc/stylesheets/DefaultStyleSheet.uss, Unlicense) reduced to the variables
+   the Extras style sheets actually use. Copy it, or use
+   ExtrasDesignSystemBridge.uss when the DesignSystem module is the theme.
+
+   --fdp-font-bold is deliberately not set here: it points at a font asset of the
+   upstream demo. Add your own:  --fdp-font-bold: resource('Path/To/Your Font SDF');
+   Until then the bold headings use the default font.
+   ============================================================================ */
+
+:root {
+    --fdp-color-txt-drk: rgb(172, 172, 172);
+    --fdp-color-txt-mid: rgb(240, 240, 240);
+    --fdp-color-txt-lit: rgb(255, 255, 255);
+
+    --fdp-color-back-drk: rgb(40, 35, 35);
+    --fdp-color-back-mid: rgba(40, 35, 35, 0.85);
+    --fdp-color-back-lit: rgba(40, 35, 35, 0.7);
+
+    --fdp-color-primary-drk: rgb(150, 112, 86);
+    --fdp-color-primary-mid: rgb(234, 170, 127);
+    --fdp-color-primary-lit: rgb(255, 224, 204);
+
+    --fdp-color-screenfill-translucent: rgba(83, 57, 39, 0.8);
+}

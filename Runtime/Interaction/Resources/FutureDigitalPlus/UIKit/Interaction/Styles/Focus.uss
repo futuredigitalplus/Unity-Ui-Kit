@@ -1,0 +1,73 @@
+/* ============================================================================
+   FOCUS RING (Interaction module)
+   The ring is shown only while the last input device was a keyboard or a gamepad:
+   InputProfile.Bind writes the class fdp-input-nav on the root. UI Toolkit applies
+   :focus after a mouse click or a tap too, so a plain :focus rule would leave a ring on
+   every pressed button; the class is the equivalent of CSS :focus-visible.
+
+   Colour: --fdp-color-focus-ring, default the theme's primary text colour (17:1 on the
+   Dark and Light backgrounds). Width: --fdp-focus-ring-width, default the regular
+   border (2px). Set either token on the root to change it; a width of 1px keeps buttons
+   and chips from growing, because their rest border is 1px.
+
+   Compound controls (Toggle, Slider, DropdownField, TextField, RadioButton) carry :focus on
+   the outer field while the visible part is an inner element, so those rules select the
+   inner part.
+   ============================================================================ */
+
+/* ---------- Controls with a border of their own: colour and width change ---------- */
+.fdp-input-nav .ds-btn:focus,
+.fdp-input-nav .ds-chip:focus,
+.fdp-input-nav .ds-card:focus,
+.fdp-input-nav .ds-profile:focus,
+.fdp-input-nav .ds-back-btn:focus,
+.fdp-input-nav .ds-pagination__btn:focus,
+.fdp-input-nav .ds-stepper__btn:focus,
+.fdp-input-nav .ds-view-toggle__btn:focus,
+.fdp-input-nav .ds-modal__close:focus,
+.fdp-input-nav .ds-drawer__close:focus,
+.fdp-input-nav .ds-toast__close:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary));
+    border-width: var(--fdp-focus-ring-width, var(--fdp-border-regular, 2px));
+}
+
+/* ---------- Items that have no border at rest ----------
+   They reserve the ring's space with a transparent border while the player navigates with keys or a gamepad, so a
+   focus move changes colours only and never pushes the next item aside (the same rule as for tabs below). */
+.fdp-input-nav .ds-nav-item,
+.fdp-input-nav .ds-sheet__row,
+.fdp-input-nav .ds-bottom-nav__item,
+.fdp-input-nav .ds-rail-item {
+    border-width: var(--fdp-focus-ring-width, var(--fdp-border-regular, 2px));
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.fdp-input-nav .ds-nav-item:focus,
+.fdp-input-nav .ds-sheet__row:focus,
+.fdp-input-nav .ds-bottom-nav__item:focus,
+.fdp-input-nav .ds-rail-item:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary));
+}
+
+/* Tabs size themselves from their content, so a border that appears on focus would push the next tab aside on every
+   focus move. In navigation mode they reserve the ring's space with a transparent border instead. */
+.fdp-input-nav .ds-tab {
+    border-width: var(--fdp-focus-ring-width, var(--fdp-border-regular, 2px));
+    border-color: rgba(0, 0, 0, 0);
+}
+.fdp-input-nav .ds-tab:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary));
+}
+
+/* ---------- Compound controls: the focused element is the field, the visible part is inside it ---------- */
+.fdp-input-nav .ds-toggle:focus .unity-toggle__checkmark,
+.fdp-input-nav .ds-check:focus .unity-toggle__checkmark,
+.fdp-input-nav .ds-radio:focus .unity-radio-button__checkmark-background,
+.fdp-input-nav .ds-slider:focus .unity-base-slider__dragger,
+.fdp-input-nav .ds-range:focus .unity-min-max-slider__min-thumb,
+.fdp-input-nav .ds-range:focus .unity-min-max-slider__max-thumb,
+.fdp-input-nav .ds-dropdown:focus .unity-base-popup-field__input,
+.fdp-input-nav .ds-input:focus .unity-base-text-field__input,
+.fdp-input-nav .ds-textarea:focus .unity-base-text-field__input {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary));
+}

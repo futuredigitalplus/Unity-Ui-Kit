@@ -1,0 +1,7 @@
+<UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Label name="title" text="Hello" class="headline" />
+    <ui:VisualElement name="row">
+        <ui:Button name="ok" text="OK" class="headline" />
+        <ui:Button name="cancel" text="Cancel" />
+    </ui:VisualElement>
+</UXML>

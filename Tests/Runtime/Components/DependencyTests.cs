@@ -1,0 +1,70 @@
+﻿// FutureDigitalPlus: renamed by Tools~/rename/rename.py (namespaces, resource paths); see SOURCE.md "Rename record".
+using NUnit.Framework;
+using FutureDigitalPlus.UIKit.Components.DependencyInjection;
+
+namespace FutureDigitalPlus.UIKit.Components.Tests
+{
+    [TestFixture]
+    public class DependencyTests
+    {
+        private interface IInterface {}
+        
+        private class ClassThatImplementsInterface : IInterface {}
+        
+        [Test]
+        public void Constructor_Throws_On_Null_Factory()
+        {
+            Assert.That(() => new Dependency<IInterface, ClassThatImplementsInterface>(Scope.Singleton, null), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void Allows_Fetching_Dependency_Type()
+        {
+            var dependency = new Dependency<IInterface, ClassThatImplementsInterface>(Scope.Singleton, () => new ClassThatImplementsInterface());
+            
+            Assert.That(dependency.GetDependencyType(), Is.EqualTo(typeof(IInterface)));
+        }
+
+        [Test]
+        public void Allows_Fetching_Implementation_Type()
+        {
+            var dependency = new Dependency<IInterface, ClassThatImplementsInterface>(Scope.Singleton, () => new ClassThatImplementsInterface());
+
+            Assert.That(dependency.GetImplementationType(), Is.EqualTo(typeof(ClassThatImplementsInterface)));
+        }
+
+        [Test]
+        public void Allows_Fetching_Scope()
+        {
+            var dependency = new Dependency<IInterface, ClassThatImplementsInterface>(Scope.Singleton, () => new ClassThatImplementsInterface());
+            
+            Assert.That(dependency.GetScope(), Is.EqualTo(Scope.Singleton));
+        }
+
+        [Test]
+        public void Allows_Creating_An_Instance()
+        {
+            var dependency = new Dependency<IInterface, ClassThatImplementsInterface>(Scope.Singleton, () => new ClassThatImplementsInterface());
+
+            var instance = dependency.CreateInstance();
+            
+            Assert.That(instance, Is.InstanceOf<ClassThatImplementsInterface>());
+        }
+        
+        [Test]
+        public void SingletonFor_Returns_Singleton_Scope()
+        {
+            var dependency = Dependency.SingletonFor<IInterface, ClassThatImplementsInterface>();
+            
+            Assert.That(dependency.GetScope(), Is.EqualTo(Scope.Singleton));
+        }
+        
+        [Test]
+        public void TransientFor_Returns_Transient_Scope()
+        {
+            var dependency = Dependency.TransientFor<IInterface, ClassThatImplementsInterface>();
+            
+            Assert.That(dependency.GetScope(), Is.EqualTo(Scope.Transient));
+        }
+    }
+}

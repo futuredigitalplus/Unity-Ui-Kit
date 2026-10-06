@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:hud="FutureDigitalPlus.UIKit.Hud" xmlns:c="FutureDigitalPlus.UIKit.Controls" xmlns:fdp="FutureDigitalPlus.UIKit.Language" xmlns:ex="FutureDigitalPlus.UIKit.Extras">
+    <hud:MeterBar name="meter" value="60" max-value="100" />
+    <c:TabBar name="tabs" items="home:Home,shop:Shop" value="home" />
+    <c:SelectField name="select" entries="Low,Medium,High" placeholder="Quality" />
+    <fdp:LocalizedLabel name="label" key="HOME-PLAY" fallback="Play" />
+    <fdp:LocalizedButton name="button" key="UI:SAVE" fallback="Save" />
+    <ex:AspectRatioPadding name="aspect" width="4" height="3" />
+</ui:UXML>

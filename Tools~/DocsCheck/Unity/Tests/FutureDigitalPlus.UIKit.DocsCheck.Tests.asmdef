@@ -1,0 +1,17 @@
+{
+  "name": "FutureDigitalPlus.UIKit.DocsCheck.Tests",
+  "rootNamespace": "",
+  "references": [
+    "UnityEngine.TestRunner", "UnityEditor.TestRunner", "FutureDigitalPlus.UIKit.DocsCheck",
+    "FutureDigitalPlus.UIKit", "FutureDigitalPlus.UIKit.DesignSystem", "FutureDigitalPlus.UIKit.Foundation.Core",
+    "FutureDigitalPlus.UIKit.Foundation", "FutureDigitalPlus.UIKit.Interaction.Core", "FutureDigitalPlus.UIKit.Interaction",
+    "FutureDigitalPlus.UIKit.Language", "FutureDigitalPlus.UIKit.Hud", "FutureDigitalPlus.UIKit.Hud.Core",
+    "FutureDigitalPlus.UIKit.Controls", "FutureDigitalPlus.UIKit.Gameplay", "FutureDigitalPlus.UIKit.Gameplay.Core"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}

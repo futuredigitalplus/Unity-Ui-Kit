@@ -1,0 +1,582 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef20be6e4872276019466aa1f4a61a9a, type: 3}
+  m_Name: HighContrastLight
+  m_EditorClassIdentifier: FutureDigitalPlus.UIKit.DesignSystem::FutureDigitalPlus.UIKit.DesignSystem.Theme.Data.ThemeData
+  extraTokens: []
+  bakedHash: 77605a86d587ee04
+  scopeSelector: .theme-hc-light
+  primaryColor: {r: 0.053138096, g: 0.32388937, b: 0.15435353, a: 1}
+  primaryHoverColor: {r: 0.039853573, g: 0.24291703, b: 0.11576515, a: 1}
+  primaryPressColor: {r: 0.026569048, g: 0.16194469, b: 0.077176765, a: 1}
+  primarySoftColor: {r: 0.053138096, g: 0.32388937, b: 0.15435353, a: 0.2}
+  secondaryColor: {r: 0.09557301, g: 0.25572234, b: 0.6070177, a: 1}
+  secondaryHoverColor: {r: 0.071679756, g: 0.19179176, b: 0.45526326, a: 1}
+  secondaryPressColor: {r: 0.047786504, g: 0.12786117, b: 0.30350885, a: 1}
+  secondarySoftColor: {r: 0.09557301, g: 0.25572234, b: 0.6070177, a: 0.2}
+  tertiaryColor: {r: 0.3909683, g: 0.13564205, b: 0.62235767, a: 1}
+  tertiaryHoverColor: {r: 0.2932262, g: 0.10173154, b: 0.46676826, a: 1}
+  tertiaryPressColor: {r: 0.19548415, g: 0.067821026, b: 0.31117883, a: 1}
+  tertiarySoftColor: {r: 0.3909683, g: 0.13564205, b: 0.62235767, a: 0.2}
+  warningColor: {r: 0.4565289, g: 0.21051055, b: 0.022826446, a: 1}
+  warningHoverColor: {r: 0.34239668, g: 0.15788291, b: 0.017119834, a: 1}
+  warningSoftColor: {r: 0.4565289, g: 0.21051055, b: 0.022826446, a: 0.2}
+  dangerColor: {r: 0.55149436, g: 0.09525812, b: 0.09525812, a: 1}
+  dangerHoverColor: {r: 0.41362077, g: 0.07144359, b: 0.07144359, a: 1}
+  dangerPressColor: {r: 0.27574718, g: 0.04762906, b: 0.04762906, a: 1}
+  dangerSoftColor: {r: 0.55149436, g: 0.09525812, b: 0.09525812, a: 0.2}
+  textPrimaryColor: {r: 0, g: 0, b: 0, a: 1}
+  textSecondaryColor: {r: 0.101960786, g: 0.101960786, b: 0.101960786, a: 1}
+  textDisabledColor: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
+  textOnAccentColor: {r: 1, g: 1, b: 1, a: 1}
+  bgColor: {r: 1, g: 1, b: 1, a: 1}
+  surfaceColor: {r: 1, g: 1, b: 1, a: 1}
+  surfaceElevColor: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
+  surfaceHoverColor: {r: 0.8784314, g: 0.8784314, b: 0.8784314, a: 1}
+  borderColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
+  borderStrongColor: {r: 0, g: 0, b: 0, a: 1}
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  rarityCommonColor: {r: 0.13333334, g: 0.77254903, b: 0.36862746, a: 1}
+  rarityRareColor: {r: 0.23137255, g: 0.50980395, b: 0.9647059, a: 1}
+  rarityEpicColor: {r: 0.65882355, g: 0.33333334, b: 0.96862745, a: 1}
+  rarityLegendaryColor: {r: 0.9607843, g: 0.61960787, b: 0.043137256, a: 1}
+  successColor: {r: 0.053138096, g: 0.32388937, b: 0.15435353, a: 1}
+  infoColor: {r: 0.09557301, g: 0.25572234, b: 0.6070177, a: 1}
+  scrimColor: {r: 0, g: 0, b: 0, a: 0.5}
+  focusRingColor: {r: 0, g: 0, b: 0, a: 1}
+  selectionColor: {r: 0.053138096, g: 0.32388937, b: 0.15435353, a: 0.45}
+  typeface: {fileID: 0}
+  fontSizeH1: 26
+  fontSizeH2: 20
+  fontSizeH3: 16
+  fontSizeBody1: 14
+  fontSizeBody2: 12
+  fontSizeCaption: 11
+  fontSizeDisplay: 34
+  radiusXs: 4
+  radiusSm: 6
+  radiusMd: 8
+  radiusLg: 12
+  radiusXl: 16
+  spacing1: 4
+  spacing2: 8
+  spacing3: 12
+  spacing4: 16
+  spacing5: 20
+  spacing6: 24
+  spacing8: 32
+  borderThin: 2
+  borderRegular: 3
+  transitionFast: 120
+  transitionMedium: 200
+  transitionSlow: 320
+  styleSheet: {fileID: 9034524085564230920}
+  typefaceUss: 
+--- !u!114 &9034524085564230920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11998, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: StyleSheet
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.StyleSheet
+  m_ImportedWithErrors: 0
+  m_ImportedWithWarnings: 0
+  m_Rules:
+  - m_ComplexSelectors:
+    - m_Specificity: 11
+      m_Selectors:
+      - m_Parts:
+        - m_Value: theme-hc-light
+          m_Type: 3
+        m_PreviousRelationship: 0
+      ruleIndex: 0
+    m_Properties:
+    - m_Id: -1
+      m_CustomName: --fdp-color-primary
+      m_Line: 4
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 0
+    - m_Id: -1
+      m_CustomName: --fdp-color-primary-hover
+      m_Line: 5
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 1
+    - m_Id: -1
+      m_CustomName: --fdp-color-primary-press
+      m_Line: 6
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 2
+    - m_Id: -1
+      m_CustomName: --fdp-color-primary-soft
+      m_Line: 7
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 3
+    - m_Id: -1
+      m_CustomName: --fdp-color-secondary
+      m_Line: 8
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 4
+    - m_Id: -1
+      m_CustomName: --fdp-color-secondary-hover
+      m_Line: 9
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 5
+    - m_Id: -1
+      m_CustomName: --fdp-color-secondary-press
+      m_Line: 10
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 6
+    - m_Id: -1
+      m_CustomName: --fdp-color-secondary-soft
+      m_Line: 11
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 7
+    - m_Id: -1
+      m_CustomName: --fdp-color-tertiary
+      m_Line: 12
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 8
+    - m_Id: -1
+      m_CustomName: --fdp-color-tertiary-hover
+      m_Line: 13
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 9
+    - m_Id: -1
+      m_CustomName: --fdp-color-tertiary-press
+      m_Line: 14
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 10
+    - m_Id: -1
+      m_CustomName: --fdp-color-tertiary-soft
+      m_Line: 15
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 11
+    - m_Id: -1
+      m_CustomName: --fdp-color-warning
+      m_Line: 16
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 12
+    - m_Id: -1
+      m_CustomName: --fdp-color-warning-hover
+      m_Line: 17
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 13
+    - m_Id: -1
+      m_CustomName: --fdp-color-warning-soft
+      m_Line: 18
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 14
+    - m_Id: -1
+      m_CustomName: --fdp-color-danger
+      m_Line: 19
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 15
+    - m_Id: -1
+      m_CustomName: --fdp-color-danger-hover
+      m_Line: 20
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 16
+    - m_Id: -1
+      m_CustomName: --fdp-color-danger-press
+      m_Line: 21
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 17
+    - m_Id: -1
+      m_CustomName: --fdp-color-danger-soft
+      m_Line: 22
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 18
+    - m_Id: -1
+      m_CustomName: --fdp-color-text-primary
+      m_Line: 23
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 19
+    - m_Id: -1
+      m_CustomName: --fdp-color-text-secondary
+      m_Line: 24
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 20
+    - m_Id: -1
+      m_CustomName: --fdp-color-text-disabled
+      m_Line: 25
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 21
+    - m_Id: -1
+      m_CustomName: --fdp-color-text-on-accent
+      m_Line: 26
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 22
+    - m_Id: -1
+      m_CustomName: --fdp-color-bg
+      m_Line: 27
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 23
+    - m_Id: -1
+      m_CustomName: --fdp-color-surface
+      m_Line: 28
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 24
+    - m_Id: -1
+      m_CustomName: --fdp-color-surface-elev
+      m_Line: 29
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 25
+    - m_Id: -1
+      m_CustomName: --fdp-color-surface-hover
+      m_Line: 30
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 26
+    - m_Id: -1
+      m_CustomName: --fdp-color-border
+      m_Line: 31
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 27
+    - m_Id: -1
+      m_CustomName: --fdp-color-border-strong
+      m_Line: 32
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 28
+    - m_Id: -1
+      m_CustomName: --fdp-color-overlay
+      m_Line: 33
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 29
+    - m_Id: -1
+      m_CustomName: --fdp-color-rarity-common
+      m_Line: 34
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 30
+    - m_Id: -1
+      m_CustomName: --fdp-color-rarity-rare
+      m_Line: 35
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 31
+    - m_Id: -1
+      m_CustomName: --fdp-color-rarity-epic
+      m_Line: 36
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 32
+    - m_Id: -1
+      m_CustomName: --fdp-color-rarity-legendary
+      m_Line: 37
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 33
+    - m_Id: -1
+      m_CustomName: --fdp-color-success
+      m_Line: 38
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 34
+    - m_Id: -1
+      m_CustomName: --fdp-color-info
+      m_Line: 39
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 35
+    - m_Id: -1
+      m_CustomName: --fdp-color-scrim
+      m_Line: 40
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 36
+    - m_Id: -1
+      m_CustomName: --fdp-color-focus-ring
+      m_Line: 41
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 37
+    - m_Id: -1
+      m_CustomName: --fdp-color-selection
+      m_Line: 42
+      m_Values:
+      - m_ValueType: 4
+        valueIndex: 38
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-h1
+      m_Line: 43
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 0
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-h2
+      m_Line: 44
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 1
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-h3
+      m_Line: 45
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 2
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-body-1
+      m_Line: 46
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 3
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-body-2
+      m_Line: 47
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 4
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-caption
+      m_Line: 48
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 5
+    - m_Id: -1
+      m_CustomName: --fdp-font-size-display
+      m_Line: 49
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 6
+    - m_Id: -1
+      m_CustomName: --fdp-radius-xs
+      m_Line: 50
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 7
+    - m_Id: -1
+      m_CustomName: --fdp-radius-sm
+      m_Line: 51
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 8
+    - m_Id: -1
+      m_CustomName: --fdp-radius-md
+      m_Line: 52
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 9
+    - m_Id: -1
+      m_CustomName: --fdp-radius-lg
+      m_Line: 53
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 10
+    - m_Id: -1
+      m_CustomName: --fdp-radius-xl
+      m_Line: 54
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 11
+    - m_Id: -1
+      m_CustomName: --fdp-space-1
+      m_Line: 55
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 12
+    - m_Id: -1
+      m_CustomName: --fdp-space-2
+      m_Line: 56
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 13
+    - m_Id: -1
+      m_CustomName: --fdp-space-3
+      m_Line: 57
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 14
+    - m_Id: -1
+      m_CustomName: --fdp-space-4
+      m_Line: 58
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 15
+    - m_Id: -1
+      m_CustomName: --fdp-space-5
+      m_Line: 59
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 16
+    - m_Id: -1
+      m_CustomName: --fdp-space-6
+      m_Line: 60
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 17
+    - m_Id: -1
+      m_CustomName: --fdp-space-8
+      m_Line: 61
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 18
+    - m_Id: -1
+      m_CustomName: --fdp-border-thin
+      m_Line: 62
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 19
+    - m_Id: -1
+      m_CustomName: --fdp-border-regular
+      m_Line: 63
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 20
+    - m_Id: -1
+      m_CustomName: --fdp-transition-fast
+      m_Line: 64
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 21
+    - m_Id: -1
+      m_CustomName: --fdp-transition-medium
+      m_Line: 65
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 22
+    - m_Id: -1
+      m_CustomName: --fdp-transition-slow
+      m_Line: 66
+      m_Values:
+      - m_ValueType: 3
+        valueIndex: 23
+    line: 3
+  floats: []
+  dimensions:
+  - unit: 1
+    value: 26
+  - unit: 1
+    value: 20
+  - unit: 1
+    value: 16
+  - unit: 1
+    value: 14
+  - unit: 1
+    value: 12
+  - unit: 1
+    value: 11
+  - unit: 1
+    value: 34
+  - unit: 1
+    value: 4
+  - unit: 1
+    value: 6
+  - unit: 1
+    value: 8
+  - unit: 1
+    value: 12
+  - unit: 1
+    value: 16
+  - unit: 1
+    value: 4
+  - unit: 1
+    value: 8
+  - unit: 1
+    value: 12
+  - unit: 1
+    value: 16
+  - unit: 1
+    value: 20
+  - unit: 1
+    value: 24
+  - unit: 1
+    value: 32
+  - unit: 1
+    value: 2
+  - unit: 1
+    value: 3
+  - unit: 4
+    value: 120
+  - unit: 4
+    value: 200
+  - unit: 4
+    value: 320
+  colors:
+  - {r: 0.05490196, g: 0.3254902, b: 0.15294118, a: 1}
+  - {r: 0.039215688, g: 0.24313726, b: 0.11764706, a: 1}
+  - {r: 0.02745098, g: 0.16078432, b: 0.078431375, a: 1}
+  - {r: 0.05490196, g: 0.3254902, b: 0.15294118, a: 0.2}
+  - {r: 0.09411765, g: 0.25490198, b: 0.60784316, a: 1}
+  - {r: 0.07058824, g: 0.19215687, b: 0.45490196, a: 1}
+  - {r: 0.047058824, g: 0.12941177, b: 0.3019608, a: 1}
+  - {r: 0.09411765, g: 0.25490198, b: 0.60784316, a: 0.2}
+  - {r: 0.39215687, g: 0.13725491, b: 0.62352943, a: 1}
+  - {r: 0.29411766, g: 0.101960786, b: 0.46666667, a: 1}
+  - {r: 0.19607843, g: 0.06666667, b: 0.30980393, a: 1}
+  - {r: 0.39215687, g: 0.13725491, b: 0.62352943, a: 0.2}
+  - {r: 0.45490196, g: 0.21176471, b: 0.023529412, a: 1}
+  - {r: 0.34117648, g: 0.15686275, b: 0.015686275, a: 1}
+  - {r: 0.45490196, g: 0.21176471, b: 0.023529412, a: 0.2}
+  - {r: 0.5529412, g: 0.09411765, b: 0.09411765, a: 1}
+  - {r: 0.4117647, g: 0.07058824, b: 0.07058824, a: 1}
+  - {r: 0.27450982, g: 0.047058824, b: 0.047058824, a: 1}
+  - {r: 0.5529412, g: 0.09411765, b: 0.09411765, a: 0.2}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.101960786, g: 0.101960786, b: 0.101960786, a: 1}
+  - {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
+  - {r: 0.8784314, g: 0.8784314, b: 0.8784314, a: 1}
+  - {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0.5}
+  - {r: 0.13333334, g: 0.77254903, b: 0.36862746, a: 1}
+  - {r: 0.23137255, g: 0.50980395, b: 0.9647059, a: 1}
+  - {r: 0.65882355, g: 0.33333334, b: 0.96862745, a: 1}
+  - {r: 0.9607843, g: 0.61960787, b: 0.043137256, a: 1}
+  - {r: 0.05490196, g: 0.3254902, b: 0.15294118, a: 1}
+  - {r: 0.09411765, g: 0.25490198, b: 0.60784316, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0.5}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.05490196, g: 0.3254902, b: 0.15294118, a: 0.45}
+  strings: []
+  assets: []
+  imports: []
+  m_FlattenedImportedStyleSheets: []
+  m_ContentHash: 1348938880
+  scalableImages: []

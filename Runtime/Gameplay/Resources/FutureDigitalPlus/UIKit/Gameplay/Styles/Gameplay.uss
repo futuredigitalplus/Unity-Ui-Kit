@@ -1,0 +1,123 @@
+/* ============================================================================
+   FUTURE DIGITAL PLUS UI KIT - GAMEPLAY
+   Styles for the elements of the Gameplay module: ItemSlot, SlotGrid and the drag ghost.
+
+   Every var() has a literal fallback so the elements stay legible when a token is missing. The drag ghost carries the
+   design system class ds-drag-ghost (position and lifted look); the rules here only add the slot specifics.
+
+   The slot keeps a 2px border at all times (its colour is the state), so that a rarity colour, a drop target or the
+   focus ring never moves anything. The focus ring only shows while the root has fdp-input-nav (keyboard or gamepad).
+   ============================================================================ */
+
+.fdp-slot-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+/* ---------- ItemSlot ---------- */
+.fdp-item-slot {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    border-width: var(--fdp-border-regular, 2px);
+    border-color: var(--fdp-color-border, #263041);
+    border-radius: var(--fdp-radius-md, 8px);
+    transition-property: background-color, border-color, opacity;
+    transition-duration: var(--fdp-transition-fast, 120ms);
+}
+.fdp-item-slot:hover {
+    background-color: var(--fdp-color-surface-hover, #1F2937);
+}
+.fdp-item-slot--empty {
+    background-color: var(--fdp-color-surface, #131A24);
+}
+.fdp-item-slot--common { border-color: var(--fdp-color-rarity-common, #22C55E); }
+.fdp-item-slot--rare { border-color: var(--fdp-color-rarity-rare, #3B82F6); }
+.fdp-item-slot--epic { border-color: var(--fdp-color-rarity-epic, #A855F7); }
+.fdp-item-slot--legendary { border-color: var(--fdp-color-rarity-legendary, #F59E0B); }
+
+.fdp-item-slot--selected {
+    background-color: var(--fdp-color-primary-soft, rgba(34, 197, 94, 0.16));
+}
+.fdp-item-slot--held {
+    opacity: 0.4;
+}
+.fdp-item-slot--drop {
+    background-color: var(--fdp-color-primary-soft, rgba(34, 197, 94, 0.16));
+    border-color: var(--fdp-color-primary, #22C55E);
+}
+.fdp-item-slot--locked {
+    opacity: 0.6;
+}
+.fdp-reduce-motion .fdp-item-slot {
+    transition-duration: 0ms;
+}
+
+.fdp-item-slot__icon {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+.fdp-item-slot__cooldown {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 0;
+    background-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+}
+.fdp-item-slot__lock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+}
+.fdp-item-slot__count {
+    position: absolute;
+    right: 4px;
+    bottom: 2px;
+    margin: 0;
+    padding: 0;
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    font-size: var(--fdp-font-size-body-2, 12px);
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.8);
+}
+.fdp-item-slot__equipped {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    margin: 0;
+    min-height: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: var(--fdp-color-primary, #22C55E);
+    color: var(--fdp-color-text-on-accent, #0B0F17);
+}
+
+/* ---------- Drag ghost ---------- */
+.fdp-item-slot-ghost {
+    overflow: hidden;
+    border-radius: var(--fdp-radius-md, 8px);
+}
+.fdp-item-slot-ghost__icon {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/* ---------- Focus ring (navigation mode only) ---------- */
+.fdp-input-nav .fdp-item-slot:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary, #F2F4F7));
+}

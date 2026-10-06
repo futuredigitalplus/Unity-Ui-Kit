@@ -1,0 +1,368 @@
+/* ============================================================================
+   FUTURE DIGITAL PLUS UI KIT - CONTROLS
+   Styles for the elements of the Controls module: TabBar (and SegmentedControl), PopupMenu, SelectField,
+   BottomSheet, ListViewBinder, VirtualGrid, empty and loading states, RewardPopup.
+
+   Every var() has a literal fallback so the elements stay legible when a token is missing. Where the design system
+   already styles a family the element carries its classes (ds-tabs, ds-tab, ds-sheet, ds-modal, ds-empty,
+   ds-skeleton, ds-btn) and this sheet adds only what is new.
+
+   Focus ring: the Interaction module's Focus.uss draws the ring for design system classes; the rules at the end of
+   this sheet do the same for the elements that only carry fdp-* classes. Both read --fdp-color-focus-ring and
+   --fdp-focus-ring-width and only apply while the root has fdp-input-nav (keyboard or gamepad).
+   ============================================================================ */
+
+/* ---------- Popup layer (PopupMenu, BottomSheet, RewardPopup) ----------
+   A full-size layer added last to the top element of the panel. It blocks the pointer from reaching what is below. */
+.fdp-popup-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* ---------- TabBar ---------- */
+.fdp-tab-bar {
+    flex-direction: row;
+}
+
+.fdp-tab-bar__badge {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 0;
+    border-radius: var(--fdp-radius-pill-9, 9px);
+    background-color: var(--fdp-color-danger, #EF4444);
+    color: var(--fdp-color-text-on-accent, #0B0F17);
+    font-size: var(--fdp-font-size-caption, 11px);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+.fdp-tab-bar__badge--dot {
+    min-width: 8px;
+    width: 8px;
+    height: 8px;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: var(--fdp-radius-pill-4, 4px);
+}
+
+/* Segmented skin: one rounded track, the selected segment is filled. */
+.fdp-tab-bar--segmented {
+    flex-wrap: nowrap;
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    border-width: var(--fdp-border-thin, 1px);
+    border-color: var(--fdp-color-border, #263041);
+    border-radius: var(--fdp-radius-md, 8px);
+    padding: 2px;
+}
+.fdp-tab-bar__segment {
+    flex-grow: 1;
+    flex-basis: 0;
+    min-height: var(--fdp-tab-h, 32px);
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: var(--fdp-space-3, 12px);
+    padding-right: var(--fdp-space-3, 12px);
+    border-width: 0;
+    border-radius: var(--fdp-radius-sm, 6px);
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    font-size: var(--fdp-font-size-body-2, 12px);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    transition-property: background-color, color;
+    transition-duration: var(--fdp-transition-fast, 120ms);
+}
+.fdp-tab-bar__segment:hover {
+    color: var(--fdp-color-text-primary, #F2F4F7);
+}
+.fdp-tab-bar__segment.fdp-tab-bar__item--selected {
+    background-color: var(--fdp-color-primary, #22C55E);
+    color: var(--fdp-color-text-on-accent, #0B0F17);
+}
+.fdp-tab-bar__segment:disabled {
+    color: var(--fdp-color-text-disabled, #677085);
+}
+
+/* ---------- PopupMenu ---------- */
+.fdp-menu {
+    min-width: 160px;
+    max-width: 320px;
+    padding: 4px;
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    border-width: var(--fdp-border-thin, 1px);
+    border-color: var(--fdp-color-border-strong, #5E6E88);
+    border-radius: var(--fdp-radius-md, 8px);
+}
+.fdp-menu__item {
+    flex-direction: row;
+    align-items: center;
+    min-height: var(--fdp-control-h-md, 36px);
+    padding-left: var(--fdp-space-2, 8px);
+    padding-right: var(--fdp-space-2, 8px);
+    border-width: 0;
+    border-radius: var(--fdp-radius-sm, 6px);
+    background-color: rgba(0, 0, 0, 0);
+}
+.fdp-menu__item:hover,
+.fdp-menu__item--active,
+.fdp-menu__item--open {
+    background-color: var(--fdp-color-surface-hover, #1F2937);
+}
+.fdp-menu__item--disabled .fdp-menu__label,
+.fdp-menu__item--disabled .fdp-menu__hint {
+    color: var(--fdp-color-text-disabled, #677085);
+}
+.fdp-menu__check {
+    width: 8px;
+    height: 8px;
+    margin-right: var(--fdp-space-2, 8px);
+    border-radius: var(--fdp-radius-pill-4, 4px);
+    background-color: rgba(0, 0, 0, 0);
+}
+.fdp-menu__check--on {
+    background-color: var(--fdp-color-primary, #22C55E);
+}
+.fdp-menu__label {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    font-size: var(--fdp-font-size-body-1, 14px);
+    -unity-text-align: middle-left;
+}
+.fdp-menu__hint,
+.fdp-menu__arrow {
+    margin: 0;
+    padding: 0;
+    margin-left: var(--fdp-space-4, 16px);
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    font-size: var(--fdp-font-size-body-2, 12px);
+}
+.fdp-menu__separator {
+    height: 1px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: var(--fdp-color-border, #263041);
+}
+
+/* ---------- SelectField ---------- */
+.fdp-select-field {
+    flex-direction: row;
+    align-items: center;
+    min-height: var(--fdp-field-h, 40px);
+    padding-left: var(--fdp-space-3, 12px);
+    padding-right: var(--fdp-space-3, 12px);
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    border-width: var(--fdp-border-thin, 1px);
+    border-color: var(--fdp-color-border-strong, #5E6E88);
+    border-radius: var(--fdp-radius-md, 8px);
+}
+.fdp-select-field:hover {
+    background-color: var(--fdp-color-surface-hover, #1F2937);
+}
+.fdp-select-field:disabled {
+    opacity: 0.5;
+}
+.fdp-select-field__label {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    font-size: var(--fdp-font-size-body-1, 14px);
+    -unity-text-align: middle-left;
+}
+.fdp-select-field__label--placeholder {
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+}
+.fdp-select-field__arrow {
+    margin: 0;
+    padding: 0;
+    margin-left: var(--fdp-space-2, 8px);
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    font-size: var(--fdp-font-size-body-2, 12px);
+}
+
+/* ---------- BottomSheet ----------
+   The layer is full size and pushes the sheet to the bottom; the scrim sits behind it. The sheet slides by
+   translating itself (a percentage of its own height); --instant switches the transition off while dragging, before
+   the first slide and under reduced motion. */
+.fdp-bottom-sheet-layer {
+    justify-content: flex-end;
+}
+.fdp-bottom-sheet__scrim {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--fdp-color-scrim, rgba(0, 0, 0, 0.6));
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--fdp-transition-medium, 200ms);
+}
+.fdp-bottom-sheet__scrim--shown {
+    opacity: 1;
+}
+.fdp-bottom-sheet {
+    align-self: center;
+    width: 100%;
+    max-width: var(--fdp-page-max-w, 960px);
+    max-height: 90%;
+    padding: 0;
+    transition-property: translate;
+    transition-duration: var(--fdp-transition-slow, 320ms);
+    transition-timing-function: ease-out;
+}
+.fdp-bottom-sheet--instant {
+    transition-duration: 0ms;
+}
+.fdp-reduce-motion .fdp-bottom-sheet,
+.fdp-reduce-motion .fdp-bottom-sheet__scrim {
+    transition-duration: 0ms;
+}
+.fdp-bottom-sheet__grab {
+    align-items: center;
+    justify-content: center;
+    min-height: var(--fdp-control-h-md, 36px);
+    border-width: 0;
+}
+.fdp-bottom-sheet__grab .ds-sheet__handle {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.fdp-bottom-sheet__content {
+    flex-shrink: 1;
+    padding-left: var(--fdp-space-3, 12px);
+    padding-right: var(--fdp-space-3, 12px);
+    padding-bottom: var(--fdp-space-3, 12px);
+}
+
+/* ---------- Lists, grids, empty and loading states ---------- */
+.fdp-list-view-binder,
+.fdp-virtual-grid {
+    flex-grow: 1;
+}
+.fdp-list-view-binder__list,
+.fdp-virtual-grid__scroll {
+    flex-grow: 1;
+}
+.fdp-collection__empty {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+.fdp-collection__skeleton {
+    flex-grow: 1;
+    padding: var(--fdp-space-3, 12px);
+}
+.fdp-collection__skeleton-row {
+    margin-bottom: var(--fdp-space-2, 8px);
+}
+
+/* ---------- RewardPopup ---------- */
+.fdp-reward-layer {
+    align-items: center;
+    justify-content: center;
+    background-color: var(--fdp-color-scrim, rgba(0, 0, 0, 0.6));
+}
+.fdp-reward {
+    align-items: stretch;
+    width: 100%;
+    max-width: var(--fdp-dialog-w, 320px);
+    min-width: 240px;
+}
+.fdp-reward__title {
+    margin: 0;
+    margin-bottom: var(--fdp-space-4, 16px);
+    -unity-text-align: middle-center;
+}
+.fdp-reward__row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: var(--fdp-space-4, 16px);
+}
+.fdp-reward__item {
+    align-items: center;
+    width: 84px;
+    margin: var(--fdp-space-1, 4px);
+    padding: var(--fdp-space-2, 8px);
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    border-width: var(--fdp-border-regular, 2px);
+    border-color: var(--fdp-color-border, #263041);
+    border-radius: var(--fdp-radius-md, 8px);
+    opacity: 1;
+    scale: 1 1;
+    transition-property: opacity, scale;
+    transition-duration: var(--fdp-transition-medium, 200ms);
+}
+.fdp-reward__item--hidden {
+    opacity: 0;
+    scale: 0.8 0.8;
+}
+.fdp-reduce-motion .fdp-reward__item {
+    transition-duration: 0ms;
+}
+.fdp-reward__item--common { border-color: var(--fdp-color-rarity-common, #22C55E); }
+.fdp-reward__item--rare { border-color: var(--fdp-color-rarity-rare, #3B82F6); }
+.fdp-reward__item--epic { border-color: var(--fdp-color-rarity-epic, #A855F7); }
+.fdp-reward__item--legendary { border-color: var(--fdp-color-rarity-legendary, #F59E0B); }
+.fdp-reward__icon {
+    width: 48px;
+    height: 48px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+.fdp-reward__amount {
+    margin: 0;
+    margin-top: var(--fdp-space-1, 4px);
+    padding: 0;
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    font-size: var(--fdp-font-size-body-1, 14px);
+    -unity-font-style: bold;
+}
+.fdp-reward__label {
+    margin: 0;
+    padding: 0;
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    font-size: var(--fdp-font-size-caption, 11px);
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+.fdp-reward__action {
+    align-self: stretch;
+}
+
+/* ---------- Focus ring for elements that only carry fdp-* classes ----------
+   Same idea as Interaction's Focus.uss: the ring only shows in navigation mode. Elements whose border is 0 or 1px at
+   rest reserve the ring's width with a transparent border so that nothing moves when focus arrives. */
+.fdp-input-nav .fdp-tab-bar__segment {
+    border-width: var(--fdp-focus-ring-width, var(--fdp-border-regular, 2px));
+    border-color: rgba(0, 0, 0, 0);
+}
+.fdp-input-nav .fdp-tab-bar__segment:focus,
+.fdp-input-nav .fdp-select-field:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary, #F2F4F7));
+}
+.fdp-input-nav .fdp-select-field:focus {
+    border-width: var(--fdp-focus-ring-width, var(--fdp-border-regular, 2px));
+}
+.fdp-input-nav .fdp-menu__item {
+    border-width: var(--fdp-focus-ring-width, var(--fdp-border-regular, 2px));
+    border-color: rgba(0, 0, 0, 0);
+}
+.fdp-input-nav .fdp-menu__item:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary, #F2F4F7));
+}
+.fdp-input-nav .fdp-bottom-sheet__grab:focus .ds-sheet__handle {
+    background-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary, #F2F4F7));
+}

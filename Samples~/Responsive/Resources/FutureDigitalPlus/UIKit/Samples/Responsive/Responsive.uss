@@ -1,0 +1,68 @@
+/* The responsive sample's own rules. USS has no media queries: the shell writes classes on its root (fdp-compact / fdp-regular / fdp-expanded,
+   fdp-portrait / fdp-landscape) and every rule below is a plain descendant selector on one of them. Tokens come with fallbacks. */
+
+.fdp-sample-page {
+    flex-grow: 1;
+    padding: var(--fdp-gutter, 16px);
+}
+
+.fdp-sample-card {
+    padding: var(--fdp-space-4, 16px);
+    margin-bottom: var(--fdp-space-3, 12px);
+    background-color: var(--fdp-color-surface, #1b2233);
+    border-radius: var(--fdp-radius-md, 12px);
+}
+
+.fdp-sample-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.fdp-sample-row > .ds-btn {
+    margin-right: var(--fdp-space-2, 8px);
+    margin-bottom: var(--fdp-space-2, 8px);
+}
+
+.fdp-sample-tiles {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* Expanded (wide windows, tablets in landscape): three tiles per row. */
+.fdp-sample-tile {
+    width: 33.33%;
+    min-height: 72px;
+    padding: var(--fdp-space-3, 12px);
+    border-width: 2px;
+    border-color: var(--fdp-color-border, #2c3550);
+    border-radius: var(--fdp-radius-sm, 8px);
+    background-color: var(--fdp-color-surface-elev, #232c42);
+}
+
+/* Regular: two per row. Compact (phones in portrait, narrow windows): one per row. */
+.fdp-regular .fdp-sample-tile { width: 50%; }
+.fdp-compact .fdp-sample-tile { width: 100%; }
+
+/* The same tile gets a taller hit area under the touch tier. */
+.fdp-input-touch .fdp-sample-tile { min-height: 96px; }
+
+/* A frame that shows where the safe area is: it sits inside a SafeAreaPanel, so the notch and the home indicator stay outside it. */
+.fdp-sample-safe-frame {
+    flex-grow: 1;
+    border-width: 2px;
+    border-color: var(--fdp-color-primary, #3b82f6);
+    border-radius: var(--fdp-radius-md, 12px);
+}
+
+.fdp-sample-fake-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 180px;
+    margin-left: -90px;
+    height: 28px;
+    background-color: #000000;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}

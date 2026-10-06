@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Compiles every assembly of the package with Roslyn against Unity's own reference assemblies, without starting Unity.
+    Also checks XML documentation (CS1591 and friends) for the files listed in doc-scope.txt and the name hazards of the lint rules.
+    Roslyn 4.0.1 is the version Unity 6000.3 ships for source generators; it is also in the offline NuGet cache of this machine.
+    Run: see README.md (run-compile-check.sh).
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../../'))</PackageRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="$(PackageRoot)Tests/Editor/Lint/Pure/LintFinding.cs" />
+    <Compile Include="$(PackageRoot)Tests/Editor/Lint/Pure/NameHazardRules.cs" />
+    <Compile Include="$(PackageRoot)Tests/Editor/Lint/LintAllowList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+  </ItemGroup>
+</Project>

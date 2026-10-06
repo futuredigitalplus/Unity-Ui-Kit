@@ -1,0 +1,19 @@
+{
+    "name": "FutureDigitalPlus.UIKit.DesignSystem.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.DesignSystem.Editor",
+    "references": [
+        "FutureDigitalPlus.UIKit.DesignSystem",
+        "FutureDigitalPlus.UIKit.Location.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,62 @@
+{
+  "_comment": "One entry per matrix variant. packages: added to the variant project's manifest (versions are the ones the verified runs used; raise them deliberately). pipeline: builtin | urp3d | urp2d | hdrp. colorSpace: gamma | linear. input: legacy | new | both (Active Input Handling).",
+  "unity": "6000.3.25f1",
+  "variants": {
+    "base": {
+      "description": "Built-in pipeline, Gamma, legacy Input Manager, no optional package",
+      "packages": {}, "pipeline": "builtin", "colorSpace": "gamma", "input": "legacy"
+    },
+    "base-linear": {
+      "description": "Built-in pipeline, Linear colour space",
+      "packages": {}, "pipeline": "builtin", "colorSpace": "linear", "input": "legacy"
+    },
+    "legacy": {
+      "description": "Legacy Input Manager only, Input System package installed but inactive",
+      "packages": { "com.unity.inputsystem": "1.20.0" }, "pipeline": "builtin", "colorSpace": "gamma", "input": "legacy"
+    },
+    "input-system": {
+      "description": "Input System package only (Active Input Handling = Input System Package): the kit must never touch UnityEngine.Input",
+      "packages": { "com.unity.inputsystem": "1.20.0" }, "pipeline": "builtin", "colorSpace": "gamma", "input": "new"
+    },
+    "both": {
+      "description": "Active Input Handling = Both",
+      "packages": { "com.unity.inputsystem": "1.20.0" }, "pipeline": "builtin", "colorSpace": "gamma", "input": "both"
+    },
+    "ugui": {
+      "description": "uGUI package installed (includes TextMeshPro)",
+      "packages": { "com.unity.ugui": "2.0.0" }, "pipeline": "builtin", "colorSpace": "gamma", "input": "legacy"
+    },
+    "localization": {
+      "description": "Unity Localization installed",
+      "packages": { "com.unity.localization": "1.5.13", "com.unity.modules.androidjni": "1.0.0" }, "pipeline": "builtin", "colorSpace": "gamma", "input": "legacy"
+    },
+    "addressables": {
+      "description": "Addressables installed",
+      "packages": { "com.unity.addressables": "2.10.3" }, "pipeline": "builtin", "colorSpace": "gamma", "input": "legacy"
+    },
+    "all-optional": {
+      "description": "Input System (only), uGUI, Localization and Addressables together, Built-in pipeline",
+      "packages": {
+        "com.unity.inputsystem": "1.20.0", "com.unity.ugui": "2.0.0", "com.unity.localization": "1.5.13",
+        "com.unity.addressables": "2.10.3", "com.unity.modules.androidjni": "1.0.0"
+      },
+      "pipeline": "builtin", "colorSpace": "gamma", "input": "new"
+    },
+    "urp3d": {
+      "description": "URP 17.3 with the 3D UniversalRenderer, Gamma",
+      "packages": { "com.unity.render-pipelines.universal": "17.3.0" }, "pipeline": "urp3d", "colorSpace": "gamma", "input": "legacy"
+    },
+    "urp2d": {
+      "description": "URP 17.3 with the 2D Renderer2D, Gamma",
+      "packages": { "com.unity.render-pipelines.universal": "17.3.0" }, "pipeline": "urp2d", "colorSpace": "gamma", "input": "legacy"
+    },
+    "urp3d-linear": {
+      "description": "URP 17.3 3D renderer, Linear",
+      "packages": { "com.unity.render-pipelines.universal": "17.3.0" }, "pipeline": "urp3d", "colorSpace": "linear", "input": "legacy"
+    },
+    "hdrp-linear": {
+      "description": "HDRP 17.3, Linear (the only colour space HDRP supports: in Gamma it logs an error for every camera that renders)",
+      "packages": { "com.unity.render-pipelines.high-definition": "17.3.0" }, "pipeline": "hdrp", "colorSpace": "linear", "input": "legacy"
+    }
+  }
+}

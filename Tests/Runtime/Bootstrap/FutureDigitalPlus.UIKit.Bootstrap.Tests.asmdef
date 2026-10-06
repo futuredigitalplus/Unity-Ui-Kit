@@ -1,0 +1,26 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Bootstrap.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Bootstrap.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.Bootstrap",
+        "FutureDigitalPlus.UIKit.Foundation",
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Interaction",
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.DesignSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,22 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Gameplay.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Gameplay.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.Gameplay.Core",
+        "FutureDigitalPlus.UIKit.Gameplay"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

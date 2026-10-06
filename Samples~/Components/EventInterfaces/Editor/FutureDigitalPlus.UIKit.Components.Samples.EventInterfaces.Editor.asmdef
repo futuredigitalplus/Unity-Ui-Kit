@@ -1,0 +1,19 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Components.Samples.EventInterfaces.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Components",
+    "references": [
+        "FutureDigitalPlus.UIKit.Components",
+        "FutureDigitalPlus.UIKit.Components.Samples.EventInterfaces"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

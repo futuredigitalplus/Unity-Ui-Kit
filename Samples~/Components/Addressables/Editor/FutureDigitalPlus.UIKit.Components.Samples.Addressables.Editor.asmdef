@@ -1,0 +1,29 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Components.Samples.Addressables.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Components.Samples",
+    "references": [
+        "FutureDigitalPlus.UIKit.Components",
+        "FutureDigitalPlus.UIKit.Components.Samples.Addressables",
+        "Unity.Addressables",
+        "Unity.ResourceManager"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UICOMPONENTS_ADDRESSABLES_INSTALLED"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.addressables",
+            "expression": "1.0.0",
+            "define": "UICOMPONENTS_ADDRESSABLES_INSTALLED"
+        }
+    ],
+    "noEngineReferences": false
+}

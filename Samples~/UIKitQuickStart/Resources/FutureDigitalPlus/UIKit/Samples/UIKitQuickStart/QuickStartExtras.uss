@@ -1,0 +1,9 @@
+/* Theme variables for the Extras tooltip, mapped onto the DesignSystem tokens.
+   The Extras style sheets read these names but do not define them (see Documentation~/Extras/README.md).
+   They are scoped to .fdp-tooltip, not :root, so they resolve on the tooltip itself and follow the active theme
+   (the tokens are inherited from the document root, where the facade puts the theme). */
+.fdp-tooltip {
+    --fdp-color-back-drk: var(--fdp-color-surface);
+    --fdp-color-back-mid: var(--fdp-color-surface-elev);
+    --fdp-color-primary-mid: var(--fdp-color-text-primary);
+}

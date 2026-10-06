@@ -1,0 +1,21 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Animation.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Tests.AnimationModule",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.Animation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

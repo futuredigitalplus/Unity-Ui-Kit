@@ -1,0 +1,14 @@
+/* ============================================================================
+   THEMING HELPERS
+   Imported last by DesignSystem.uss so these rules win ties with every component sheet.
+
+   .fdp-no-transition
+     ThemeRuntime.Apply puts this class on the root for 120 ms while it swaps a theme, so every colour changes at once
+     instead of fading through the whole tree (a universal fade restyles every element on every frame of the fade). The
+     doubled class raises the specificity above the single-class transition rules of the component sheets.
+   ============================================================================ */
+
+.fdp-no-transition.fdp-no-transition,
+.fdp-no-transition.fdp-no-transition * {
+    transition-duration: 0s;
+}

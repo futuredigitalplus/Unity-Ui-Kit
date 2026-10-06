@@ -1,0 +1,4 @@
+﻿<UXML xmlns:test="FutureDigitalPlus.UIKit.Components.Tests.Roslyn">
+    <test:RoslynTestComponent name="values-set" time="123.456" text-color="#FF0000" greeting="Morning" enabled="false" />
+    <test:RoslynTestComponent name="values-not-set" />
+</UXML>

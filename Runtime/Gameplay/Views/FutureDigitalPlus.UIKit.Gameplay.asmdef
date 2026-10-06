@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Gameplay",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Gameplay",
+    "references": [
+        "FutureDigitalPlus.UIKit.Gameplay.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Hud",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Hud",
+    "references": [
+        "FutureDigitalPlus.UIKit.Hud.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

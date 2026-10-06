@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Language",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Language",
+    "references": [
+        "FutureDigitalPlus.UIKit.Foundation.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

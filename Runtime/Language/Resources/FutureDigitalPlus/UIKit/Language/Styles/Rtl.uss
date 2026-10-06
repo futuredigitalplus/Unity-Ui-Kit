@@ -1,0 +1,186 @@
+/* ============================================================================
+   RIGHT-TO-LEFT LAYOUT
+   Every rule is under `.fdp-rtl`, a class LocaleClassApplier puts on the root while the locale is a right-to-left
+   language (Arabic, Hebrew, Persian, Urdu, ...). Unity's `languageDirection` only reorders text; it does not mirror flex
+   rows, margins, absolute offsets or arrows, so the design system's components are mirrored here:
+
+     - rows that hold an icon and a label (button, chip, input, nav item, toast, sheet row ...): row-reverse, and the gap
+       that sat on the right of the icon moves to its left
+     - horizontal paddings that differ per side swap
+     - absolute offsets (`left`/`right`) swap (dots, checks, drawers, the toggle knob)
+     - left-aligned text aligns right, right-aligned text aligns left
+     - arrows and chevrons that point left or right are flipped with `scale: -1 1`
+     - meters anchor their fill on the right
+
+   Install it with LanguageStyles.Install(root) (after the design system base sheet). It wins ties by sheet order.
+
+   Not mirrored (known limits, see Documentation~/Language/README.md): Slider and range slider (Unity computes the thumb position
+   from the left edge) and the side of a ScrollView's vertical scrollbar. Numbers, Latin words and icons that show a
+   real-world object keep their direction.
+   ============================================================================ */
+
+/* ---------- Rows: icon + label controls ---------- */
+.fdp-rtl .ds-btn--with-icon,
+.fdp-rtl .ds-back-btn,
+.fdp-rtl .ds-chip,
+.fdp-rtl .ds-badge,
+.fdp-rtl .ds-search,
+.fdp-rtl .ds-nav-item,
+.fdp-rtl .ds-profile,
+.fdp-rtl .ds-toast,
+.fdp-rtl .ds-sheet__row,
+.fdp-rtl .ds-modal__list-row,
+.fdp-rtl .ds-modal__header,
+.fdp-rtl .ds-drawer__header,
+.fdp-rtl .ds-info-row,
+.fdp-rtl .ds-info-row__left,
+.fdp-rtl .ds-animal-card__title-row,
+.fdp-rtl .ds-animal-detail__header-row,
+.fdp-rtl .ds-animal-detail__title-block,
+.fdp-rtl .ds-progress-row__head,
+.fdp-rtl .ds-tooltip__row,
+.fdp-rtl .ds-toggle,
+.fdp-rtl .ds-check,
+.fdp-rtl .ds-radio,
+.fdp-rtl .ds-row,
+.fdp-rtl .ds-swatch-row {
+    flex-direction: row-reverse;
+}
+
+/* ---------- Rows: groups of controls ---------- */
+.fdp-rtl .ds-tabs,
+.fdp-rtl .ds-view-toggle,
+.fdp-rtl .ds-bottom-nav,
+.fdp-rtl .ds-pagination,
+.fdp-rtl .ds-stepper,
+.fdp-rtl .ds-carousel-dots,
+.fdp-rtl .ds-skeleton--row,
+.fdp-rtl .ds-modal__actions,
+.fdp-rtl .ds-dialog__actions,
+.fdp-rtl .ds-animal-detail__actions {
+    flex-direction: row-reverse;
+}
+
+/* A control that hugs the start of its row hugs the other end now. */
+.fdp-rtl .ds-pagination,
+.fdp-rtl .ds-stepper,
+.fdp-rtl .ds-view-toggle {
+    align-self: flex-end;
+}
+
+/* ---------- The gap between an icon and its label ---------- */
+.fdp-rtl .ds-btn__icon                  { margin-right: 0; margin-left: 6px; }
+.fdp-rtl .ds-back-btn .ds-back-btn__icon,
+.fdp-rtl .ds-back-btn:hover .ds-back-btn__icon,
+.fdp-rtl .ds-back-btn:active .ds-back-btn__icon { margin-right: 0; margin-left: 6px; }
+.fdp-rtl .ds-chip__icon                 { margin-right: 0; margin-left: var(--fdp-space-2); }
+.fdp-rtl .ds-search__icon               { margin-right: 0; margin-left: var(--fdp-space-3); }
+.fdp-rtl .ds-search__clear              { margin-left: 0; margin-right: var(--fdp-space-2); }
+.fdp-rtl .ds-nav-item__icon             { margin-right: 0; margin-left: var(--fdp-space-3); }
+.fdp-rtl .ds-profile__avatar            { margin-right: 0; margin-left: var(--fdp-space-3); }
+.fdp-rtl .ds-toast__icon                { margin-right: 0; margin-left: var(--fdp-space-3); }
+.fdp-rtl .ds-toast__close               { margin-left: 0; margin-right: var(--fdp-space-2); }
+.fdp-rtl .ds-sheet__row-icon            { margin-right: 0; margin-left: var(--fdp-space-3); }
+.fdp-rtl .ds-info-row__icon             { margin-right: 0; margin-left: var(--fdp-space-2); }
+.fdp-rtl .ds-info-row__suffix           { margin-left: 0; margin-right: var(--fdp-space-2); }
+.fdp-rtl .ds-animal-card__title         { margin-right: 0; margin-left: var(--fdp-space-1); }
+.fdp-rtl .ds-toggle__label              { margin-left: 0; margin-right: var(--fdp-space-3); }
+.fdp-rtl .ds-check__label               { margin-left: 0; margin-right: var(--fdp-space-2); }
+.fdp-rtl .ds-radio__label               { margin-left: 0; margin-right: var(--fdp-space-2); }
+.fdp-rtl .ds-swatch                     { margin-right: 0; margin-left: var(--fdp-space-2); }
+.fdp-rtl .ds-row__gap > *               { margin-right: 0; margin-left: var(--fdp-space-2); }
+.fdp-rtl .ds-dropdown .unity-base-popup-field__arrow { margin-left: 0; margin-right: var(--fdp-space-2); }
+.fdp-rtl .unity-base-dropdown__checkmark { margin-right: 0; margin-left: 8px; }
+
+/* ---------- Horizontal paddings that differ per side ---------- */
+.fdp-rtl .ds-chip         { padding-left: var(--fdp-space-3); padding-right: var(--fdp-space-2); }
+.fdp-rtl .ds-drawer__header { padding-left: 8px; padding-right: 16px; }
+
+/* ---------- Absolute offsets ---------- */
+.fdp-rtl .ds-notif-dot                { right: auto; left: 2px; }
+.fdp-rtl .ds-animal-card__check       { right: auto; left: 8px; }
+.fdp-rtl .ds-animal-detail__hero-back { left: auto; right: 12px; }
+.fdp-rtl .ds-animal-detail__hero-more { right: auto; left: 12px; }
+
+/* ---------- Toggle: knob and travel ---------- */
+.fdp-rtl .ds-toggle__knob                          { left: auto; right: 3px; }
+.fdp-rtl .ds-toggle:checked .ds-toggle__knob       { translate: -20px 0; }
+.fdp-rtl.fdp-input-touch .ds-toggle__knob          { left: auto; right: 3px; }
+.fdp-rtl.fdp-input-touch .ds-toggle:checked .ds-toggle__knob { translate: -22px 0; }
+
+/* ---------- Meters and progress anchor their fill on the right ---------- */
+.fdp-rtl .ds-meter__fill                             { left: auto; right: 0; }
+.fdp-rtl .ds-progress .unity-progress-bar__progress  { left: auto; right: 0; }
+
+/* ---------- Text alignment ---------- */
+.fdp-rtl .ds-h1,
+.fdp-rtl .ds-h2,
+.fdp-rtl .ds-h3,
+.fdp-rtl .ds-body-1,
+.fdp-rtl .ds-body-2,
+.fdp-rtl .ds-caption,
+.fdp-rtl .ds-section-label,
+.fdp-rtl .ds-input .unity-text-input,
+.fdp-rtl .ds-input .unity-text-field__input,
+.fdp-rtl .ds-input .unity-base-text-field__input,
+.fdp-rtl .ds-dropdown .unity-popup-field__text,
+.fdp-rtl .ds-dropdown .unity-base-popup-field__text,
+.fdp-rtl .ds-dropdown .unity-text-element,
+.fdp-rtl .unity-base-dropdown__label,
+.fdp-rtl .unity-base-dropdown__item .unity-text-element,
+.fdp-rtl .ds-info-row__suffix {
+    -unity-text-align: middle-right;
+}
+
+.fdp-rtl .ds-textarea .unity-text-input,
+.fdp-rtl .ds-textarea .unity-text-field__input,
+.fdp-rtl .ds-textarea .unity-base-text-field__input,
+.fdp-rtl .ds-textarea .unity-base-field__input {
+    -unity-text-align: upper-right;
+}
+
+.fdp-rtl .ds-info-row__value,
+.fdp-rtl .ds-textarea__counter {
+    -unity-text-align: middle-left;
+}
+
+/* ---------- Arrows and chevrons that point sideways ---------- */
+.fdp-rtl .ds-icon--arrow-left,
+.fdp-rtl .ds-icon--arrow-right,
+.fdp-rtl .ds-icon--chevron-left,
+.fdp-rtl .ds-icon--chevron-right {
+    scale: -1 1;
+}
+
+/* ---------- Drawers swap sides ----------
+   Overlay drawers only. `--left` means "the start edge" and `--right` "the end edge", so the two exchange their offsets,
+   slide-in direction, flat border and rounded corners. The open state is restated afterwards (same specificity, later wins). */
+.fdp-rtl .ds-drawer.ds-drawer--left {
+    left: auto;
+    right: 0;
+    translate: 100% 0;
+    border-left-width: 1px;
+    border-right-width: 0;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.fdp-rtl .ds-drawer.ds-drawer--right {
+    right: auto;
+    left: 0;
+    translate: -100% 0;
+    border-right-width: 1px;
+    border-left-width: 0;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.fdp-rtl .ds-drawer.ds-drawer--open,
+.fdp-rtl .ds-drawer-wrap.is-open .ds-drawer,
+.fdp-rtl .ds-drawer.ds-drawer--push {
+    translate: 0 0;
+}

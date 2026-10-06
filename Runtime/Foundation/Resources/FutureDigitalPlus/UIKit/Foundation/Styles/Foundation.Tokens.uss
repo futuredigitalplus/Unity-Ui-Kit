@@ -1,0 +1,45 @@
+/* ============================================================================
+   FOUNDATION TOKENS
+   Values that belong to the foundation views (layers, dialogs, toasts, top bar,
+   rows) and that a theme should not own. Declared on the shell root class, not
+   on :root, so they never compete with the design system's theme scoping.
+   Every rule in Foundation.uss reads them with a literal fallback, so this file
+   only exists to be overridden: put the same custom property on your own root
+   class (or on `.fdp-shell` in a sheet that comes later) to change it.
+   Colours, spacing, radii and type sizes are NOT here: they come from the
+   design system tokens (--fdp-color-*, --fdp-space-*, --fdp-radius-*,
+   --fdp-font-size-*).
+   ============================================================================ */
+
+.fdp-shell {
+    /* Minimum distance of dialogs from the screen edge, on top of the safe area. */
+    --fdp-foundation-gutter: 16px;
+
+    /* Width of a dialog and of a toast; both shrink to the room they have. */
+    --fdp-foundation-dialog-w: 340px;
+    --fdp-foundation-toast-w: 420px;
+
+    /* Height of the top bar content row and of a list row. */
+    --fdp-foundation-topbar-h: 48px;
+    --fdp-foundation-row-h: 48px;
+
+    /* Height of a stats bar cell. */
+    --fdp-foundation-statsbar-h: 28px;
+
+    /* Loading spinner size. */
+    --fdp-foundation-spinner: 32px;
+}
+
+/* Touch input: larger rows and bar. The 44 px floor is the platform touch target. */
+.fdp-shell.fdp-input-touch {
+    --fdp-foundation-topbar-h: 56px;
+    --fdp-foundation-row-h: 56px;
+}
+
+/* Console and television: ten-foot layout, larger rows. */
+.fdp-shell.fdp-platform-console {
+    --fdp-foundation-topbar-h: 64px;
+    --fdp-foundation-row-h: 64px;
+    --fdp-foundation-dialog-w: 480px;
+    --fdp-foundation-toast-w: 560px;
+}

@@ -1,0 +1,20 @@
+{
+    "name": "FutureDigitalPlus.UIKit.DesignSystem",
+    "rootNamespace": "FutureDigitalPlus.UIKit.DesignSystem",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.modules.unitywebrequest",
+            "expression": "1.0.0",
+            "define": "DS_WEBREQUEST"
+        }
+    ],
+    "noEngineReferences": false
+}

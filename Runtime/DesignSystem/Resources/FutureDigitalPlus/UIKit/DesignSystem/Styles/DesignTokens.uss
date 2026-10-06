@@ -1,0 +1,184 @@
+/* FutureDigitalPlus: token names carry the prefix fdp- (Rename record in SOURCE.md); added: success, info, scrim, selection, font-size-display, transition-slow and the control metric block (touch-min, control-h-*, field-h, tab-h, chip-h, icon-*, row-h, dialog-w, page-max-w, gutter, focus-ring-width). See SOURCE.md "Local modifications". */
+/* ============================================================================
+   DESIGN TOKENS
+   Drop-in variables for the entire design system.
+   Reference in any other USS via var(--token-name).
+   Apply this stylesheet at the root of the UXML hierarchy (root VisualElement)
+   so every descendant inherits the tokens.
+   ============================================================================ */
+
+:root {
+    /* ---------- Colors: Brand & Semantic ---------- */
+    --fdp-color-primary:        #22C55E;
+    --fdp-color-primary-hover:  #4ADE80;
+    --fdp-color-primary-press:  #86EFAC;
+    --fdp-color-primary-soft:   rgba(34, 197, 94, 0.16);
+
+    --fdp-color-secondary:       #3B82F6;
+    --fdp-color-secondary-hover: #60A5FA;
+    --fdp-color-secondary-press: #93C5FD;
+    --fdp-color-secondary-soft:  rgba(59, 130, 246, 0.16);
+
+    --fdp-color-tertiary:        #B26CF9;
+    --fdp-color-tertiary-hover:  #C084FC;
+    --fdp-color-tertiary-press:  #D8B4FE;
+    --fdp-color-tertiary-soft:   rgba(178, 108, 249, 0.16);
+
+    --fdp-color-warning:        #F59E0B;
+    --fdp-color-warning-hover:  #FBBF24;
+    --fdp-color-warning-soft:   rgba(245, 158, 11, 0.16);
+
+    --fdp-color-danger:         #EF4444;
+    --fdp-color-danger-hover:   #F87171;
+    --fdp-color-danger-press:   #FCA5A5;
+    --fdp-color-danger-soft:    rgba(239, 68, 68, 0.16);
+
+    /* ---------- Colors: Text ---------- */
+    --fdp-color-text-primary:   #F2F4F7;
+    --fdp-color-text-secondary: #A1A7B3;
+    --fdp-color-text-disabled:  #677085;
+    --fdp-color-text-on-accent: #0B0F17;
+
+    /* ---------- Colors: Surfaces ---------- */
+    --fdp-color-bg:             #0B0F17;
+    --fdp-color-surface:        #131A24;
+    --fdp-color-surface-elev:   #1A2330;
+    --fdp-color-surface-hover:  #1F2937;
+    --fdp-color-border:         #263041;
+    --fdp-color-border-strong:  #5E6E88;
+    --fdp-color-overlay:        rgba(0, 0, 0, 0.6);
+
+    /* ---------- Feedback, scrim, selection (FutureDigitalPlus) ----------
+       Hover and press fills LIGHTEN in the Dark theme so the dark ink (--fdp-color-text-on-accent) keeps 4.5:1 on every
+       state; Light darkens them under white ink. The values above mirror ThemePalettes.Dark (an EditMode test checks it).
+
+       --fdp-color-focus-ring is deliberately NOT defined here: a theme that defines it wins, and an unset ring falls back
+       to the theme's text colour through var(--fdp-color-focus-ring, var(--fdp-color-text-primary)), so the ring follows
+       the theme even for a theme baked before the token existed. */
+    --fdp-color-success:        #22C55E;
+    --fdp-color-info:           #60A5FA;
+    --fdp-color-scrim:          rgba(0, 0, 0, 0.6);
+    --fdp-color-selection:      rgba(34, 197, 94, 0.35);
+
+    /* ---------- Rarity ---------- */
+    --fdp-color-rarity-common:    #22C55E;
+    --fdp-color-rarity-rare:      #3B82F6;
+    --fdp-color-rarity-epic:      #A855F7;
+    --fdp-color-rarity-legendary: #F59E0B;
+
+    /* ---------- Typography ----------
+       Sizes live here; the TYPEFACE is a separate token layer.
+
+       Out of the box the system inherits Unity 6's default UI Toolkit font.
+       Run `Design System > Google Fonts`, import any family, and the importer
+       writes a stylesheet declaring `--ds-font-100` … `--ds-font-900` plus
+       `--ds-font-body`, and points `.ds-root` at it. Add that sheet after
+       `DesignSystem.uss` and every text element below inherits the new face,
+       because `-unity-font-definition` is an inherited property.
+
+       That sheet also wires each face's weight table, which is what turns the
+       `-unity-font-style: bold` rules throughout this design system into a REAL
+       bold typeface instead of a synthetically fattened Regular. See
+       `Typography.uss` for `.ds-weight-*` and `.ds-intl`. */
+    --fdp-font-size-h1:        26px;
+    --fdp-font-size-h2:        20px;
+    --fdp-font-size-h3:        16px;
+    --fdp-font-size-body-1:    14px;
+    --fdp-font-size-body-2:    12px;
+    --fdp-font-size-caption:   11px;
+    --fdp-font-size-display:   34px;
+
+    /* ---------- Radii ----------
+       IMPORTANT: Unity 6 USS clamps `border-radius` PER AXIS to half the
+       element's width AND half its height (see USS common-properties docs).
+       That means `border-radius: 999px` on a non-square element renders as
+       an ELLIPSE, not a CSS-style pill. To get a true pill, set the radius
+       to exactly half the element's HEIGHT in px on a non-square pill, or
+       to exactly half the SIDE in px on a square circle.
+       Use the named --fdp-radius-pill-* tokens below or write the value inline.
+    */
+    --fdp-radius-xs:  4px;
+    --fdp-radius-sm:  6px;
+    --fdp-radius-md:  8px;
+    --fdp-radius-lg:  12px;
+    --fdp-radius-xl:  16px;
+
+    /* Pill / circle tokens — one per recurring height in the system.
+       Naming: --radius-pill-N == N px == half of a (2N)px-tall element. */
+    --fdp-radius-pill-2:   2px;   /* 4px tall  (sheet handle)            */
+    --fdp-radius-pill-3:   3px;   /* 6px tall  (slider track, range fill)*/
+    --fdp-radius-pill-4:   4px;   /* 8px tall  (progress bar)            */
+    --fdp-radius-pill-5:   5px;   /* 10px tall (radio inner dot)         */
+    --fdp-radius-pill-6:   6px;   /* 12px tall (skeleton line)           */
+    --fdp-radius-pill-7:   7px;   /* 14px tall (color swatch)            */
+    --fdp-radius-pill-9:   9px;   /* 18px tall (toggle knob, notif dot,  */
+                              /*           slider/range thumbs)      */
+    --fdp-radius-pill-10: 10px;   /* 20px tall (radio bg, checkbox)      */
+    --fdp-radius-pill-11: 11px;   /* 22px tall (rarity badge)            */
+    --fdp-radius-pill-12: 12px;   /* 24px tall (tag, chip, toggle track, */
+                              /*           card check, avatar-sm)    */
+    --fdp-radius-pill-16: 16px;   /* 32px tall (spinner, profile avatar) */
+    --fdp-radius-pill-20: 20px;   /* 40px tall (avatar-md, skeleton avatar)*/
+    --fdp-radius-pill-24: 24px;   /* 48px tall (spinner-lg)              */
+    --fdp-radius-pill-28: 28px;   /* 56px tall (avatar-lg)               */
+    --fdp-radius-pill-32: 32px;   /* 64px tall (empty-state icon bg)     */
+    --fdp-radius-pill-36: 36px;   /* 72px tall (avatar-xl)               */
+
+    /* ---------- Spacing ---------- */
+    --fdp-space-1:  4px;
+    --fdp-space-2:  8px;
+    --fdp-space-3:  12px;
+    --fdp-space-4:  16px;
+    --fdp-space-5:  20px;
+    --fdp-space-6:  24px;
+    --fdp-space-8:  32px;
+
+    /* ---------- Border widths ---------- */
+    --fdp-border-thin:    1px;
+    --fdp-border-regular: 2px;
+
+    /* ---------- Motion ---------- */
+    --fdp-transition-fast:   120ms;
+    --fdp-transition-medium: 200ms;
+    --fdp-transition-slow:   320ms;
+
+    /* ---------- Control metrics (FutureDigitalPlus) ----------
+       Not part of ThemeData: the touch tier redefines them on a class (.fdp-input-touch in Mobile.uss), which a theme sheet on
+       the same element would otherwise outrank. A game that wants other values writes them as extra tokens of its theme.
+       Unit contract: 1 px = 1 dp (1/160 inch) on handhelds, see Documentation~/DesignSystem/THEMING.md. */
+    --fdp-touch-min:        44px;   /* smallest hit area of an interactive control; touch tier controls are never smaller */
+    --fdp-control-h-sm:     28px;
+    --fdp-control-h-md:     36px;
+    --fdp-control-h-lg:     44px;
+    --fdp-field-h:          40px;   /* inputs, search, dropdown */
+    --fdp-tab-h:            32px;
+    --fdp-chip-h:           24px;
+    --fdp-icon-s:           16px;
+    --fdp-icon-m:           20px;
+    --fdp-icon-l:           24px;
+    --fdp-row-h:            44px;   /* list and menu rows */
+    --fdp-dialog-w:         320px;
+    --fdp-page-max-w:       960px;  /* content column on wide windows */
+    --fdp-gutter:           16px;   /* screen edge padding */
+    --fdp-focus-ring-width: 2px;    /* outline of the focused control under keyboard or gamepad navigation (Interaction module) */
+}
+
+/* Apply background + base text style at root.
+   Add the `ds-root` class to the topmost VisualElement of any window. */
+.ds-root {
+    background-color: var(--fdp-color-bg);
+    color: var(--fdp-color-text-primary);
+    font-size: var(--fdp-font-size-body-1);
+    -unity-font-style: normal;
+    flex-grow: 1;
+}
+
+/* HUD / overlay root — everything `ds-root` gives you (the token cascade, the text ramp) with NO
+   opaque background, for UI that floats over gameplay: a health bar, a minimap, a crosshair, a
+   damage vignette. `ds-root` alone paints `--fdp-color-bg` edge to edge, so a HUD built on it renders
+   as a dark slab over the game and the whole screen reads as "a menu that forgot its content".
+   Compose it: class="ds-root ds-root--hud". Full-screen menus keep plain `ds-root`. */
+.ds-root--hud {
+    background-color: rgba(0, 0, 0, 0);
+    flex-grow: 0;
+}

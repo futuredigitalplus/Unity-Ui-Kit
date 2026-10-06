@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Runs the lint rule tests (Tests/Editor/Lint) without Unity: the same source files Unity compiles, LangVersion 9 like Unity 6.
+    The Unity-only files are excluded (they need UnityEditor): the scan of loaded Unity types in NameHazardScanTests.
+    Run:  dotnet test Tools~/CompileCheck/LintRunner (plus the artifacts-path option with a temp folder, so build output stays out of the package).
+    The package root is passed in as assembly metadata; the environment variable FDP_PACKAGE_ROOT overrides it.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../../../'))</PackageRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(PackageRoot)Tests/Editor/Lint/**/*.cs" Exclude="$(PackageRoot)Tests/Editor/Lint/NameHazardScanTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>PackageRoot</_Parameter1>
+      <_Parameter2>$(PackageRoot)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+  </ItemGroup>
+</Project>

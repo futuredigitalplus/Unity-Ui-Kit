@@ -1,0 +1,27 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Language.UnityLocalization",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Language",
+    "references": [
+        "FutureDigitalPlus.UIKit.Language",
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "Unity.Localization",
+        "Unity.ResourceManager"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "FDP_UIKIT_UNITY_LOCALIZATION"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "1.4.0",
+            "define": "FDP_UIKIT_UNITY_LOCALIZATION"
+        }
+    ],
+    "noEngineReferences": false
+}

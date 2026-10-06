@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.Animation",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.AnimationModule",
+    "references": [
+        "FutureDigitalPlus.UIKit.Animation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

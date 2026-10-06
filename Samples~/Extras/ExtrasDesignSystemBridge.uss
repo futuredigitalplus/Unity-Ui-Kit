@@ -1,0 +1,29 @@
+/* ============================================================================
+   Extras: bridge to the DesignSystem module
+   Maps the custom properties that the Extras style sheets expect onto the
+   DesignSystem tokens (DesignTokens.uss), so the tooltip, popups and colour
+   picker follow whichever DesignSystem theme is active.
+
+   Load it after the DesignSystem style sheets, on the same root element, for
+   example: root.styleSheets.Add(bridge);
+   Do not combine it with ExtrasThemeVariables.uss (both define the same names).
+
+   The mapping is a starting point; adjust it to taste. --fdp-font-bold is left
+   undefined on purpose (see ExtrasThemeVariables.uss).
+   ============================================================================ */
+
+:root {
+    --fdp-color-txt-drk: var(--fdp-color-text-secondary);
+    --fdp-color-txt-mid: var(--fdp-color-text-primary);
+    --fdp-color-txt-lit: var(--fdp-color-text-primary);
+
+    --fdp-color-back-drk: var(--fdp-color-surface);
+    --fdp-color-back-mid: var(--fdp-color-surface-elev);
+    --fdp-color-back-lit: var(--fdp-color-surface-hover);
+
+    --fdp-color-primary-drk: var(--fdp-color-primary-press);
+    --fdp-color-primary-mid: var(--fdp-color-primary);
+    --fdp-color-primary-lit: var(--fdp-color-text-primary);
+
+    --fdp-color-screenfill-translucent: var(--fdp-color-overlay);
+}

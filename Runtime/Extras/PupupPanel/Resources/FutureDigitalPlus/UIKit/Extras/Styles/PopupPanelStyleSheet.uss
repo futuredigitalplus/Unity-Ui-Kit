@@ -1,0 +1,19 @@
+/* FutureDigitalPlus: class names prefixed fdp-; colours read the design system colour tokens, with the upstream demo colour as the last fallback. See SOURCE.md "Local modifications". */
+.fdp-popup-panel {
+    width: 550px;
+    height: 250px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: var(--fdp-color-back-drk, var(--fdp-color-surface, rgb(40, 35, 35)));
+    background-color: transparent;
+}
+
+.fdp-popup-panel__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--fdp-color-screenfill-translucent, var(--fdp-color-overlay, rgba(83, 57, 39, 0.8)));
+}

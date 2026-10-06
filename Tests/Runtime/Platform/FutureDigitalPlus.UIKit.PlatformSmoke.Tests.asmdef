@@ -1,0 +1,29 @@
+{
+    "name": "FutureDigitalPlus.UIKit.PlatformSmoke.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.PlatformSmoke.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.DesignSystem",
+        "FutureDigitalPlus.UIKit.Animation",
+        "FutureDigitalPlus.UIKit.Extras"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.modules.unitywebrequest",
+            "expression": "1.0.0",
+            "define": "DS_WEBREQUEST"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,131 @@
+/* ============================================================================
+   ACCESSIBILITY (Interaction module)
+   Everything here is opt-in through classes on the root element, so a game that sets
+   none of them sees no change. AccessibilityApplier.Bind writes them:
+     fdp-reduce-motion    transitions off
+     fdp-text-scale-N     larger type (N = 125, 150, 175, 200) and controls that grow with it
+     fdp-bold-text        bold body text
+   The theme must sit on a descendant of the element that holds the base sheet (the
+   facade does this), otherwise the :root tokens win ties.
+
+   The rules that redefine TOKENS (type sizes, transition times) repeat their class in the selector
+   (`.fdp-text-scale-125.fdp-text-scale-125`). A theme sheet carries the same tokens and is added LAST to the
+   root every time a theme is applied, so with the same specificity it would silently undo the text size and
+   reduced motion after every theme switch (measured: a 125 percent step changed nothing under the Light theme).
+   Two class parts outrank one, whatever order the sheets were added in.
+   ============================================================================ */
+
+/* ---------- Reduced motion ----------
+   Token driven transitions follow the two tokens below (the base tokens sit on the panel
+   root and this class on a descendant, so the class wins). The five transitions that the
+   design system writes as literal durations are overridden explicitly. */
+.fdp-reduce-motion.fdp-reduce-motion {
+    --fdp-transition-fast: 0ms;
+    --fdp-transition-medium: 0ms;
+    --fdp-transition-slow: 0ms;
+}
+.fdp-reduce-motion .ds-drawer,
+.fdp-reduce-motion .ds-drawer__close,
+.fdp-reduce-motion .ds-drawer__backdrop,
+.fdp-reduce-motion .ds-drop-zone,
+.fdp-reduce-motion .ds-draggable {
+    transition-duration: 0ms;
+}
+
+/* ---------- Text size steps ----------
+   USS cannot compute a font size from a factor, so each step redefines the type tokens with pre-computed sizes. The base sheet gives controls a fixed
+   `height`, which clips the label as soon as the type grows (measured on Unity 6000.3: chip, badge, tag and dropdown clip at
+   150 percent, the small button at 200 percent). Under a step class they keep the design height as a MINIMUM and grow with the
+   text. The touch tier (.fdp-input-touch on the same element) keeps its taller minimums. */
+.fdp-text-scale-125.fdp-text-scale-125 {
+    --fdp-font-size-h1: 32px; --fdp-font-size-h2: 25px; --fdp-font-size-h3: 20px;
+    --fdp-font-size-body-1: 18px; --fdp-font-size-body-2: 15px; --fdp-font-size-caption: 14px;
+}
+.fdp-text-scale-150.fdp-text-scale-150 {
+    --fdp-font-size-h1: 39px; --fdp-font-size-h2: 30px; --fdp-font-size-h3: 24px;
+    --fdp-font-size-body-1: 21px; --fdp-font-size-body-2: 18px; --fdp-font-size-caption: 16px;
+}
+.fdp-text-scale-175.fdp-text-scale-175 {
+    --fdp-font-size-h1: 46px; --fdp-font-size-h2: 35px; --fdp-font-size-h3: 28px;
+    --fdp-font-size-body-1: 24px; --fdp-font-size-body-2: 21px; --fdp-font-size-caption: 19px;
+}
+.fdp-text-scale-200.fdp-text-scale-200 {
+    --fdp-font-size-h1: 52px; --fdp-font-size-h2: 40px; --fdp-font-size-h3: 32px;
+    --fdp-font-size-body-1: 28px; --fdp-font-size-body-2: 24px; --fdp-font-size-caption: 22px;
+}
+
+.fdp-text-scale-125 .ds-btn { height: auto; min-height: 36px; }
+.fdp-text-scale-125 .ds-btn--sm { height: auto; min-height: 28px; }
+.fdp-text-scale-125 .ds-btn--lg { height: auto; min-height: 44px; }
+.fdp-text-scale-125 .ds-chip { height: auto; min-height: 24px; }
+.fdp-text-scale-125 .ds-tag { height: auto; min-height: 24px; }
+.fdp-text-scale-125 .ds-badge { height: auto; min-height: 22px; }
+.fdp-text-scale-125 .ds-tab { height: auto; min-height: 32px; }
+.fdp-text-scale-125 .ds-input { height: auto; min-height: 40px; }
+.fdp-text-scale-125 .ds-dropdown { height: auto; min-height: 40px; }
+
+.fdp-text-scale-150 .ds-btn { height: auto; min-height: 36px; }
+.fdp-text-scale-150 .ds-btn--sm { height: auto; min-height: 28px; }
+.fdp-text-scale-150 .ds-btn--lg { height: auto; min-height: 44px; }
+.fdp-text-scale-150 .ds-chip { height: auto; min-height: 24px; }
+.fdp-text-scale-150 .ds-tag { height: auto; min-height: 24px; }
+.fdp-text-scale-150 .ds-badge { height: auto; min-height: 22px; }
+.fdp-text-scale-150 .ds-tab { height: auto; min-height: 32px; }
+.fdp-text-scale-150 .ds-input { height: auto; min-height: 40px; }
+.fdp-text-scale-150 .ds-dropdown { height: auto; min-height: 40px; }
+
+.fdp-text-scale-175 .ds-btn { height: auto; min-height: 36px; }
+.fdp-text-scale-175 .ds-btn--sm { height: auto; min-height: 28px; }
+.fdp-text-scale-175 .ds-btn--lg { height: auto; min-height: 44px; }
+.fdp-text-scale-175 .ds-chip { height: auto; min-height: 24px; }
+.fdp-text-scale-175 .ds-tag { height: auto; min-height: 24px; }
+.fdp-text-scale-175 .ds-badge { height: auto; min-height: 22px; }
+.fdp-text-scale-175 .ds-tab { height: auto; min-height: 32px; }
+.fdp-text-scale-175 .ds-input { height: auto; min-height: 40px; }
+.fdp-text-scale-175 .ds-dropdown { height: auto; min-height: 40px; }
+
+.fdp-text-scale-200 .ds-btn { height: auto; min-height: 36px; }
+.fdp-text-scale-200 .ds-btn--sm { height: auto; min-height: 28px; }
+.fdp-text-scale-200 .ds-btn--lg { height: auto; min-height: 44px; }
+.fdp-text-scale-200 .ds-chip { height: auto; min-height: 24px; }
+.fdp-text-scale-200 .ds-tag { height: auto; min-height: 24px; }
+.fdp-text-scale-200 .ds-badge { height: auto; min-height: 22px; }
+.fdp-text-scale-200 .ds-tab { height: auto; min-height: 32px; }
+.fdp-text-scale-200 .ds-input { height: auto; min-height: 40px; }
+.fdp-text-scale-200 .ds-dropdown { height: auto; min-height: 40px; }
+
+.fdp-input-touch.fdp-text-scale-125 .ds-btn { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-125 .ds-btn--sm { height: auto; min-height: 36px; }
+.fdp-input-touch.fdp-text-scale-125 .ds-btn--lg { height: auto; min-height: 56px; }
+.fdp-input-touch.fdp-text-scale-125 .ds-tab { height: auto; min-height: 40px; }
+.fdp-input-touch.fdp-text-scale-125 .ds-input { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-125 .ds-dropdown { height: auto; min-height: 48px; }
+
+.fdp-input-touch.fdp-text-scale-150 .ds-btn { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-150 .ds-btn--sm { height: auto; min-height: 36px; }
+.fdp-input-touch.fdp-text-scale-150 .ds-btn--lg { height: auto; min-height: 56px; }
+.fdp-input-touch.fdp-text-scale-150 .ds-tab { height: auto; min-height: 40px; }
+.fdp-input-touch.fdp-text-scale-150 .ds-input { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-150 .ds-dropdown { height: auto; min-height: 48px; }
+
+.fdp-input-touch.fdp-text-scale-175 .ds-btn { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-175 .ds-btn--sm { height: auto; min-height: 36px; }
+.fdp-input-touch.fdp-text-scale-175 .ds-btn--lg { height: auto; min-height: 56px; }
+.fdp-input-touch.fdp-text-scale-175 .ds-tab { height: auto; min-height: 40px; }
+.fdp-input-touch.fdp-text-scale-175 .ds-input { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-175 .ds-dropdown { height: auto; min-height: 48px; }
+
+.fdp-input-touch.fdp-text-scale-200 .ds-btn { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-200 .ds-btn--sm { height: auto; min-height: 36px; }
+.fdp-input-touch.fdp-text-scale-200 .ds-btn--lg { height: auto; min-height: 56px; }
+.fdp-input-touch.fdp-text-scale-200 .ds-tab { height: auto; min-height: 40px; }
+.fdp-input-touch.fdp-text-scale-200 .ds-input { height: auto; min-height: 48px; }
+.fdp-input-touch.fdp-text-scale-200 .ds-dropdown { height: auto; min-height: 48px; }
+
+/* ---------- Bold text (OS "Bold Text" setting or the player's option) ---------- */
+.fdp-bold-text .ds-body-1,
+.fdp-bold-text .ds-body-2,
+.fdp-bold-text .ds-caption,
+.fdp-bold-text .unity-label {
+    -unity-font-style: bold;
+}

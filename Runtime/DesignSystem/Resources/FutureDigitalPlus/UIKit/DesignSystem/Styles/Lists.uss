@@ -1,0 +1,90 @@
+/* ============================================================================
+   LISTS, TREES, FOLDOUTS AND GROUPS
+   Opt-in skins for Unity's own collection controls, so a ListView or a TreeView built in code or UXML looks like the rest
+   of the design system. Add the skin class to the control:
+
+     ListView / MultiColumnListView / GridView : ds-list
+     TreeView                                  : ds-tree
+     Foldout                                   : ds-foldout
+     GroupBox / RadioButtonGroup               : ds-group
+
+   The selectors name the USS classes Unity's collection controls put on their parts (unity-collection-view__item,
+   unity-list-view__item, unity-tree-view__item, unity-foldout__toggle, unity-group-box__label). They are additive: nothing
+   here applies without the skin class, and nothing in the other sheets is changed. Row height follows --fdp-row-h, so the
+   touch tier and a brand theme resize rows with one token.
+   ============================================================================ */
+
+/* ---------- ListView / MultiColumnListView / TreeView rows ---------- */
+.ds-list,
+.ds-tree {
+    background-color: var(--fdp-color-surface);
+    border-width: var(--fdp-border-thin);
+    border-color: var(--fdp-color-border-strong);
+    border-radius: var(--fdp-radius-md);
+}
+
+.ds-list .unity-collection-view__item,
+.ds-tree .unity-collection-view__item {
+    min-height: var(--fdp-row-h, 44px);
+    padding-left: var(--fdp-space-3);
+    padding-right: var(--fdp-space-3);
+    color: var(--fdp-color-text-primary);
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom-width: var(--fdp-border-thin);
+    border-bottom-color: var(--fdp-color-border);
+    justify-content: center;
+}
+
+.ds-list .unity-collection-view__item:hover,
+.ds-tree .unity-collection-view__item:hover {
+    background-color: var(--fdp-color-surface-hover);
+}
+
+.ds-list .unity-collection-view__item--selected,
+.ds-tree .unity-collection-view__item--selected {
+    background-color: var(--fdp-color-primary-soft);
+    border-left-width: var(--fdp-border-regular);
+    border-left-color: var(--fdp-color-primary);
+}
+
+.ds-list .unity-list-view__empty-label {
+    color: var(--fdp-color-text-secondary);
+    -unity-text-align: middle-center;
+    padding: var(--fdp-space-4);
+}
+
+/* ---------- TreeView ---------- */
+.ds-tree .unity-tree-view__item-toggle {
+    margin-right: var(--fdp-space-1);
+}
+
+/* ---------- Foldout ---------- */
+.ds-foldout .unity-foldout__toggle {
+    min-height: var(--fdp-control-h-md, 36px);
+    color: var(--fdp-color-text-primary);
+    -unity-font-style: bold;
+}
+
+.ds-foldout .unity-foldout__content {
+    margin-left: var(--fdp-space-4);
+    padding-top: var(--fdp-space-2);
+    padding-bottom: var(--fdp-space-2);
+    border-left-width: var(--fdp-border-thin);
+    border-left-color: var(--fdp-color-border);
+}
+
+/* ---------- GroupBox / RadioButtonGroup ---------- */
+.ds-group {
+    background-color: var(--fdp-color-surface);
+    border-width: var(--fdp-border-thin);
+    border-color: var(--fdp-color-border);
+    border-radius: var(--fdp-radius-md);
+    padding: var(--fdp-space-3);
+}
+
+.ds-group .unity-group-box__label {
+    color: var(--fdp-color-text-secondary);
+    font-size: var(--fdp-font-size-body-2);
+    -unity-font-style: bold;
+    margin-bottom: var(--fdp-space-2);
+}

@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Components.Samples.Resources",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Components.Samples",
+    "references": [
+        "FutureDigitalPlus.UIKit.Components"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

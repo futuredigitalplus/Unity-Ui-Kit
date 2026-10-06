@@ -1,0 +1,22 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.ThemingLanguage",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.ThemingLanguage",
+    "references": [
+        "FutureDigitalPlus.UIKit.DesignSystem",
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Language",
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.Interaction",
+        "FutureDigitalPlus.UIKit.Controls.Core",
+        "FutureDigitalPlus.UIKit.Controls"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

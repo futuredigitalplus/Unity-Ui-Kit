@@ -1,0 +1,20 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.ShellQuickStart",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.ShellQuickStart",
+    "references": [
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Foundation",
+        "FutureDigitalPlus.UIKit.Language",
+        "FutureDigitalPlus.UIKit.Controls.Core",
+        "FutureDigitalPlus.UIKit.Controls"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

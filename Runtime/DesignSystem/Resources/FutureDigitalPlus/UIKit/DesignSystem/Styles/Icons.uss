@@ -1,0 +1,335 @@
+/* ============================================================================
+   ICONS
+   Vector icon system backed by SVGs in Resources/FutureDigitalPlus/UIKit/DesignSystem/Icons/.
+   Each .ds-icon--<name> class binds the icon's background-image; the parent
+   element (.ds-icon-host or any control with .ds-btn--icon, .ds-tab, etc.)
+   drives the tint color via -unity-background-image-tint-color so the SAME
+   class supports passive / hover / active / disabled states automatically.
+
+   Usage on its own VisualElement (e.g., as a label-prefix glyph):
+     <ui:VisualElement class="ds-icon ds-icon--paw" />
+
+   Usage inside an icon button or tab (recommended):
+     <ui:Button class="ds-btn ds-btn--icon">
+       <ui:VisualElement class="ds-icon ds-icon--search" />
+     </ui:Button>
+
+   Color states inherit from the parent's pseudo-class — no additional rule
+   needed in the consumer screen. To override a single state, add a
+   stateful modifier (.ds-icon--accent, .ds-icon--danger, etc.).
+   ============================================================================ */
+
+/* ---------- Base ---------- */
+
+.ds-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    -unity-background-scale-mode: scale-to-fit;
+    /* Default tint = text-secondary (passive). Parent state overrides. */
+    -unity-background-image-tint-color: var(--fdp-color-text-secondary);
+    transition-property: -unity-background-image-tint-color;
+    transition-duration: var(--fdp-transition-fast);
+}
+
+/* ---------- Sizes ---------- */
+.ds-icon--xs { width: 12px; height: 12px; }
+.ds-icon--sm { width: 16px; height: 16px; }
+.ds-icon--md { width: 20px; height: 20px; }
+.ds-icon--lg { width: 24px; height: 24px; }
+.ds-icon--xl { width: 32px; height: 32px; }
+.ds-icon--xxl { width: 48px; height: 48px; }
+
+/* ---------- Tint variants (explicit) ---------- */
+.ds-icon--primary    { -unity-background-image-tint-color: var(--fdp-color-text-primary); }
+.ds-icon--secondary  { -unity-background-image-tint-color: var(--fdp-color-text-secondary); }
+.ds-icon--disabled   { -unity-background-image-tint-color: var(--fdp-color-text-disabled); }
+.ds-icon--accent     { -unity-background-image-tint-color: var(--fdp-color-primary); }
+.ds-icon--gold       { -unity-background-image-tint-color: var(--fdp-color-rarity-legendary); }
+.ds-icon--danger     { -unity-background-image-tint-color: var(--fdp-color-danger); }
+.ds-icon--warning    { -unity-background-image-tint-color: var(--fdp-color-warning); }
+.ds-icon--info       { -unity-background-image-tint-color: var(--fdp-color-secondary); }
+.ds-icon--on-accent  { -unity-background-image-tint-color: var(--fdp-color-text-on-accent); }
+.ds-icon--rarity-common    { -unity-background-image-tint-color: var(--fdp-color-rarity-common); }
+.ds-icon--rarity-rare      { -unity-background-image-tint-color: var(--fdp-color-rarity-rare); }
+.ds-icon--rarity-epic      { -unity-background-image-tint-color: var(--fdp-color-rarity-epic); }
+.ds-icon--rarity-legendary { -unity-background-image-tint-color: var(--fdp-color-rarity-legendary); }
+
+/* ---------- Parent-driven state inheritance ----------
+   When an icon sits inside a control (button / tab / nav-item) that exposes
+   :hover / :active / :disabled / .is-active, paint the icon to match. The
+   selectors target the icon directly so we don't have to repeat per-state
+   rules in every consumer. */
+
+/* Hover on a generic interactive parent */
+.ds-btn:hover .ds-icon,
+.ds-tab:hover .ds-icon,
+.ds-nav-item:hover .ds-icon,
+.ds-rail-item:hover .ds-icon,
+.ds-bottom-nav__item:hover .ds-icon,
+.ds-pagination__btn:hover .ds-icon,
+.ds-stepper__btn:hover .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-primary);
+}
+
+/* Active state. Two flavours:
+   1. Filled-bg controls (.ds-tab, .ds-pagination__btn, .ds-view-toggle__btn,
+      .ds-bottom-nav__item — when active the tab is painted with primary
+      background) → on-accent ink for contrast.
+   2. Soft-bg controls (.ds-nav-item, .ds-rail-item — primary-soft fill,
+      primary-tinted icon) — those define their own per-class tint in
+      Navigation.uss; we don't add them to this list to avoid stomping. */
+.ds-tab.is-active .ds-icon,
+.ds-pagination__btn.is-active .ds-icon,
+.ds-view-toggle__btn.is-active .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-on-accent);
+}
+
+/* .ds-bottom-nav__item.is-active uses primary tint on transparent fill
+   (no full-green background) — its __icon rule in Navigation.uss already
+   sets that, so we skip it here too. */
+
+/* Press feedback */
+.ds-btn:active .ds-icon,
+.ds-tab:active .ds-icon,
+.ds-nav-item:active .ds-icon,
+.ds-rail-item:active .ds-icon,
+.ds-bottom-nav__item:active .ds-icon,
+.ds-pagination__btn:active .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-primary);
+}
+
+/* Disabled — base rule plus explicit `:disabled:hover` / `:disabled:active`
+   compounds. The per-variant `:hover` / `:active` rules below
+   (`.ds-btn--ghost:hover .ds-icon` etc.) are also (0,3,0); the bare
+   `.ds-btn:disabled .ds-icon` at the same (0,3,0) specificity LOSES on
+   source order because the per-variant rules are declared later in the
+   file. Without these compounds at (0,4,0), moving the cursor onto a
+   disabled button would flash its icon from the disabled grey back to the
+   variant's text-primary / text-on-accent tint. The same trap applies to
+   `:active` — Unity's input layer can still produce pointer-down on a
+   disabled element on some platforms before SetEnabled blocks it, leaving
+   a one-frame "pressed" tint mismatch. Lock both states to disabled. */
+.ds-btn:disabled .ds-icon,
+.ds-btn:disabled:hover .ds-icon,
+.ds-btn:disabled:active .ds-icon,
+.ds-tab:disabled .ds-icon,
+.ds-tab:disabled:hover .ds-icon,
+.ds-tab:disabled:active .ds-icon,
+.ds-nav-item:disabled .ds-icon,
+.ds-nav-item:disabled:hover .ds-icon,
+.ds-nav-item:disabled:active .ds-icon,
+.ds-pagination__btn:disabled .ds-icon,
+.ds-pagination__btn:disabled:hover .ds-icon,
+.ds-pagination__btn:disabled:active .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-disabled);
+}
+
+/* Per-variant glyph tint — match the icon to the variant's text color so
+   a leading `.ds-btn__icon` reads as part of the same content stream as
+   the label. Splits by what the variant's `color:` actually resolves to:
+
+   .ds-btn--primary  → color: text-on-accent (dark ink on green) → icon dark
+   .ds-btn--secondary→ color: text-primary  (white on blue)      → icon white
+   .ds-btn--tertiary → color: text-primary  (white on purple)    → icon white
+   .ds-btn--ghost    → color: text-primary  (white on transparent)→ icon white
+   .ds-btn--danger   → color: text-primary  (white on red)       → icon white
+
+   Each variant must also list `:hover` and `:active` selectors. The global
+   `.ds-btn:hover .ds-icon` / `.ds-btn:active .ds-icon` rules above are
+   (0,3,0) — pseudo-classes count as classes — so a bare `.ds-btn--primary
+   .ds-icon` (0,2,0) actually LOSES the cascade on hover and the icon
+   would flash to text-primary white over the green Primary background.
+   Adding `.ds-btn--primary:hover .ds-icon` (0,3,0) ties the global rule
+   on specificity; declaring it AFTER the global rule lets source order
+   pick the variant tint, so a Primary button keeps its dark glyph on
+   every interactive state and the dark "Back" label never disagrees with
+   the chevron next to it. */
+.ds-btn--primary .ds-icon,
+.ds-btn--primary:hover .ds-icon,
+.ds-btn--primary:active .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-on-accent);
+}
+
+.ds-btn--secondary .ds-icon,
+.ds-btn--secondary:hover .ds-icon,
+.ds-btn--secondary:active .ds-icon,
+.ds-btn--tertiary .ds-icon,
+.ds-btn--tertiary:hover .ds-icon,
+.ds-btn--tertiary:active .ds-icon,
+.ds-btn--ghost .ds-icon,
+.ds-btn--ghost:hover .ds-icon,
+.ds-btn--ghost:active .ds-icon,
+.ds-btn--danger .ds-icon,
+.ds-btn--danger:hover .ds-icon,
+.ds-btn--danger:active .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-primary);
+}
+
+/* The icon-button variant defaults to text-primary at rest so the glyph
+   stays legible against the surface-elev background. */
+.ds-btn--icon .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-text-primary);
+}
+.ds-btn--icon:hover .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-primary);
+}
+.ds-btn--icon.ds-btn--icon-danger .ds-icon {
+    -unity-background-image-tint-color: var(--fdp-color-danger);
+}
+
+/* ---------- Glyph map ---------------------------------------------------
+   One declaration per SVG file under Assets/Resources/FutureDigitalPlus/UIKit/DesignSystem/Icons/.
+   Add a new file → add one line below. resource(...) is path-relative to
+   Resources/, no extension. SVGs import as Texture2D (svgType: 3). */
+
+/* Arrows */
+.ds-icon--arrow-up        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/arrow_up"); }
+.ds-icon--arrow-down      { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/arrow_down"); }
+.ds-icon--arrow-left      { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/arrow_left"); }
+.ds-icon--arrow-right     { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/arrow_right"); }
+.ds-icon--chevron-up      { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/chevron_up"); }
+.ds-icon--chevron-down    { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/chevron_down"); }
+.ds-icon--chevron-left    { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/chevron_left"); }
+.ds-icon--chevron-right   { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/chevron_right"); }
+.ds-icon--sort-asc        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sort_asc"); }
+.ds-icon--sort-desc       { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sort_desc"); }
+
+/* Status / feedback */
+.ds-icon--check           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/check"); }
+.ds-icon--close           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/close"); }
+.ds-icon--info            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/info"); }
+.ds-icon--error           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/error"); }
+.ds-icon--warning         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/warning"); }
+.ds-icon--help            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/help"); }
+.ds-icon--smile           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/smile"); }
+.ds-icon--frown           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/frown"); }
+
+/* Actions */
+.ds-icon--plus            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/plus"); }
+.ds-icon--edit            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/edit"); }
+.ds-icon--trash           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/trash"); }
+.ds-icon--share           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/share"); }
+.ds-icon--refresh         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/refresh"); }
+.ds-icon--sync            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sync"); }
+.ds-icon--search          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/search"); }
+.ds-icon--filter          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/filter"); }
+.ds-icon--more-horizontal { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/more_horizontal"); }
+.ds-icon--more-vertical   { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/more_vertical"); }
+.ds-icon--menu            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/menu"); }
+.ds-icon--list            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/list"); }
+.ds-icon--lock            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/lock"); }
+.ds-icon--unlock          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/unlock"); }
+.ds-icon--eye             { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/eye"); }
+.ds-icon--settings        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/settings"); }
+.ds-icon--bell            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/bell"); }
+.ds-icon--clock           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/clock"); }
+.ds-icon--calendar        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/calendar"); }
+.ds-icon--user            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/user"); }
+.ds-icon--home            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/home"); }
+.ds-icon--target          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/target"); }
+
+/* Game / cosmetics */
+.ds-icon--paw             { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/paw"); }
+.ds-icon--shirt           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/shirt"); }
+.ds-icon--hats            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/hats"); }
+.ds-icon--store           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/store"); }
+.ds-icon--cart            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/cart"); }
+.ds-icon--bag             { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/bag"); }
+.ds-icon--gift            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/gift"); }
+.ds-icon--heart           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/heart"); }
+.ds-icon--shield          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/shield"); }
+.ds-icon--sword           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sword"); }
+.ds-icon--bolt            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/bolt"); }
+.ds-icon--fire            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/fire"); }
+.ds-icon--flame           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/flame"); }
+.ds-icon--sparkle         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sparkle"); }
+.ds-icon--sun             { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sun"); }
+
+/* Nature / habitat */
+.ds-icon--leaf            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/leaf"); }
+.ds-icon--tree            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/tree"); }
+.ds-icon--mountain        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/mountain"); }
+.ds-icon--droplet         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/droplet"); }
+
+/* Voice / audio (SVG replacements for the legacy mic-icon / sound-icon /
+   speak-icon / nametag-icon PNGs — same callsites, new artwork tied to
+   the design system token palette). */
+.ds-icon--mic             { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/mic"); }
+.ds-icon--sound           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/sound"); }
+.ds-icon--speak           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/speak"); }
+.ds-icon--nametag         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/nametag"); }
+
+
+/* ---------- Glyph map: gaming pack ---------------------------------------
+   Added alongside the original set; same contract, one line per SVG. */
+
+/* Gaming hardware */
+.ds-icon--arcade         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/arcade"); }
+.ds-icon--cartridge      { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/cartridge"); }
+.ds-icon--console        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/console"); }
+.ds-icon--handheld       { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/handheld"); }
+.ds-icon--gamepad        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/gamepad"); }
+.ds-icon--joystick       { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/joystick"); }
+.ds-icon--dpad           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/dpad"); }
+.ds-icon--keyboard       { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/keyboard"); }
+.ds-icon--mouse          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/mouse"); }
+.ds-icon--monitor        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/monitor"); }
+.ds-icon--headset        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/headset"); }
+.ds-icon--vr-headset     { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/vr_headset"); }
+.ds-icon--disc           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/disc"); }
+
+/* System & connectivity */
+.ds-icon--power          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/power"); }
+.ds-icon--battery        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/battery"); }
+.ds-icon--wifi           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/wifi"); }
+.ds-icon--bug            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/bug"); }
+.ds-icon--save           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/save"); }
+
+/* Combat & gear */
+.ds-icon--axe            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/axe"); }
+.ds-icon--bow            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/bow"); }
+.ds-icon--hammer         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/hammer"); }
+.ds-icon--pickaxe        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/pickaxe"); }
+.ds-icon--swords         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/swords"); }
+.ds-icon--helmet         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/helmet"); }
+.ds-icon--bomb           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/bomb"); }
+.ds-icon--crosshair      { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/crosshair"); }
+.ds-icon--skull          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/skull"); }
+
+/* Fantasy & adventure */
+.ds-icon--alien          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/alien"); }
+.ds-icon--castle         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/castle"); }
+.ds-icon--crown          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/crown"); }
+.ds-icon--gem            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/gem"); }
+.ds-icon--ghost          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/ghost"); }
+.ds-icon--mushroom       { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/mushroom"); }
+.ds-icon--portal         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/portal"); }
+.ds-icon--potion         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/potion"); }
+.ds-icon--robot          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/robot"); }
+.ds-icon--wand           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/wand"); }
+.ds-icon--treasure       { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/treasure"); }
+.ds-icon--key            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/key"); }
+.ds-icon--map            { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/map"); }
+.ds-icon--compass        { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/compass"); }
+
+/* Progression & rewards */
+.ds-icon--trophy         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/trophy"); }
+.ds-icon--medal          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/medal"); }
+.ds-icon--leaderboard    { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/leaderboard"); }
+.ds-icon--star           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/star"); }
+.ds-icon--coin           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/coin"); }
+.ds-icon--cards          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/cards"); }
+.ds-icon--dice           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/dice"); }
+.ds-icon--puzzle         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/puzzle"); }
+
+/* Media & transport */
+.ds-icon--play           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/play"); }
+.ds-icon--pause          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/pause"); }
+.ds-icon--music          { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/music"); }
+.ds-icon--book           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/book"); }
+.ds-icon--flag           { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/flag"); }
+.ds-icon--flag-checkered { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/flag_checkered"); }
+.ds-icon--rocket         { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/rocket"); }
+.ds-icon--snowflake      { background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/snowflake"); }

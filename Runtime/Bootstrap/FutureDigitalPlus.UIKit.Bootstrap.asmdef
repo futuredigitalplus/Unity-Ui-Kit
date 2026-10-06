@@ -1,0 +1,22 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Bootstrap",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Bootstrap",
+    "references": [
+        "FutureDigitalPlus.UIKit.DesignSystem",
+        "FutureDigitalPlus.UIKit.Animation",
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Foundation",
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.Interaction",
+        "FutureDigitalPlus.UIKit.Language"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

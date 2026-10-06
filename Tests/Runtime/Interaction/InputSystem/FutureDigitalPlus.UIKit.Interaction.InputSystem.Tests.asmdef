@@ -1,0 +1,31 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Interaction.InputSystem.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Interaction.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.Interaction",
+        "FutureDigitalPlus.UIKit.Interaction.InputSystem",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FDP_UIKIT_INPUTSYSTEM"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "FDP_UIKIT_INPUTSYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

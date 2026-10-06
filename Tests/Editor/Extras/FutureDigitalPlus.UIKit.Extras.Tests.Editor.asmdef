@@ -1,0 +1,24 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Extras.Tests.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Extras.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "FutureDigitalPlus.UIKit.Extras"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

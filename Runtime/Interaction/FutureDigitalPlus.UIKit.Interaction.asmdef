@@ -1,0 +1,22 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Interaction",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Interaction",
+    "references": [
+        "FutureDigitalPlus.UIKit.Interaction.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.modules.accessibility",
+            "expression": "1.0.0",
+            "define": "FDP_UIKIT_ACCESSIBILITY"
+        }
+    ],
+    "noEngineReferences": false
+}

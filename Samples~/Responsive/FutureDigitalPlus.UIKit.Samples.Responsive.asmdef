@@ -1,0 +1,17 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.Responsive",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.Responsive",
+    "references": [
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Foundation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,22 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Components.Tests.Roslyn.IntegrationTests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Components.Tests",
+    "references": [
+        "FutureDigitalPlus.UIKit.Components",
+        "UnityEngine.TestRunner"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_2020_3_OR_NEWER",
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

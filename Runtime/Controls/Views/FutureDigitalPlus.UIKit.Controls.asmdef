@@ -1,0 +1,17 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Controls",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Controls",
+    "references": [
+        "FutureDigitalPlus.UIKit.Controls.Core",
+        "FutureDigitalPlus.UIKit.Foundation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

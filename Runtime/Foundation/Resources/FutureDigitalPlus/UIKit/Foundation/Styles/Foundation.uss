@@ -1,0 +1,626 @@
+/* ============================================================================
+   FOUNDATION
+   Layers, screen transitions, dialog, toast, loading overlay, top bar, list row,
+   section header, stat cell, banner and pause menu of the Foundation module.
+   They sit on the design system: `ds-*` classes give the skin, `fdp-*` classes
+   add layout and behaviour. Colours and sizes read --fdp-* design tokens; the
+   foundation's own sizes read --fdp-foundation-* (Foundation.Tokens.uss) with
+   literal fallbacks, so the sheet works on its own.
+   USS limits respected: no gap, calc, @media, @keyframes, z-index, sibling or
+   pseudo-element selectors. Layer order is tree order (screens first, loading last).
+   ============================================================================ */
+
+/* ---------- Shell and layers ---------- */
+.fdp-shell {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.fdp-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+/* ---------- Screens ----------
+   A screen fills layer-screens. Screens are transparent so the game or the theme
+   background shows through; give a page an opaque background with fdp-page-bg.
+   The router adds the enter/exit/behind classes for one scheduler tick so the
+   transition below runs; ScreenRouter.TransitionMilliseconds must equal 220. */
+.fdp-screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    translate: 0 0;
+    transition-property: opacity, translate;
+    transition-duration: 220ms;
+    transition-timing-function: ease-out;
+}
+
+.fdp-screen--enter {
+    opacity: 0;
+    translate: 32px 0;
+}
+
+.fdp-screen--enter-back {
+    opacity: 0;
+    translate: -32px 0;
+}
+
+.fdp-screen--exit {
+    opacity: 0;
+    translate: 32px 0;
+}
+
+.fdp-screen--behind {
+    opacity: 0;
+    translate: -32px 0;
+}
+
+.fdp-rtl .fdp-screen--enter,
+.fdp-rtl .fdp-screen--exit {
+    translate: -32px 0;
+}
+
+.fdp-rtl .fdp-screen--enter-back,
+.fdp-rtl .fdp-screen--behind {
+    translate: 32px 0;
+}
+
+.fdp-screen__error {
+    margin-left: var(--fdp-space-4, 16px);
+    margin-top: var(--fdp-space-4, 16px);
+    color: var(--fdp-color-danger, #EF4444);
+}
+
+/* An opaque page background for screens that cover the game. */
+.fdp-page-bg {
+    background-color: var(--fdp-color-bg, #0B0F17);
+}
+
+/* ---------- Scrim and dialog ----------
+   scrim (dims the screen; ds-backdrop gives the colour, here it fades in)
+     dialog-safe (SafeAreaPanel: inline safe-area padding; absolute offsets give the gutter)
+       dialog (column)
+         dialog-body (ScrollView: title, message, custom content; shrinks and scrolls)
+         dialog-buttons (never shrinks, so the buttons stay reachable) */
+.ds-backdrop.fdp-scrim {
+    background-color: rgba(0, 0, 0, 0);
+    transition-property: background-color;
+    transition-duration: 220ms;
+}
+
+.ds-backdrop.fdp-scrim.fdp-visible {
+    background-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+}
+
+.fdp-dialog-safe {
+    position: absolute;
+    left: var(--fdp-foundation-gutter, 16px);
+    right: var(--fdp-foundation-gutter, 16px);
+    top: var(--fdp-foundation-gutter, 16px);
+    bottom: var(--fdp-foundation-gutter, 16px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Three classes: the design system's touch rules (.fdp-input-touch .ds-dialog) have two and must not win the width. */
+.fdp-shell .fdp-dialog.ds-dialog,
+.fdp-shell .fdp-dialog.ds-modal {
+    width: var(--fdp-foundation-dialog-w, 340px);
+    min-width: 0;
+    max-width: 100%;
+    max-height: 100%;
+    flex-shrink: 1;
+    align-items: stretch;
+    opacity: 0;
+    scale: 0.94 0.94;
+    transition-property: opacity, scale;
+    transition-duration: 220ms;
+    transition-timing-function: ease-out;
+}
+
+.fdp-shell .fdp-scrim.fdp-visible .fdp-dialog.ds-dialog,
+.fdp-shell .fdp-scrim.fdp-visible .fdp-dialog.ds-modal {
+    opacity: 1;
+    scale: 1 1;
+}
+
+/* The scrolling body takes all the shrinking; ScrollView defaults to flex-grow 1, so it is reset. */
+.fdp-dialog__body {
+    flex-grow: 0;
+    flex-shrink: 1;
+    min-height: 0;
+    min-width: 0;
+}
+
+.fdp-dialog__title {
+    flex-shrink: 0;
+    min-width: 0;
+    white-space: normal;
+}
+
+.fdp-dialog__message {
+    flex-shrink: 0;
+    min-width: 0;
+    white-space: normal;
+}
+
+.fdp-dialog__content {
+    flex-shrink: 0;
+    min-width: 0;
+    margin-bottom: var(--fdp-space-4, 16px);
+}
+
+/* Narrow screens (portrait phones): the buttons stack, one per line. */
+.fdp-dialog__buttons {
+    flex-direction: column;
+    flex-shrink: 0;
+    min-width: 0;
+    width: auto;
+}
+
+.fdp-dialog__buttons > .ds-btn {
+    align-self: stretch;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: var(--fdp-space-2, 8px);
+}
+
+/* Regular and expanded panels and landscape phones put the buttons side by side. The row wraps and each button is as
+   wide as its caption (flex-basis auto, the button grows to fill the line and a caption longer than the line wraps), so a
+   long translation drops to the next line instead of being clipped. DialogService adds fdp-dialog__buttons--equal when
+   every caption fits in an equal share of the row; then the buttons get equal widths. */
+.fdp-regular .fdp-dialog__buttons,
+.fdp-expanded .fdp-dialog__buttons,
+.fdp-landscape .fdp-dialog__buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.fdp-regular .fdp-dialog__buttons > .ds-btn,
+.fdp-expanded .fdp-dialog__buttons > .ds-btn,
+.fdp-landscape .fdp-dialog__buttons > .ds-btn {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    margin-left: var(--fdp-space-1, 4px);
+    margin-right: var(--fdp-space-1, 4px);
+}
+
+.fdp-regular .fdp-dialog__buttons.fdp-dialog__buttons--equal,
+.fdp-expanded .fdp-dialog__buttons.fdp-dialog__buttons--equal,
+.fdp-landscape .fdp-dialog__buttons.fdp-dialog__buttons--equal {
+    flex-wrap: nowrap;
+}
+
+.fdp-regular .fdp-dialog__buttons.fdp-dialog__buttons--equal > .ds-btn,
+.fdp-expanded .fdp-dialog__buttons.fdp-dialog__buttons--equal > .ds-btn,
+.fdp-landscape .fdp-dialog__buttons.fdp-dialog__buttons--equal > .ds-btn {
+    flex-basis: 0;
+}
+
+/* Touch targets: dialog buttons are never below the platform minimum. */
+.fdp-input-touch .fdp-dialog__buttons > .ds-btn {
+    min-height: var(--fdp-touch-min, 44px);
+}
+
+/* ---------- Toast ----------
+   The layer's safe-area panel places the toast: bottom centre by default, top centre with fdp-toasts--top.
+   ds-toast--success/info/warning/danger colour the border; the background is made opaque here because the design
+   system's soft colours are translucent and a toast floats over the game. Width is the token, ToastService narrows it
+   to the safe area when that is narrower, the text wraps, and a very long text is cut by max-height. */
+.fdp-toasts {
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.fdp-toasts.fdp-toasts--top {
+    justify-content: flex-start;
+}
+
+.fdp-toast.ds-toast {
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: var(--fdp-foundation-toast-w, 420px);
+    max-height: 60%;
+    overflow: hidden;
+    margin-top: var(--fdp-space-4, 16px);
+    margin-bottom: var(--fdp-space-4, 16px);
+    margin-left: var(--fdp-space-4, 16px);
+    margin-right: var(--fdp-space-4, 16px);
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    opacity: 0;
+    translate: 0 12px;
+    transition-property: opacity, translate;
+    transition-duration: 220ms;
+    transition-timing-function: ease-out;
+}
+
+.fdp-toasts--top .fdp-toast.ds-toast {
+    translate: 0 -12px;
+}
+
+.fdp-toast.ds-toast.fdp-visible,
+.fdp-toasts--top .fdp-toast.ds-toast.fdp-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* ---------- Loading overlay ---------- */
+.fdp-loading {
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    transition-property: background-color;
+    transition-duration: 220ms;
+}
+
+.fdp-loading.fdp-visible {
+    background-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+}
+
+.fdp-loading__card {
+    align-items: center;
+    max-width: 90%;
+    padding-left: var(--fdp-space-6, 24px);
+    padding-right: var(--fdp-space-6, 24px);
+    padding-top: var(--fdp-space-5, 20px);
+    padding-bottom: var(--fdp-space-5, 20px);
+    border-radius: var(--fdp-radius-lg, 12px);
+    border-width: var(--fdp-border-thin, 1px);
+    border-color: var(--fdp-color-border, #263041);
+    background-color: var(--fdp-color-surface, #131A24);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 220ms;
+}
+
+.fdp-loading.fdp-visible .fdp-loading__card {
+    opacity: 1;
+}
+
+.fdp-loading__spinner.ds-spinner {
+    width: var(--fdp-foundation-spinner, 32px);
+    height: var(--fdp-foundation-spinner, 32px);
+}
+
+/* A long message wraps inside the card instead of running off the screen. */
+.fdp-loading__message {
+    margin-top: var(--fdp-space-3, 12px);
+    font-size: var(--fdp-font-size-body-1, 14px);
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    -unity-text-align: upper-center;
+    white-space: normal;
+    max-width: 100%;
+}
+
+.fdp-progress {
+    display: none;
+    align-self: stretch;
+    min-width: 200px;
+    height: 6px;
+    margin-top: var(--fdp-space-3, 12px);
+    border-radius: var(--fdp-radius-pill-3, 3px);
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+    overflow: hidden;
+}
+
+.fdp-progress__fill {
+    width: 0;
+    height: 100%;
+    background-color: var(--fdp-color-primary, #22C55E);
+}
+
+/* ---------- Top bar ----------
+   The bar's own padding is the safe-area inset (top, left, right), the content row is the token height. */
+.fdp-topbar {
+    flex-direction: column;
+    flex-shrink: 0;
+    background-color: var(--fdp-color-surface, #131A24);
+}
+
+.fdp-topbar__row {
+    flex-direction: row;
+    align-items: center;
+    height: var(--fdp-foundation-topbar-h, 48px);
+    padding-left: var(--fdp-space-2, 8px);
+    padding-right: var(--fdp-space-2, 8px);
+}
+
+/* The title takes what the start and end slots leave; min-width 0 lets it shrink below its text so the ellipsis can appear. */
+.fdp-topbar__title {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
+    margin-left: var(--fdp-space-2, 8px);
+    margin-right: var(--fdp-space-2, 8px);
+    font-size: var(--fdp-font-size-h3, 16px);
+    -unity-font-style: bold;
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    -unity-text-align: middle-center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* The slots keep their buttons whole; the title gives way. */
+.fdp-topbar__start,
+.fdp-topbar__end {
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+    min-width: var(--fdp-touch-min, 44px);
+}
+
+.fdp-topbar__end {
+    justify-content: flex-end;
+}
+
+.fdp-input-touch .fdp-topbar__back.ds-btn--icon {
+    width: var(--fdp-touch-min, 44px);
+    height: var(--fdp-touch-min, 44px);
+}
+
+.fdp-rtl .fdp-topbar__back .ds-icon {
+    scale: -1 1;
+}
+
+/* Right-to-left: Unity's languageDirection only shapes text, it does not mirror flex rows, so the bar lists its slots from the right (back button
+   at the right, action slot at the left) and each slot lists its own buttons from its own start. */
+.fdp-rtl .fdp-topbar__row,
+.fdp-rtl .fdp-topbar__start,
+.fdp-rtl .fdp-topbar__end {
+    flex-direction: row-reverse;
+}
+
+/* ---------- List row ----------
+   min-height, never height: a wrapped title and subtitle make the row taller. A transparent 2 px border all round
+   keeps the row from shifting when a focus ring is drawn; the bottom edge is the 1 px divider. */
+.fdp-list-row {
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+    min-height: var(--fdp-foundation-row-h, 48px);
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: var(--fdp-space-3, 12px);
+    padding-right: var(--fdp-space-3, 12px);
+    border-width: 2px;
+    border-bottom-width: 1px;
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: var(--fdp-color-border, #263041);
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition-property: background-color;
+    transition-duration: 120ms;
+}
+
+.fdp-list-row:hover {
+    background-color: var(--fdp-color-surface-hover, #1F2937);
+}
+
+.fdp-list-row:active {
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+}
+
+.fdp-input-nav .fdp-list-row:focus {
+    border-color: var(--fdp-color-focus-ring, var(--fdp-color-text-primary, #F2F4F7));
+}
+
+.fdp-list-row--selected {
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+}
+
+.fdp-list-row__icon {
+    flex-shrink: 0;
+    margin-right: var(--fdp-space-3, 12px);
+}
+
+/* The text column takes the width left by icon, value and chevron (zero basis, min-width 0), so title and subtitle wrap inside it. */
+.fdp-list-row__body {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
+    flex-direction: column;
+    padding-top: var(--fdp-space-2, 8px);
+    padding-bottom: var(--fdp-space-2, 8px);
+}
+
+.fdp-list-row__title {
+    font-size: var(--fdp-font-size-body-1, 14px);
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    white-space: normal;
+    min-width: 0;
+}
+
+.fdp-list-row__subtitle {
+    font-size: var(--fdp-font-size-body-2, 12px);
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    white-space: normal;
+    min-width: 0;
+}
+
+.fdp-list-row__value-box {
+    flex-shrink: 0;
+    flex-direction: column;
+    max-width: 50%;
+    margin-left: var(--fdp-space-3, 12px);
+}
+
+.fdp-rtl .fdp-list-row__value-box {
+    margin-left: 0;
+    margin-right: var(--fdp-space-3, 12px);
+}
+
+.fdp-list-row__value {
+    min-width: 0;
+    font-size: var(--fdp-font-size-body-1, 14px);
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    -unity-text-align: middle-right;
+    white-space: normal;
+}
+
+.fdp-list-row__chevron {
+    flex-shrink: 0;
+    margin-left: var(--fdp-space-2, 8px);
+}
+
+.fdp-rtl .fdp-list-row__chevron {
+    margin-left: 0;
+    margin-right: var(--fdp-space-2, 8px);
+    scale: -1 1;
+}
+
+/* Right-to-left: icon and text at the right, value and chevron at the left; the margin that sat on one side follows. */
+.fdp-rtl .fdp-list-row {
+    flex-direction: row-reverse;
+    -unity-text-align: middle-right;
+}
+
+.fdp-rtl .fdp-list-row__icon {
+    margin-right: 0;
+    margin-left: var(--fdp-space-3, 12px);
+}
+
+.fdp-rtl .fdp-list-row__value {
+    -unity-text-align: middle-left;
+}
+
+/* ---------- Section header ---------- */
+.fdp-section-header {
+    margin-top: var(--fdp-space-6, 24px);
+    margin-bottom: var(--fdp-space-2, 8px);
+    padding-left: var(--fdp-space-3, 12px);
+    padding-right: var(--fdp-space-3, 12px);
+    flex-shrink: 0;
+    white-space: normal;
+    font-size: var(--fdp-font-size-caption, 11px);
+    -unity-font-style: bold;
+    color: var(--fdp-color-primary, #22C55E);
+    letter-spacing: 1px;
+    min-width: 0;
+}
+
+/* Letter spacing breaks the joined or stacked shapes of these scripts. */
+.fdp-lang-ar .fdp-section-header,
+.fdp-lang-he .fdp-section-header,
+.fdp-lang-fa .fdp-section-header,
+.fdp-lang-ur .fdp-section-header,
+.fdp-lang-hi .fdp-section-header,
+.fdp-lang-ta .fdp-section-header,
+.fdp-lang-th .fdp-section-header,
+.fdp-lang-km .fdp-section-header {
+    letter-spacing: 0;
+}
+
+/* ---------- Stat cell ---------- */
+.fdp-stat-cell {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+    height: var(--fdp-foundation-statsbar-h, 28px);
+    padding-left: var(--fdp-space-1, 4px);
+    padding-right: var(--fdp-space-1, 4px);
+}
+
+/* One line each: when the cell is too narrow the caption (flex-shrink 8) gives way and ends in an ellipsis; the value keeps its width. */
+.fdp-stat-cell__caption {
+    flex-shrink: 8;
+    min-width: 0;
+    margin-right: var(--fdp-space-1, 4px);
+    font-size: var(--fdp-font-size-caption, 11px);
+    color: var(--fdp-color-text-secondary, #A1A7B3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fdp-stat-cell__value {
+    flex-shrink: 0;
+    min-width: 0;
+    font-size: var(--fdp-font-size-body-2, 12px);
+    -unity-font-style: bold;
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------- Banner ----------
+   Persistent inline message on the design system's toast skin; the opaque background keeps it readable over any content. */
+.fdp-banner.ds-toast {
+    align-self: stretch;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    background-color: var(--fdp-color-surface-elev, #1A2330);
+}
+
+.fdp-banner__action.ds-btn {
+    flex-shrink: 0;
+    margin-left: var(--fdp-space-2, 8px);
+}
+
+/* Touch targets: the action and the dismiss button are never below the platform minimum. */
+.fdp-input-touch .fdp-banner .ds-btn,
+.fdp-input-touch .fdp-banner .ds-toast__close {
+    min-height: var(--fdp-touch-min, 44px);
+    min-width: var(--fdp-touch-min, 44px);
+}
+
+/* ---------- Pause menu ---------- */
+.fdp-pause {
+    align-items: center;
+    justify-content: center;
+    background-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+}
+
+.fdp-shell .fdp-pause__card.ds-modal {
+    width: var(--fdp-foundation-dialog-w, 340px);
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.fdp-pause__title.ds-modal__title {
+    -unity-text-align: middle-center;
+    margin-bottom: var(--fdp-space-3, 12px);
+}
+
+.fdp-pause__button.ds-btn {
+    align-self: stretch;
+    margin-top: var(--fdp-space-2, 8px);
+}
+
+/* ---------- Reduce motion ----------
+   The Interaction module's A11y.uss owns the general rule; these are the foundation's own transitions, so the
+   foundation stays correct when that module is not installed. The router and the services also skip their
+   scheduled enter/leave steps when UiMotion scales motion to zero. */
+.fdp-reduce-motion .fdp-screen,
+.fdp-reduce-motion .ds-backdrop.fdp-scrim,
+.fdp-reduce-motion .fdp-dialog.ds-dialog,
+.fdp-reduce-motion .fdp-dialog.ds-modal,
+.fdp-reduce-motion .fdp-toast.ds-toast,
+.fdp-reduce-motion .fdp-loading,
+.fdp-reduce-motion .fdp-loading__card,
+.fdp-reduce-motion .fdp-list-row {
+    transition-duration: 0ms;
+}

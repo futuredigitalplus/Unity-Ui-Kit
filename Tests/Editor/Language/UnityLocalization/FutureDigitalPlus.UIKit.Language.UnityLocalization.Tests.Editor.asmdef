@@ -1,0 +1,34 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Language.UnityLocalization.Tests.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Language.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "FutureDigitalPlus.UIKit.Language",
+        "FutureDigitalPlus.UIKit.Language.UnityLocalization",
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "Unity.Localization"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FDP_UIKIT_UNITY_LOCALIZATION"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "1.4.0",
+            "define": "FDP_UIKIT_UNITY_LOCALIZATION"
+        }
+    ],
+    "noEngineReferences": false
+}

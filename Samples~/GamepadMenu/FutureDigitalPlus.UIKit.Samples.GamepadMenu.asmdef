@@ -1,0 +1,21 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.GamepadMenu",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.GamepadMenu",
+    "references": [
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Foundation",
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.Interaction",
+        "FutureDigitalPlus.UIKit.Controls.Core",
+        "FutureDigitalPlus.UIKit.Controls"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

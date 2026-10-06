@@ -1,0 +1,20 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.RpgInventory",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.RpgInventory",
+    "references": [
+        "FutureDigitalPlus.UIKit.Gameplay.Core",
+        "FutureDigitalPlus.UIKit.Gameplay",
+        "FutureDigitalPlus.UIKit.Controls.Core",
+        "FutureDigitalPlus.UIKit.Controls",
+        "FutureDigitalPlus.UIKit.Extras"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

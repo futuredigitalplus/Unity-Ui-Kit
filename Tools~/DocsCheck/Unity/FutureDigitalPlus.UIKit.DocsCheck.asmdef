@@ -1,0 +1,29 @@
+{
+  "name": "FutureDigitalPlus.UIKit.DocsCheck",
+  "rootNamespace": "",
+  "references": [
+    "FutureDigitalPlus.UIKit",
+    "FutureDigitalPlus.UIKit.DesignSystem",
+    "FutureDigitalPlus.UIKit.Animation",
+    "FutureDigitalPlus.UIKit.Extras",
+    "FutureDigitalPlus.UIKit.Components",
+    "FutureDigitalPlus.UIKit.Foundation.Core",
+    "FutureDigitalPlus.UIKit.Foundation",
+    "FutureDigitalPlus.UIKit.Interaction.Core",
+    "FutureDigitalPlus.UIKit.Interaction",
+    "FutureDigitalPlus.UIKit.Language",
+    "FutureDigitalPlus.UIKit.Hud.Core",
+    "FutureDigitalPlus.UIKit.Hud",
+    "FutureDigitalPlus.UIKit.Controls.Core",
+    "FutureDigitalPlus.UIKit.Controls",
+    "FutureDigitalPlus.UIKit.Gameplay.Core",
+    "FutureDigitalPlus.UIKit.Gameplay",
+    "FutureDigitalPlus.UIKit.Bootstrap"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "autoReferenced": false,
+  "noEngineReferences": false
+}

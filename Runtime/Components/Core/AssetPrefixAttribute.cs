@@ -1,0 +1,34 @@
+﻿// FutureDigitalPlus: renamed by Tools~/rename/rename.py (namespaces, resource paths); see SOURCE.md "Rename record".
+using System;
+using JetBrains.Annotations;
+using UnityEngine.TestTools;
+
+namespace FutureDigitalPlus.UIKit.Components
+{
+    /// <summary>
+    /// If present, specifies a prefix for assets configured for a UIComponent.
+    /// Used by <see cref="LayoutAttribute"/> and <see cref="StylesheetAttribute"/>.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// // This example uses Resources.
+    /// [AssetPrefix("Components/MyComponent/")]
+    /// [Layout("MyComponent")] // resolves to Components/MyComponent/MyComponent(.uxml)
+    /// [Stylesheet("MyComponent.style")] // resolves to Components/MyComponent/MyComponent.style(.uss)
+    /// public partial class MyComponent : UIComponent {}
+    /// </code>
+    /// </example>
+    [Obsolete("Use AssetRootAttribute instead. AssetPrefix will be removed in a future version.")]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+    [BaseTypeRequired(typeof(UIComponent))]
+    [ExcludeFromCoverage]
+    public sealed class AssetPrefixAttribute : Attribute
+    {
+        public readonly string Path;
+        
+        public AssetPrefixAttribute(string path)
+        {
+            Path = path;
+        }
+    }
+}

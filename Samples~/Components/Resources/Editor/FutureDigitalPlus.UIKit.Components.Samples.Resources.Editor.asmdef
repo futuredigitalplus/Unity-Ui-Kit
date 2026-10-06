@@ -1,0 +1,19 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Components.Samples.Resources.Editor",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Components.Samples",
+    "references": [
+        "FutureDigitalPlus.UIKit.Components",
+        "FutureDigitalPlus.UIKit.Components.Samples.Resources"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

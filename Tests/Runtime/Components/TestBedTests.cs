@@ -1,0 +1,140 @@
+﻿// FutureDigitalPlus: renamed by Tools~/rename/rename.py (namespaces, resource paths); see SOURCE.md "Rename record".
+using System.Threading.Tasks;
+using JetBrains.Annotations;
+using NSubstitute;
+using NUnit.Framework;
+using FutureDigitalPlus.UIKit.Components.DependencyInjection;
+using FutureDigitalPlus.UIKit.Components.Testing;
+using FutureDigitalPlus.UIKit.Components.Tests.Utilities;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace FutureDigitalPlus.UIKit.Components.Tests
+{
+    [TestFixture]
+    public partial class TestBedTests
+    {
+        private interface IMockDependency { }
+        private class Dependency : IMockDependency { }
+
+        private interface ITransientDependency { }
+        private class TransientDependency : ITransientDependency { }
+
+        private IAssetSource _mockSource;
+
+        private Dependency _dependencyInstance;
+        private TransientDependency _transientDependencyInstance;
+
+        [Layout("Foo")]
+        [Dependency(typeof(IMockDependency), provide: typeof(Dependency))]
+        [Dependency(typeof(ITransientDependency), provide: typeof(TransientDependency), Scope.Transient)]
+        private partial class Component : UIComponent
+        {
+            public readonly bool Value;
+
+            public Component(bool value)
+            {
+                Value = value;
+            }
+            
+            [PublicAPI]
+            public Component() : this(false) {}
+            
+            public IMockDependency GetDependency() => Provide<IMockDependency>();
+
+            public ITransientDependency GetTransientDependency() => Provide<ITransientDependency>();
+        }
+
+        private TestBed<Component> _testBed;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _dependencyInstance = new Dependency();
+            _transientDependencyInstance = new TransientDependency();
+            _mockSource = MockUtilities.CreateMockSource();
+            _mockSource.LoadAsset<VisualTreeAsset>("Foo")
+                .Returns(Task.FromResult(ScriptableObject.CreateInstance<VisualTreeAsset>()));
+            _testBed = new TestBed<Component>()
+                .WithSingleton<IMockDependency>(_dependencyInstance)
+                .WithSingleton(_mockSource)
+                .WithTransient<ITransientDependency>(_transientDependencyInstance);
+        }
+
+        [Test]
+        public void Allows_Creating_Component_With_Singleton_Dependencies()
+        {
+            var component = _testBed.Instantiate();
+            Assert.That(component.GetDependency(), Is.SameAs(_dependencyInstance));
+        }
+
+        [Test]
+        public void Allows_Creating_Component_With_Transient_Dependencies()
+        {
+            var component = _testBed.Instantiate();
+            Assert.That(component.GetTransientDependency(), Is.SameAs(_transientDependencyInstance));
+
+            var newComponent = _testBed.Instantiate();
+            Assert.That(newComponent.GetTransientDependency(), Is.SameAs(_transientDependencyInstance));
+        }
+
+        [Test]
+        public void Allows_Passing_Constructor_Arguments()
+        {
+            var component = _testBed.Instantiate(true);
+            Assert.That(component.Value, Is.EqualTo(true));
+        }
+        
+
+        [Test]
+        public void Allows_Fetching_Dependencies()
+        {
+            var dependency = _testBed.Provide<IMockDependency>();
+            Assert.That(dependency, Is.SameAs(_dependencyInstance));
+        }
+
+        [Test]
+        public void Allows_Changing_Singleton_Instance()
+        {
+            var newDependency = new Dependency();
+            _testBed.WithSingleton<IMockDependency>(newDependency);
+            var dependency = _testBed.Provide<IMockDependency>();
+            Assert.That(dependency, Is.Not.SameAs(_dependencyInstance));
+            Assert.That(dependency, Is.SameAs(newDependency));
+        }
+
+        [Dependency(typeof(ILogger), provide: typeof(DebugLogger))]
+        private abstract class Service : DependencyConsumer
+        {
+            protected readonly ILogger Logger;
+            private readonly DependencyInjector _dependencyInjector;
+
+            protected Service()
+            {
+                Logger = Provide<ILogger>();
+            }
+        }
+
+        [Dependency(typeof(IMockDependency), provide: typeof(Dependency))]
+        [Dependency(typeof(ITransientDependency), provide: typeof(TransientDependency), Scope.Transient)]
+        private partial class TestService : Service
+        {
+            [Provide]
+            public IMockDependency DependencyInstance;
+
+            public ITransientDependency GetTransientDependency() => Provide<ITransientDependency>();
+        }
+
+        [Test]
+        public void Works_On_Non_UIComponent_Type()
+        {
+            var testBed = new TestBed<TestService>()
+                .WithSingleton<IMockDependency>(_dependencyInstance)
+                .WithTransient<ITransientDependency>(_transientDependencyInstance);
+
+            var service = testBed.Instantiate();
+            Assert.That(service.DependencyInstance, Is.SameAs(_dependencyInstance));
+            Assert.That(service.GetTransientDependency(), Is.SameAs(_transientDependencyInstance));
+        }
+    }
+}

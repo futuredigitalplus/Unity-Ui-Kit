@@ -1,0 +1,17 @@
+{
+    "name": "FdpMatrix.Hdrp.Editor",
+    "rootNamespace": "FdpMatrix",
+    "references": [
+        "Unity.RenderPipelines.HighDefinition.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Editor",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.Core.Editor"
+    ],
+    "includePlatforms": [ "Editor" ],
+    "excludePlatforms": [],
+    "defineConstraints": [ "FDP_MATRIX_HDRP" ],
+    "versionDefines": [
+        { "name": "com.unity.render-pipelines.high-definition", "expression": "17.0.0", "define": "FDP_MATRIX_HDRP" }
+    ],
+    "autoReferenced": true
+}

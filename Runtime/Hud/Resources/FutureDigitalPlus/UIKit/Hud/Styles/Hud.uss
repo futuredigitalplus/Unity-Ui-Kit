@@ -1,0 +1,274 @@
+/* ============================================================================
+   FUTURE DIGITAL PLUS UI KIT - HUD
+   Styles for the elements of the Hud module (MeterBar, RadialProgress, CooldownIcon, CountUpLabel,
+   CurrencyLabel, CountdownLabel, FloatingTextLayer, WorldAnchorLayer, TimedFeed, HudZones).
+
+   Skins reuse design system tokens. Every var() has a literal fallback so the elements stay legible when the
+   design system sheet is not on the panel. MeterBar carries the design system's `ds-meter` classes and takes its
+   look from Controls.uss; this sheet only adds what a HUD needs on top (trail, segments, reduced motion).
+   Colours of painted elements come from ordinary USS properties (see RadialProgress, CooldownIcon).
+   ============================================================================ */
+
+/* ---------- MeterBar ---------- */
+/* A bar has no width of its own, and a HudZone hugs its content: without a floor a bar in a zone shrinks to its label (or to 2 px when it has none).
+   Give a bar a width of your own (style.width, or a wider container) to override this. */
+.fdp-meter-bar { min-width: 160px; }
+
+/* The design system draws the label in dark ink, which assumes a mostly full bar. A HUD bar is often nearly empty, and on a dark theme the track is dark too, so
+   "10 / 240" vanished. The label takes the theme's text colour with a halo in the background colour: readable on the fill and on the track, in every theme.
+   (An outline of 1 px was tried first: on an 11 px label it swallows the glyph and turns dark text on a light theme into pale text.) */
+.fdp-meter-bar .ds-meter__label {
+    color: var(--fdp-color-text-primary, #F2F4F7);
+    text-shadow: 0 0 3px var(--fdp-color-bg, #0B0F17);
+}
+.fdp-meter-bar__trail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background-color: var(--fdp-color-warning, #F59E0B);
+    border-radius: var(--fdp-radius-pill-9, 9px);
+    opacity: 0.9;
+}
+.ds-meter--sm .fdp-meter-bar__trail { border-radius: var(--fdp-radius-pill-4, 4px); }
+.ds-meter--lg .fdp-meter-bar__trail { border-radius: var(--fdp-radius-pill-11, 11px); }
+
+.fdp-meter-bar__segments {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.fdp-meter-bar__divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    margin-left: -1px;
+    background-color: var(--fdp-color-bg, #0B1220);
+    opacity: 0.6;
+}
+
+.fdp-reduce-motion .fdp-meter-bar .ds-meter__fill { transition-duration: 0ms; }
+
+/* ---------- RadialProgress ----------
+   `color` is the ring, `-unity-background-image-tint-color` is the track (the element draws both itself). */
+.fdp-radial-progress {
+    width: 48px;
+    height: 48px;
+    color: var(--fdp-color-primary, #22C55E);
+    -unity-background-image-tint-color: var(--fdp-color-surface-elev, #1F2937);
+}
+
+/* ---------- CooldownIcon ---------- */
+.fdp-cooldown-icon {
+    width: 56px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--fdp-color-surface-elev, #1F2937);
+    border-width: var(--fdp-border-regular, 2px);
+    border-color: var(--fdp-color-border-strong, #374151);
+    border-radius: var(--fdp-radius-md, 8px);
+}
+.fdp-cooldown-icon--ready { border-color: var(--fdp-color-primary, #22C55E); }
+
+.fdp-cooldown-icon__icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -unity-background-scale-mode: scale-to-fit;
+}
+/* The sweep is painted with the tint colour: the shade over the part of the icon that is still cooling down. */
+.fdp-cooldown-icon__sweep {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -unity-background-image-tint-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+}
+.fdp-cooldown-icon__text {
+    margin: 0;
+    padding: 0;
+    color: var(--fdp-color-text-primary, #F9FAFB);
+    font-size: var(--fdp-font-size-body-1, 14px);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.8);
+}
+.fdp-cooldown-icon__flash {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 350ms;
+}
+.fdp-cooldown-icon--flash .fdp-cooldown-icon__flash {
+    opacity: 1;
+    transition-duration: 0ms;
+}
+
+/* ---------- Counters ---------- */
+.fdp-count-up-label {
+    color: var(--fdp-color-text-primary, #F9FAFB);
+    -unity-font-style: bold;
+}
+
+.fdp-countdown-label {
+    color: var(--fdp-color-text-secondary, #9CA3AF);
+    -unity-font-style: bold;
+}
+
+.fdp-currency-label {
+    flex-direction: row;
+    align-items: center;
+}
+.fdp-currency-label__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: var(--fdp-space-1, 4px);
+    -unity-background-scale-mode: scale-to-fit;
+}
+.fdp-currency-label__count { margin: 0; }
+.fdp-currency-label__delta {
+    margin: 0;
+    margin-left: var(--fdp-space-2, 8px);
+    font-size: var(--fdp-font-size-caption, 12px);
+    -unity-font-style: bold;
+    color: var(--fdp-color-text-secondary, #9CA3AF);
+    opacity: 0;
+    translate: 0 4px;
+    transition-property: opacity, translate;
+    transition-duration: 300ms;
+}
+.fdp-currency-label__delta--show {
+    opacity: 1;
+    translate: 0 0;
+}
+.fdp-currency-label__delta--gain { color: var(--fdp-color-primary, #22C55E); }
+.fdp-currency-label__delta--loss { color: var(--fdp-color-danger, #EF4444); }
+.fdp-reduce-motion .fdp-currency-label__delta { transition-duration: 0ms; }
+
+/* ---------- FloatingTextLayer ----------
+   Each text is a 160 px wide label centred on its position by the negative margins; the layer moves it with `translate`. */
+.fdp-floating-text-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.fdp-floating-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 160px;
+    margin: 0;
+    margin-left: -80px;
+    margin-top: -12px;
+    display: none;
+    color: var(--fdp-color-text-primary, #F9FAFB);
+    font-size: var(--fdp-font-size-h3, 20px);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.8);
+}
+.fdp-floating-text--critical {
+    color: var(--fdp-color-warning, #F59E0B);
+    font-size: var(--fdp-font-size-h2, 24px);
+}
+.fdp-floating-text--heal { color: var(--fdp-color-primary, #22C55E); }
+.fdp-floating-text--info { color: var(--fdp-color-text-secondary, #9CA3AF); }
+
+/* ---------- WorldAnchorLayer ----------
+   A holder of size 0 sits at the projected point; the content hangs off it with a percentage translate. */
+.fdp-world-anchor-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.fdp-world-anchor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+}
+.fdp-world-anchor__content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    translate: -50% -50%;
+}
+.fdp-world-anchor__content--above { translate: -50% -100%; }
+.fdp-world-anchor__content--below { translate: -50% 0; }
+.fdp-world-anchor__arrow {
+    position: absolute;
+    left: -6px;
+    top: -6px;
+    width: 12px;
+    height: 12px;
+    color: var(--fdp-color-primary, #22C55E);
+}
+
+/* ---------- TimedFeed ---------- */
+.fdp-timed-feed { align-items: flex-end; }
+.fdp-timed-feed__item {
+    margin: 0;
+    margin-bottom: var(--fdp-space-1, 4px);
+    padding: 4px 8px;
+    border-radius: var(--fdp-radius-sm, 4px);
+    background-color: var(--fdp-color-overlay, rgba(0, 0, 0, 0.6));
+    color: var(--fdp-color-text-primary, #F9FAFB);
+    font-size: var(--fdp-font-size-body-2, 13px);
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 400ms;
+}
+.fdp-timed-feed__item--fading { opacity: 0; }
+.fdp-timed-feed__item--success { border-left-width: 3px; border-left-color: var(--fdp-color-primary, #22C55E); }
+.fdp-timed-feed__item--info { border-left-width: 3px; border-left-color: var(--fdp-color-secondary, #3B82F6); }
+.fdp-timed-feed__item--warning { border-left-width: 3px; border-left-color: var(--fdp-color-warning, #F59E0B); }
+.fdp-timed-feed__item--danger { border-left-width: 3px; border-left-color: var(--fdp-color-danger, #EF4444); }
+.fdp-reduce-motion .fdp-timed-feed__item { transition-duration: 0ms; }
+
+/* ---------- HudZones ----------
+   The frame carries the title-safe margin (set from C#); the nine zones fill it and align their content. */
+.fdp-hud-zones {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.fdp-hud-zones__frame {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.fdp-hud-zones__zone { position: absolute; }
+.fdp-hud-zones__zone--top-left { left: 0; top: 0; align-items: flex-start; }
+.fdp-hud-zones__zone--top-center { left: 0; right: 0; top: 0; align-items: center; }
+.fdp-hud-zones__zone--top-right { right: 0; top: 0; align-items: flex-end; }
+.fdp-hud-zones__zone--middle-left { left: 0; top: 0; bottom: 0; align-items: flex-start; justify-content: center; }
+.fdp-hud-zones__zone--center { left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; }
+.fdp-hud-zones__zone--middle-right { right: 0; top: 0; bottom: 0; align-items: flex-end; justify-content: center; }
+.fdp-hud-zones__zone--bottom-left { left: 0; bottom: 0; align-items: flex-start; }
+.fdp-hud-zones__zone--bottom-center { left: 0; right: 0; bottom: 0; align-items: center; }
+.fdp-hud-zones__zone--bottom-right { right: 0; bottom: 0; align-items: flex-end; }

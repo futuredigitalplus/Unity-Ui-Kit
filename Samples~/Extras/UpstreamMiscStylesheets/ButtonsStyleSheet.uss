@@ -1,0 +1,49 @@
+.unity-button {
+    -unity-text-align: middle-center;
+    -unity-font-definition: var(--fdp-font-normal);
+    flex: 0 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 40px;
+    margin: 0 12px 12px 12px;
+    padding: 0 20px;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: var(--fdp-color-primary-drk);
+    background-color: var(--fdp-color-back-drk);
+    color: var(--fdp-color-primary-mid);
+}
+
+.unity-button:hover {
+    border-color: var(--fdp-color-primary-mid);
+    color: var(--fdp-color-primary-lit);
+}
+
+.unity-button:active {
+    border-color: var(--fdp-color-primary-lit);
+    color: var(--fdp-color-primary-lit);
+}
+
+.danger-button {
+    border-color: var(--fdp-color-danger-mid);
+    color: var(--fdp-color-danger-mid);
+}
+
+.danger-button:hover {
+    border-color: var(--fdp-color-danger-lit);
+    color: var(--fdp-color-danger-lit);
+}
+
+.danger-button:active {
+    border-color: var(--fdp-color-primary-lit);
+}
+
+.button-bar { 
+    flex-direction: row;
+    flex-grow: 0;
+    width: 100%;
+}
+
+.button-bar .unity-button {
+    margin-left: 0;
+}

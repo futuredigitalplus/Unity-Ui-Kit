@@ -1,0 +1,26 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Interaction.InputSystem",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Interaction",
+    "references": [
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.Interaction",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "FDP_UIKIT_INPUTSYSTEM"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "FDP_UIKIT_INPUTSYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

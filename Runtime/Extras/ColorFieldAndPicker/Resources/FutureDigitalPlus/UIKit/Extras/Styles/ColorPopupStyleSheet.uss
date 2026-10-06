@@ -1,0 +1,146 @@
+/* FutureDigitalPlus: class names prefixed fdp-; colours read the design system colour tokens, with the upstream demo colour as the last fallback. See SOURCE.md "Local modifications". */
+.fdp-color-popup {
+   height: 650px;
+}
+
+.fdp-color-popup__heading-area {
+   padding: 10px 20px;
+   height: 60px;
+   width: 100%;
+   border-width: 0;
+   background-color: var(--fdp-color-back-drk, var(--fdp-color-surface, rgb(40, 35, 35)));
+}
+
+.fdp-color-popup__content-area {
+   padding: 20px;
+   flex-grow: 1;
+   width: 100%;
+   padding: 20px;
+   background-color: var(--fdp-color-back-lit, var(--fdp-color-surface-hover, rgba(40, 35, 35, 0.7)));
+}
+
+.fdp-color-popup__heading {
+   flex-grow: 1;
+   font-size: 25px;
+   -unity-text-align: middle-center;
+   -unity-font-style: bold;
+   color: var(--fdp-color-txt-drk, var(--fdp-color-text-secondary, rgb(172, 172, 172)));
+}
+
+.fdp-color-popup__buttons-bar {
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   flex-grow: 0;
+   flex-shrink: 0;
+   width: 100%;
+   height: 65px;
+   background-color: var(--fdp-color-back-mid, var(--fdp-color-surface-elev, rgba(40, 35, 35, 0.85)));
+}
+
+.fdp-color-popup__buttons-bar .unity-button {
+   margin: 0 20px;
+}
+
+.fdp-color-popup__submit-button {
+   
+}
+
+.fdp-color-popup .unity-slider {
+   padding: 0;
+}
+
+.fdp-color-popup__red-slider .unity-base-slider__dragger,
+.fdp-color-popup__red-slider .unity-base-slider__dragger:hover,
+.fdp-color-popup__red-slider:focus .unity-base-slider__dragger,
+.fdp-color-popup__red-slider .unity-base-slider__tracker-fill {
+   background-color: red;
+}
+
+.fdp-color-popup__green-slider .unity-base-slider__dragger,
+.fdp-color-popup__green-slider .unity-base-slider__dragger:hover,
+.fdp-color-popup__green-slider:focus .unity-base-slider__dragger,
+.fdp-color-popup__green-slider .unity-base-slider__tracker-fill {
+   background-color: green;
+}
+
+.fdp-color-popup__blue-slider .unity-base-slider__dragger,
+.fdp-color-popup__blue-slider .unity-base-slider__dragger:hover,
+.fdp-color-popup__blue-slider:focus .unity-base-slider__dragger,
+.fdp-color-popup__blue-slider .unity-base-slider__tracker-fill {
+   background-color: blue;
+}
+
+.fdp-color-popup__alpha-slider .unity-base-slider__dragger,
+.fdp-color-popup__alpha-slider .unity-base-slider__dragger:hover,
+.fdp-color-popup__alpha-slider:focus .unity-base-slider__dragger,
+.fdp-color-popup__alpha-slider .unity-base-slider__tracker-fill {
+   background-color: grey;
+}
+
+.fdp-color-popup__gradient-area {
+   flex-direction: row;
+   flex-grow: 1;
+   margin: 0 0 20px 0;
+   padding: 0 40px;
+}
+
+.fdp-color-popup__gradient-slider {
+   flex-grow: 1;
+   height: 100%;
+   margin: 0;
+   border-width: 3px;
+   border-radius: 4px;
+   border-color: var(--fdp-color-back-drk, var(--fdp-color-surface, rgb(40, 35, 35)));
+   background-color: black;
+}
+
+.fdp-color-popup__gradient-slider .fdp-slider-2d__dragger {
+   border-width: 1px;
+   border-color: rgba(0, 0, 0, 0.5);
+   background-color: red;
+}
+
+.fdp-color-popup__gradient-slider .fdp-slider-2d__dragger-border {
+   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.fdp-color-popup__hue-slider {
+   overflow: visible;
+   width: 50px;
+   height: 100%;
+   margin: 0 0 0 40px;
+   border-width: 3px;
+   border-radius: 4px;
+   border-color: var(--fdp-color-back-drk, var(--fdp-color-surface, rgb(40, 35, 35)));
+   background-color: black;
+}
+
+.fdp-color-popup__hue-slider .unity-base-slider__drag-container {
+   margin-left: -5px;
+}
+
+.fdp-color-popup__hue-slider .unity-base-slider__tracker {
+   background-color: transparent;
+}
+
+.fdp-color-popup__hue-slider .unity-base-slider__dragger,
+.fdp-color-popup__hue-slider .unity-base-slider__dragger:hover,
+.fdp-color-popup__hue-slider:focus .unity-base-slider__dragger {
+   width: 60px;
+   height: 6px;
+   margin: 3px 0 0 5px;
+   border-radius: 0;
+   border-width: 1px;
+   border-color: rgba(0, 0, 0, 0.5);
+   background-color: red;
+}
+
+.fdp-color-popup__hue-slider .unity-base-slider__dragger-border,
+.fdp-color-popup__hue-slider:focus .unity-base-slider__dragger-border {
+   width: 70px;
+   height: 12px;
+   border-radius: 6px;
+   background-color: rgba(255, 255, 255, 0.3);
+} 
+

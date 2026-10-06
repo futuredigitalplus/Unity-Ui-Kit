@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.DesignSystemShowcase",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples",
+    "references": [
+        "FutureDigitalPlus.UIKit.DesignSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

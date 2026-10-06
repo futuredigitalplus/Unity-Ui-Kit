@@ -1,0 +1,21 @@
+{
+    "name": "FutureDigitalPlus.UIKit.Samples.ActionHud",
+    "rootNamespace": "FutureDigitalPlus.UIKit.Samples.ActionHud",
+    "references": [
+        "FutureDigitalPlus.UIKit.Foundation.Core",
+        "FutureDigitalPlus.UIKit.Foundation",
+        "FutureDigitalPlus.UIKit.Hud.Core",
+        "FutureDigitalPlus.UIKit.Hud",
+        "FutureDigitalPlus.UIKit.Interaction.Core",
+        "FutureDigitalPlus.UIKit.Interaction"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
