@@ -6,10 +6,10 @@ namespace FutureDigitalPlus.UIKit.Foundation
 {
     /// <summary>
     /// A screen's assets as one ScriptableObject with direct references: the UXML, its style sheet and optional extra sheets. Create it with
-    /// <c>Assets &gt; Create &gt; Future Digital Plus UI Kit &gt; Foundation &gt; Screen Definition</c>; there is no registry to build and no Resources
+    /// <c>Assets &gt; Create &gt; FDP UI Kit &gt; Foundation &gt; Screen Definition</c>; there is no registry to build and no Resources
     /// folder to keep in sync. Return it from <see cref="UiScreen.Definition"/>, or register it with <see cref="ScreenCatalog.Register(ScreenDefinition, System.Func{UiScreen})"/>.
     /// </summary>
-    [CreateAssetMenu(menuName = "Future Digital Plus UI Kit/Foundation/Screen Definition", fileName = "ScreenDefinition")]
+    [CreateAssetMenu(menuName = "FDP UI Kit/Foundation/Screen Definition", fileName = "ScreenDefinition")]
     public sealed class ScreenDefinition : ScriptableObject
     {
         [SerializeField] string _id;

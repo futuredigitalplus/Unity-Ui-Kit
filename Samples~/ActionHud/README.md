@@ -3,8 +3,8 @@
 A heads-up display over a 3D scene, the way an action game or shooter builds it: bars, counters, cooldowns, floating damage numbers, a feed, and a name plate that follows an
 enemy in the world. Genre: action, FPS, racing, survival. Modules: Hud, Foundation, Interaction.
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > Action HUD > Import.
-2. Create an empty scene, add an empty GameObject, add the component `Future Digital Plus UI Kit > Action HUD Sample`.
+1. Window > Package Manager > FDP UI Kit > Samples > Action HUD > Import.
+2. Create an empty scene, add an empty GameObject, add the component `FDP UI Kit > Action HUD Sample`.
 3. Press Play. Use the buttons at the bottom right ("Hit", "Heal") and the three skill slots at the bottom centre (click, Enter or gamepad A). Escape, gamepad B or the pause button opens the pause menu.
 
 The scene (camera, light, ground, an enemy walking a wide ellipse) is built in code, so the sample works in an empty scene in any render pipeline.

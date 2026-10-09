@@ -27,7 +27,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
     /// save is already in flight. Unity does not support that: it re-entered the save pipeline
     /// and left stray `_temp_theme.uss` files next to the theme. If a theme is edited by some
     /// route that never presses Save (a merge, a script, a hand edit), run
-    /// <c>Design System &gt; Rebake All Themes</c>.
+    /// <c>Tools &gt; FDP UI Kit &gt; Design System &gt; Rebake All Themes</c>.
     /// </summary>
     public static class ThemeBaker
     {
@@ -47,7 +47,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
 
         private const string TempAsset = TempFolder + "/__bake.uss";
 
-        [MenuItem("Tools/Future Digital Plus UI Kit/Design System/Rebake All Themes")]
+        [MenuItem("Tools/FDP UI Kit/Design System/Rebake All Themes")]
         public static void RebakeAllMenu()
         {
             var baked = RebakeAll(out var failed);

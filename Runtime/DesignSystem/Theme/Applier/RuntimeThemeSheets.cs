@@ -62,7 +62,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Theme.Applier
                 {
                     entry.Warned = true;
                     Debug.LogWarning("[ThemeRuntime] Runtime theme '" + theme.name + "' is based on '" + theme.RuntimeTemplate.name +
-                                     "', which has no baked stylesheet to patch. Bake the template (Design System > Rebake All Themes).",
+                                     "', which has no baked stylesheet to patch. Bake the template (Tools > FDP UI Kit > Design System > Rebake All Themes).",
                                      theme.RuntimeTemplate);
                 }
 

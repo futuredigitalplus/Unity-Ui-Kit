@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace FutureDigitalPlus.UIKit.DesignSystem.Theme.Applier.PanelRenderer
 {
-    [UnityEngine.AddComponentMenu("Future Digital Plus UI Kit/Design System/Panel Renderer Theme Applier")]
+    [UnityEngine.AddComponentMenu("FDP UI Kit/Design System/Panel Renderer Theme Applier")]
     [UnityEngine.RequireComponent(typeof(UnityEngine.UIElements.PanelRenderer))]
     public class ThemeApplier : ThemeApplierBase<UnityEngine.UIElements.PanelRenderer>
     {

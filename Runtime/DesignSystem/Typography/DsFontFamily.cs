@@ -20,7 +20,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Typography
     /// system's existing <c>-unity-font-style: bold</c> rules resolve to a REAL bold face
     /// instead of a synthetically dilated Regular.
     /// </summary>
-    [CreateAssetMenu(fileName = "FontFamily", menuName = "Future Digital Plus UI Kit/Design System/Font Family", order = 101)]
+    [CreateAssetMenu(fileName = "FontFamily", menuName = "FDP UI Kit/Design System/Font Family", order = 101)]
     public class DsFontFamily : ScriptableObject
     {
         /// <summary>Number of CSS weight buckets: 100, 200, … 900.</summary>

@@ -21,7 +21,7 @@ as analyzers; since the rename they are rebuilt from upstream's source by `Tools
 | UIKit | none (new code) | | | `Runtime/UIKit` (no editor code) |
 | Foundation, Interaction, Language, Hud, Controls, Gameplay | none (new code, written for this package) | | | `Runtime/<Module>`, `Editor/<Module>`, `Tests/*/<Module>`, `Documentation~/<Module>` |
 
-The new modules have no upstream, so there is nothing to re-sync: they change by editing them, with their tests (`Tools~/PureTests` for the pure parts) and their guide. The card game's `FCS.UI` code was
+The new modules have no upstream, so there is nothing to re-sync: they change by editing them, with their tests (`Tools~/PureTests` for the pure parts) and their guide. The card game's `ColorSolitaire.UI` code was
 their model, but nothing is copied from it at run time and the kit never refers to the game.
 
 ## Re-syncing a module (same steps for each)
@@ -149,15 +149,14 @@ Tests of the converter: `python3 -m unittest discover -s Tools~ -p "test_make_cl
 
 ## Renaming the package
 
-The package id, display name and assembly prefix are placeholders. Checklist:
+The display name is `FDP UI Kit`. The package id and assembly prefix are still placeholders. Checklist:
 
 - **Id:** `package.json` (`name`); the id appears in `Editor/Location/KitLocation.cs` (`PackageId`, the fallback when the kit is not found),
   `Runtime/DesignSystem/Resources/FutureDigitalPlus/UIKit/DesignSystem/Shaders/DsFx.cginc` (comment),
   `Tests/Editor/Components/AssetDatabaseAssetResolverTests.cs` (`TestAssetPaths.KitAssetRoot`, which `Tools~/make_classic_kit.py` rewrites for the classic layout and whose regex must still match; the test `Kit_Asset_Root_Constant_Matches_The_Install` checks it),
   `Tools~/make_classic_kit.py`'s `VERSION` text, and the Markdown files. The editor code and the tests find the kit by the GUID of the `Runtime` folder (`KitLocation`), not by the id.
   Find them all with `grep -rn "com.futuredigitalplus.uikit" .` (ignore `.meta`). The classic folder name `Assets/FutureDigitalPlus/UIKit` is the `--dst` you choose; the converter takes the asset root from it.
-- **Display name** ("Future Digital Plus UI Kit"): `package.json` (`displayName`), the `[AddComponentMenu("Future Digital Plus UI Kit/...")]`
-  strings (`Runtime/UIKit/UIKitHost.cs`, the DesignSystem behaviours and theme appliers, and one in each sample under `Samples~`), the sample READMEs, and the guides and READMEs.
+- **Display name** (`FDP UI Kit`): `package.json` (`displayName`; the classic copy stores it in `VERSION`), every `[MenuItem]`, `[AddComponentMenu]`, and `[CreateAssetMenu]` path (`Tools/`, `Assets/`, `Window/`, Add Component, and Create), and the sentences that name those menus in tooltips, warnings, and stylesheet comments (`Tools > FDP UI Kit > Design System > ...`). `Tools~/rename/rename.py` keeps the menu root in `MENU`. The sample READMEs and the guides use the same name.
 - **Assembly prefix** `FutureDigitalPlus.UIKit`: the asmdef files and namespaces in `Runtime/UIKit`, `Runtime/Extras`
   (assembly and namespace `FutureDigitalPlus.UIKit.Extras`), `Tests/*`, and the sample asmdefs. Renaming an assembly means every
   asmdef that references it by name must change too, and so must game code that has `using FutureDigitalPlus.UIKit;`.

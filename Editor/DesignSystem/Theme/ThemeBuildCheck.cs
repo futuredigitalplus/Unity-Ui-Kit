@@ -83,7 +83,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
                         break;
                     case ThemeBakeState.Unverified:
                         Debug.LogWarning($"[ThemeBuildCheck] '{path}' has a stylesheet but no recorded bake hash, so it cannot be " +
-                                         "checked. Run Design System > Rebake All Themes once.", theme);
+                                         "checked. Run Tools > FDP UI Kit > Design System > Rebake All Themes once.", theme);
                         break;
                 }
             }
@@ -91,7 +91,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
             if (errors.Count > 0)
                 throw new BuildFailedException(
                     "Design System themes in this build are not baked: " + string.Join("; ", errors) +
-                    ". Open each in the Theme Configurator and press Save, or run Tools > Future Digital Plus UI Kit > Design System > Rebake All Themes.");
+                    ". Open each in the Theme Configurator and press Save, or run Tools > FDP UI Kit > Design System > Rebake All Themes.");
         }
     }
 }

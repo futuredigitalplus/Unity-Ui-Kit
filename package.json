@@ -1,7 +1,7 @@
 {
   "name": "com.futuredigitalplus.uikit",
   "version": "0.2.2",
-  "displayName": "Future Digital Plus UI Kit",
+  "displayName": "FDP UI Kit",
   "description": "A modular UI Toolkit kit for Unity 6, for any genre and platform: a design system (tokens, themes, components, icons), the UIComponents framework with its source generators, an animation toolkit, small UI extras (tooltip, popup, colour picker, blur), and modules for screens and dialogs, gamepad and accessibility, localization, HUD widgets, menu controls and inventories, a ready-made shell host, plus a thin facade. Built from four open-source projects; see THIRD_PARTY_NOTICES.md.",
   "unity": "6000.3",
   "dependencies": {

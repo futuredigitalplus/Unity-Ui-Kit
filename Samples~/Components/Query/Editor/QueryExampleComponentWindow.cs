@@ -6,7 +6,7 @@ namespace FutureDigitalPlus.UIKit.Components.Samples.Query.Editor
 {
     public class QueryExampleComponentWindow : EditorWindow
     {
-        [MenuItem("Tools/Future Digital Plus UI Kit/Components Examples/Query")]
+        [MenuItem("Tools/FDP UI Kit/Components Examples/Query")]
         private static void ShowWindow()
         {
             var window = GetWindow<QueryExampleComponentWindow>();

@@ -144,7 +144,7 @@ Builds the showcase to `build/WebGL/` and serves it at `http://localhost:3000`. 
 
 The showcase build also exercises the styled scrollbar at narrow widths and the day / night theme toggle — useful to verify cross-cutting concerns at the same time.
 
-A future contribution that ships as part of this repo: a Unity menu item under `Tools/Design System/Toggle Mobile` that flips the class on the active UIDocument's root inside the editor. PRs welcome.
+A future contribution that ships as part of this repo: a Unity menu item under `Tools/FDP UI Kit/Design System/Toggle Mobile` that flips the class on the active UIDocument's root inside the editor. PRs welcome.
 
 ## Why one class instead of media queries
 

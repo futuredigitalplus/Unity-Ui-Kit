@@ -363,7 +363,7 @@ namespace FutureDigitalPlus.UIKit.Components.Editor
             return accessors;
         }
 
-        [MenuItem("Window/Future Digital Plus UI Kit/Components/Validate Registry Asset Paths")]
+        [MenuItem("Window/FDP UI Kit/Components/Validate Registry Asset Paths")]
         private static void ValidateFromMenu()
         {
             ValidateAndReport();

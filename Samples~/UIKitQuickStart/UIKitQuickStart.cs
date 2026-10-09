@@ -11,7 +11,7 @@ namespace FutureDigitalPlus.UIKit.Samples
     /// safe area), builds a small card in code with design system classes, fades it in, adds an Extras tooltip and
     /// a button that swaps the Light and Dark themes.
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/UI Kit Quick Start Sample")]
+    [AddComponentMenu("FDP UI Kit/UI Kit Quick Start Sample")]
     public class UIKitQuickStart : MonoBehaviour
     {
         private const string RuntimeThemeResource = "FutureDigitalPlus/UIKit/Samples/UIKitQuickStart/UnityDefaultRuntimeTheme";

@@ -18,7 +18,7 @@ namespace FutureDigitalPlus.UIKit.Samples.ActionHud
     /// switch is turned on only while the pause menu is on top.
     /// </para>
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/Action HUD Sample")]
+    [AddComponentMenu("FDP UI Kit/Action HUD Sample")]
     public sealed class ActionHudSample : MonoBehaviour
     {
         private const string ThemeResource = "FutureDigitalPlus/UIKit/Samples/ActionHud/UnityDefaultRuntimeTheme";

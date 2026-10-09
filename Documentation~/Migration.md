@@ -1,7 +1,7 @@
 # Migrating the card game's UI foundation to the kit
 
 This guide is for moving a game's own UI foundation onto the package. It was written for the first host game,
-`FCSolitaireUnity` (`Assets/Scripts/UI/Foundation`, namespace `FCS.UI`, and `Assets/UI/Styles`), and then used for the first
+`Color-Solitaire` (`Assets/Scripts/UI/Foundation`, namespace `ColorSolitaire.UI`, and `Assets/UI/Styles`), and then used for the first
 real migration (2026-10-05 and 2026-10-06). Sections 1 to 9 are the type, token and class tables of that game; **section 10
 records what the real migration taught** (what worked, the gaps found and fixed in 0.2.1, the gaps still open, and a checklist
 for the next game). The migration of that game was not finished when this was written: the wiring, the brand theme data and
@@ -14,10 +14,10 @@ checked (the merged set runs in Unity, see [CompatibilityMatrix.md](Compatibilit
 (`Documentation~/<Module>/README.md`, which is the authority once it exists) before a large edit. This page is the overview and the
 non-type mappings (tokens, classes, services, scale).
 
-Source figures below were read from the game on 2026-10-05: 77 public types in namespace `FCS.UI` (about 6,100 lines under
-`Foundation`, of which about 2,900 are in `Foundation/Pure`), 119 `--fcs-*` custom properties in `Assets/UI/Styles/tokens.uss`
+Source figures below were read from the game on 2026-10-05: 77 public types in namespace `ColorSolitaire.UI` (about 6,100 lines under
+`Foundation`, of which about 2,900 are in `Foundation/Pure`), 119 `--color-solitaire-*` custom properties in `Assets/UI/Styles/tokens.uss`
 (declared in `:root`, with a second set of overrides for the larger size tier), and a stylesheet set of `base.uss`,
-`components.uss`, `icons.uss`, `layout.uss`, `tokens.uss` and `FCS_Theme.tss`.
+`components.uss`, `icons.uss`, `layout.uss`, `tokens.uss` and `COLOR_SOLITAIRE_Theme.tss`.
 
 ## 1. Order of work
 
@@ -31,7 +31,7 @@ Source figures below were read from the game on 2026-10-05: 77 public types in n
 
 ## 2. Types
 
-| FCS (`FCS.UI`) | Package | Notes |
+| Color Solitaire (`ColorSolitaire.UI`) | Package | Notes |
 |---|---|---|
 | `ScreenStack`, `ScreenEntry`, `ScreenChange`, `ScreenChangeKind` | same names, namespace `FutureDigitalPlus.UIKit.Foundation`, assembly `Foundation.Core` (exists) | pure, tests move as is |
 | `RouterStateDocument` | `ScreenStack.Capture` / `ScreenStack.TryParse` (exists; no separate type) | format tag changes to `fdp-nav-v1`; a saved `ui/router` blob from the game is not read, see section 9 |
@@ -66,7 +66,7 @@ The kit's built-in tokens exist today (**exists**) in `Runtime/DesignSystem/Reso
 The tokens of the plan's token contract (`color-success`, `-info`, `-scrim`, `-focus-ring`, `touch-min`, `gutter`, `control-h-*`, `icon-s/m/l`, `row-h`, `dialog-w`, `page-max-w`, `font-size-display`,
 `transition-slow`) were found in that file on 2026-10-06 too. Write `var(--fdp-x, <fallback>)` for a token that may be missing in an older checkout.
 
-| `--fcs-*` | `--fdp-*` | Note |
+| `--color-solitaire-*` | `--fdp-*` | Note |
 |---|---|---|
 | `space-1`, `-2`, `-3`, `-4`, `-5`, `-6`, `-8` | `space-1` ... `space-8` | same values (4, 8, 12, 16, 20, 24, 32); **exists** |
 | `space-10` (40px) | none | write 40px inline or define an extra token |
@@ -102,45 +102,45 @@ These are card-game design, not kit roles: all `palette-*` (felt, mint, navy, ca
 `color-transparent`, `color-shadow`, `color-divider`, the four `color-scroll-*` and the `scroll-*` sizes, `button-h`, `topbar-h`,
 `statsbar-h`, `toast-w`, `switch-w/h`, `spinner`, `value-min-w`, and `safe-top/right/bottom/left`. Put the colours in a game theme asset
 (a `ThemeData` carries free extra tokens: `extraTokens`, `SetToken`, **exists**); the plain sizes can stay as `:root` variables in the game's own sheet
-under names the game owns. The `--fcs-safe-*` variables are declared in `tokens.uss`, but the game applies safe area by padding
+under names the game owns. The `--color-solitaire-safe-*` variables are declared in `tokens.uss`, but the game applies safe area by padding
 (`SafeAreaPanel`), so they can be dropped after the migration.
 
-A game-owned variable name may still start with `--fcs-`: the kit only reserves `--fdp-*` and `--unity-*`.
+A game-owned variable name may still start with `--color-solitaire-`: the kit only reserves `--fdp-*` and `--unity-*`.
 
 ## 4. Classes and names
 
-| FCS | Kit | Note |
+| Color Solitaire | Kit | Note |
 |---|---|---|
-| `fcs-root`, element names `layer-screens`, `layer-hud`, `layer-popups`, `layer-toasts`, `layer-loading`, `layer-debug` | `ds-root` plus the shell's ordered layers (exist; element names `layer-screens`, `layer-hud`, `layer-overlays`, `layer-dialogs`, `layer-toasts`, `layer-loading`) | the shell has no debug layer (add one to the root yourself); `layer-popups` splits into overlays and dialogs |
-| `fcs-button`, `--primary`, `--secondary`, `--danger`, `--small`, `--block` | `ds-btn`, `ds-btn--primary`, `--secondary`, `--danger`, `--sm`, `--block` | **exists** |
-| `fcs-icon-button` | `ds-btn ds-btn--icon` | **exists** |
-| `fcs-dialog` and its parts | `ds-dialog`, `ds-dialog__title`, `ds-dialog__message`, `ds-dialog__actions` (dialogs built by the dialog service) | **exists** (skin) |
-| `fcs-scrim` | `ds-backdrop` | **exists** |
-| `fcs-toast`, `--success`, `--warning`, `--error` | `ds-toast`, `ds-toast--success`, `--warning`, `--danger` | `error` becomes `danger` |
-| `fcs-spinner` | `ds-spinner` | **exists** |
-| `fcs-progress`, `__fill` | `ds-progress` | **exists** |
-| `fcs-switch`, `fcs-toggle-row` | `ds-toggle` | **exists**; the row layout stays a game or Controls settings-row concern |
-| `fcs-segmented`, `__item`, `--selected` | `fdp-tab-bar fdp-tab-bar--segmented` (`SegmentedControl`, **exists**) | |
-| `fcs-topbar` and parts | `TopBar` (`fdp-topbar`, `fdp-topbar__row/__start/__title/__end/__back`), **exists** | |
-| `fcs-list-row`, `fcs-section-header`, `fcs-stat-cell` | `ListRow` (`fdp-list-row`), `SectionHeader` (`fdp-section-header`), `StatCell` (`fdp-stat-cell`), **exist** | |
-| `fcs-loading*` | `fdp-loading`, `fdp-loading__card/__spinner/__message`, `fdp-progress` (**exist**) | |
-| `fcs-screen`, `--enter`, `--enter-back`, `--exit`, `--behind` | `fdp-screen`, `fdp-screen--enter`, `--enter-back`, `--exit`, `--behind` (**exist**, same suffixes) | |
-| `fcs-safe-area`, `fcs-dialog-safe` | `fdp-safe-area` (`SafeAreaPanel`), `fdp-dialog-safe` (**exist**) | |
-| `fcs-compact`, `fcs-regular` | `fdp-compact`, `fdp-regular`, `fdp-expanded` | size classes by width, not by "phone" and "tablet" |
-| `fcs-portrait`, `fcs-landscape` | `fdp-portrait`, `fdp-landscape` | |
-| `fcs-phone`, `fcs-tablet`, `fcs-ios`, `fcs-android` (`UiNames`) | `fdp-compact` or `fdp-regular`, `fdp-platform-ios`, `fdp-platform-android` | |
-| `fcs-lang-ar`, `-he`, `-hi`, `-th`, ... and `fcs-rtl` | `fdp-lang-<code>`, `fdp-rtl` | |
-| `fcs-visible`, `fcs-hidden` | the game's own utilities or `display` styles | |
-| `fcs-row`, `fcs-col`, `fcs-grow`, `fcs-shrink-0`, `fcs-center`, `fcs-mt-*`, `fcs-p-*`, `fcs-text-*` | stay in the game's `layout.uss` and `base.uss` | utility classes are not part of the kit |
-| `fcs-card-tile*`, `fcs-icon--<name>` (game icons), `fcs-page*`, `fcs-split*`, `fcs-statsbar` | stay in the game | card-game content |
+| `color-solitaire-root`, element names `layer-screens`, `layer-hud`, `layer-popups`, `layer-toasts`, `layer-loading`, `layer-debug` | `ds-root` plus the shell's ordered layers (exist; element names `layer-screens`, `layer-hud`, `layer-overlays`, `layer-dialogs`, `layer-toasts`, `layer-loading`) | the shell has no debug layer (add one to the root yourself); `layer-popups` splits into overlays and dialogs |
+| `color-solitaire-button`, `--primary`, `--secondary`, `--danger`, `--small`, `--block` | `ds-btn`, `ds-btn--primary`, `--secondary`, `--danger`, `--sm`, `--block` | **exists** |
+| `color-solitaire-icon-button` | `ds-btn ds-btn--icon` | **exists** |
+| `color-solitaire-dialog` and its parts | `ds-dialog`, `ds-dialog__title`, `ds-dialog__message`, `ds-dialog__actions` (dialogs built by the dialog service) | **exists** (skin) |
+| `color-solitaire-scrim` | `ds-backdrop` | **exists** |
+| `color-solitaire-toast`, `--success`, `--warning`, `--error` | `ds-toast`, `ds-toast--success`, `--warning`, `--danger` | `error` becomes `danger` |
+| `color-solitaire-spinner` | `ds-spinner` | **exists** |
+| `color-solitaire-progress`, `__fill` | `ds-progress` | **exists** |
+| `color-solitaire-switch`, `color-solitaire-toggle-row` | `ds-toggle` | **exists**; the row layout stays a game or Controls settings-row concern |
+| `color-solitaire-segmented`, `__item`, `--selected` | `fdp-tab-bar fdp-tab-bar--segmented` (`SegmentedControl`, **exists**) | |
+| `color-solitaire-topbar` and parts | `TopBar` (`fdp-topbar`, `fdp-topbar__row/__start/__title/__end/__back`), **exists** | |
+| `color-solitaire-list-row`, `color-solitaire-section-header`, `color-solitaire-stat-cell` | `ListRow` (`fdp-list-row`), `SectionHeader` (`fdp-section-header`), `StatCell` (`fdp-stat-cell`), **exist** | |
+| `color-solitaire-loading*` | `fdp-loading`, `fdp-loading__card/__spinner/__message`, `fdp-progress` (**exist**) | |
+| `color-solitaire-screen`, `--enter`, `--enter-back`, `--exit`, `--behind` | `fdp-screen`, `fdp-screen--enter`, `--enter-back`, `--exit`, `--behind` (**exist**, same suffixes) | |
+| `color-solitaire-safe-area`, `color-solitaire-dialog-safe` | `fdp-safe-area` (`SafeAreaPanel`), `fdp-dialog-safe` (**exist**) | |
+| `color-solitaire-compact`, `color-solitaire-regular` | `fdp-compact`, `fdp-regular`, `fdp-expanded` | size classes by width, not by "phone" and "tablet" |
+| `color-solitaire-portrait`, `color-solitaire-landscape` | `fdp-portrait`, `fdp-landscape` | |
+| `color-solitaire-phone`, `color-solitaire-tablet`, `color-solitaire-ios`, `color-solitaire-android` (`UiNames`) | `fdp-compact` or `fdp-regular`, `fdp-platform-ios`, `fdp-platform-android` | |
+| `color-solitaire-lang-ar`, `-he`, `-hi`, `-th`, ... and `color-solitaire-rtl` | `fdp-lang-<code>`, `fdp-rtl` | |
+| `color-solitaire-visible`, `color-solitaire-hidden` | the game's own utilities or `display` styles | |
+| `color-solitaire-row`, `color-solitaire-col`, `color-solitaire-grow`, `color-solitaire-shrink-0`, `color-solitaire-center`, `color-solitaire-mt-*`, `color-solitaire-p-*`, `color-solitaire-text-*` | stay in the game's `layout.uss` and `base.uss` | utility classes are not part of the kit |
+| `color-solitaire-card-tile*`, `color-solitaire-icon--<name>` (game icons), `color-solitaire-page*`, `color-solitaire-split*`, `color-solitaire-statsbar` | stay in the game | card-game content |
 
 ## 5. Services and root
 
-| FCS | Kit |
+| Color Solitaire | Kit |
 |---|---|
 | `UIRoot` (MonoBehaviour on a `UIDocument`: panel settings, registry, initial screen, back key, resources fallback) | `UIShellHost` (exists): a component next to the `UIDocument`; `Ready` is where the game registers its screens and calls `Shell.Boot(initialScreen)`; `Tick`, focus and pause are forwarded by the host; the back key, theme, input profile, accessibility and language classes are joined by it. State store, asset source and catalog are `UiShellOptions` (`ConfigureShell`) |
 | `UIRoot._registry` (`UiRegistry`) | `ScreenDefinition` assets (direct references to UXML and USS) or `ResourcesAssetSource("Screens")` |
-| `FcsServices.Storage` | `IUiStateStore`; default `PlayerPrefsUiStateStore("<game id>")` (exists); the shell saves and restores the stack through `UiShellOptions.StateStore` |
+| `ColorSolitaireServices.Storage` | `IUiStateStore`; default `PlayerPrefsUiStateStore("<game id>")` (exists); the shell saves and restores the stack through `UiShellOptions.StateStore` |
 | `PDebug` logging | `UiLog.Sink` (`Action<UiLogLevel, string, Exception>`) set once by the game (exists) |
 | Handle back key in `UIRoot` | the shell's `BackDispatcher` (`UiShell.HandleBackPress`) fed by Interaction's `BackKeySource` (exists; see section 2 for the join) |
 | `UIRoot.PixelsPerUnit` | `PanelScaleDriver.PixelsPerUnit` (exists) |
@@ -156,8 +156,8 @@ profile is a plain struct of numbers, so a game with its own units writes its ow
 
 ## 7. What stays in the game
 
-`AlertCatalog` (D1 to D30), `ChromeMetrics` and their tests (`AlertCatalogTests`), the card-table layout, card art tokens, `fcs-card-tile`,
-the game icons sheet, all screen classes (`Home`, `Settings`, ...), and the game's `FCS_Theme.tss` colour decisions. They use
+`AlertCatalog` (D1 to D30), `ChromeMetrics` and their tests (`AlertCatalogTests`), the card-table layout, card art tokens, `color-solitaire-card-tile`,
+the game icons sheet, all screen classes (`Home`, `Settings`, ...), and the game's `COLOR_SOLITAIRE_Theme.tss` colour decisions. They use
 the kit's types instead of the game's foundation types, and nothing in the kit refers to them.
 
 ## 8. Verification before and after
@@ -165,18 +165,18 @@ the kit's types instead of the game's foundation types, and nothing in the kit r
 1. Before deleting anything, run the game's own EditMode and dotnet tests (`tools/dotnet/UI.Tests`) once to record the baseline.
 2. After moving the pure types, the same test files must pass against the package's `Foundation.Core` with only `using` lines changed.
 3. Compare screenshots of Home, Settings and one dialog at phone and tablet sizes under both themes with the pre-migration build.
-4. Check that no `fcs-` class is left in UXML that the game's sheets do not define (the game's `tools/check_uxml.py` does this for UXML).
+4. Check that no `color-solitaire-` class is left in UXML that the game's sheets do not define (the game's `tools/check_uxml.py` does this for UXML).
 
 ## 9. Known breaking points
 
 - A router state saved by the game (`ui/router`, the game's format tag) is not read by the package's snapshot loader. Either drop saved
   navigation state once at migration, or keep a one-time converter in the game.
-- Token names change in every USS file; there is no automatic fallback from `--fcs-*` to `--fdp-*`.
-- Toast kind `Error` is renamed `Danger`; any code or sheet using `fcs-toast--error` must change.
+- Token names change in every USS file; there is no automatic fallback from `--color-solitaire-*` to `--fdp-*`.
+- Toast kind `Error` is renamed `Danger`; any code or sheet using `color-solitaire-toast--error` must change.
 - The kit's size classes are three (compact, regular, expanded) where the game has two (compact, regular by form factor).
 - Safe area is not applied to render-texture and world-space panels by the kit. The game has none today.
 
-## 10. Lessons from the first real migration (FCSolitaireUnity, 2026-10-05 and 2026-10-06)
+## 10. Lessons from the first real migration (Color-Solitaire, 2026-10-05 and 2026-10-06)
 
 What follows was measured or observed while the card game moved onto the kit, not predicted. Probe numbers come from a render-texture
 panel of 390 x 844 units on Unity 6000.3.25f1, run through the kit's real `UIShellHost` with the game's own panel settings.
@@ -290,6 +290,6 @@ The first game was wired with a `file:` package reference (10.1). Since 0.2.2 th
 1. Run `Tools~/make_classic_kit.py --src <kit source> --dst <game>/Assets/FutureDigitalPlus/UIKit`.
 2. Remove the `com.futuredigitalplus.uikit` line from `Packages/manifest.json` (and from `testables` if it was there) and the entry from `Packages/packages-lock.json`. Both forms in one project would define every GUID twice.
 3. Search the game (not the kit) for text paths: `grep -rn "Packages/com.futuredigitalplus.uikit\|UnityPackages" --include=*.cs --include=*.uss --include=*.uxml --include=*.tss --include=*.py --include=*.sh --include=*.csproj .`. Scene, prefab and asset references need no change (the GUIDs are identical); a `project://database/Packages/...` URL still resolves by GUID but logs a "was moved" message, so change it to the `Assets/FutureDigitalPlus/UIKit/...` path or to the GUID-only form.
-4. Tooling that located the kit through the manifest or a sibling folder (a project-copy sync, a dotnet harness that compiles the kit's sources, a layering check that requires the manifest entry, an editor check that asks the Package Manager for the kit's version) now looks in `Assets/FutureDigitalPlus/UIKit` and reads `VERSION`. In the Solitaire game: `tools/sync_copy.sh` and `tools/lib/preflight.sh`, `tools/check_layering.py` ("install form" rule), `check_uxml.py`, `check_kit_duplicates.py`, the `UikitCompile`, `UikitEditorCompile` and `UI.Tests` harnesses, `FcsThemeBuilder.CheckKit`, the `.gitignore` (`*.csproj` and `*.pdb.meta` would drop kit files), and the docs.
+4. Tooling that located the kit through the manifest or a sibling folder (a project-copy sync, a dotnet harness that compiles the kit's sources, a layering check that requires the manifest entry, an editor check that asks the Package Manager for the kit's version) now looks in `Assets/FutureDigitalPlus/UIKit` and reads `VERSION`. In the Solitaire game: `tools/sync_copy.sh` and `tools/lib/preflight.sh`, `tools/check_layering.py` ("install form" rule), `check_uxml.py`, `check_kit_duplicates.py`, the `UikitCompile`, `UikitEditorCompile` and `UI.Tests` harnesses, `ColorSolitaireThemeBuilder.CheckKit`, the `.gitignore` (`*.csproj` and `*.pdb.meta` would drop kit files), and the docs.
 5. The kit's own tests are now in the game's Test Runner. EditMode: run everything together (the Solitaire game: 0 failures with the kit's 933 added). **PlayMode: run the game's tests and the kit's tests as two separate runs** (`--filter` on the namespace prefix). In the Solitaire game, one PlayMode run of both made two game tests fail (one hit its 180 s timeout, the other found a clock running) and about 40 kit tests fail with "The LinkedList node does not belong to current LinkedList" (UI Toolkit state left behind by the game's tests); each set passes on its own (game 160 passed and 53 skipped, kit 682 passed and 7 skipped), so the cause is the shared session and not the layout. Cause not isolated further.
 6. A game keeps editing the kit in the UPM source, never in the copy; after each change run the converter again (`--check` tells whether the copy is current).

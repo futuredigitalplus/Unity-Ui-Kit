@@ -70,7 +70,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
         public const string LightResource = "FutureDigitalPlus/UIKit/DesignSystem/Themes/Light";
 
         /// <summary>Menu entry: writes and bakes the built-in themes (see <see cref="Generate"/>).</summary>
-        [MenuItem("Tools/Future Digital Plus UI Kit/Design System/Generate Built-in Themes")]
+        [MenuItem("Tools/FDP UI Kit/Design System/Generate Built-in Themes")]
         public static void GenerateMenu()
         {
             var made = Generate();

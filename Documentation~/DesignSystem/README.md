@@ -27,7 +27,7 @@ so read the folder paths in them through the table below.
 | `Assets/Showcase/...` | Not shipped. See `Samples~/DesignSystemShowcase` |
 | `Tools/Build/...` | Not shipped |
 | `Include "Packages/com.sinanata.designsystem/..."` in shaders | `Packages/com.futuredigitalplus.uikit/Runtime/DesignSystem/Resources/FutureDigitalPlus/UIKit/DesignSystem/Shaders/DsFx.cginc` (classic Assets install: `Assets/FutureDigitalPlus/UIKit/Runtime/...`) |
-| Menu `Tools > Future Digital Plus UI Kit > Design System > ...` | Same menus |
+| Menu `Tools > FDP UI Kit > Design System > ...` | Same menus |
 
 ## The five things you use first
 
@@ -67,13 +67,13 @@ Classes and tokens are listed in COMPONENTS.md and ARCHITECTURE.md; icons are `d
 
 - The package is read-only when installed from a registry or git URL. Create your own themes by duplicating
   `Dark.asset` into `Assets/` (the Theme Configurator and Rebake All Themes work on those). Regenerating the
-  two built-in themes (Tools > Future Digital Plus UI Kit > Design System > Generate Built-in Themes) only works when the package is embedded or
+  two built-in themes (Tools > FDP UI Kit > Design System > Generate Built-in Themes) only works when the package is embedded or
   installed from a local path.
 - **Icon import type.** ICONS.md says the SVGs import as `Texture` (`svgType: 3`). On Unity 6000.3.25f1 the importer
   setting `svgType: 3` produces `VectorImage` assets, and `Resources.Load<Texture2D>("FutureDigitalPlus/UIKit/DesignSystem/Icons/...")` returns null
   (`Resources.Load<VectorImage>` works). USS `background-image: resource("FutureDigitalPlus/UIKit/DesignSystem/Icons/<name>")` works either way. The
   `.svg.meta` files are the upstream ones and were not changed (the files moved, their GUIDs did not).
-- No fonts are bundled. Use Tools > Future Digital Plus UI Kit > Design System > Google Fonts to import the families you want into your project.
+- No fonts are bundled. Use Tools > FDP UI Kit > Design System > Google Fonts to import the families you want into your project.
 - The material pipeline in MATERIALS.md needs Unity 6000.5 or newer and compiles out on older versions.
 - **Where the theme goes (checked on Unity 6000.3.25f1).** The guides say a theme added last to the same element as the base
   tokens wins ties by sheet order. In practice the base sheet's `:root` tokens beat a class-scoped theme (`.theme-light`) on the

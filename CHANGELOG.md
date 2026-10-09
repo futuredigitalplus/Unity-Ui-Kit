@@ -4,6 +4,11 @@ All notable changes to this package are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the package uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+- Display name and Unity editor menus are `FDP UI Kit` (Tools, Assets, Window, Add Component, and Create). They were `Future Digital Plus UI Kit`. Tooltips, bake warnings, and stylesheet comments that still named the old top-level Design System menu now say `Tools > FDP UI Kit > Design System`.
+
 ## [0.2.2] - 2026-10-06
 
 The kit can be installed as a "classic Assets package" (a plain folder `Assets/FutureDigitalPlus/UIKit`, no `manifest.json` entry) as well as a UPM package, from the same source. No API change; the UPM install behaves as before.
@@ -51,7 +56,7 @@ First release for global use: seven new modules, a ready-made shell host, collis
 - `Foundation.Core` (`FutureDigitalPlus.UIKit.Foundation.Core`, pure C#, `noEngineReferences`): `ScreenStack`, `DialogQueue` with `DialogRequest`/`DialogTemplate`/`DialogOutcome`, `ToastQueue`, `LoadingTokens`, `InputBlockCounter`, `BackDispatcher`, `UiText` with `LocalizationKeyResolver`, `UiProfile` (orientation, size class `Compact`/`Regular`/`Expanded`, input mode), `PanelScalePolicy` with `PanelScaleProfile` presets (`CardPortrait`, `DesktopHud`, `Console`, `Web`, `World`), `SafeAreaInsets` and math (`WithMinimum` for TV margins), `UiAccessibility` and `UiMotion`, `LocaleStyle`, `UiLog`, and the service interfaces. Ported from the card game's foundation and generalised; 227 pure tests.
 - `Foundation` (`FutureDigitalPlus.UIKit.Foundation`): `UiShell` (ordered layers, no singleton), `UiScreen`, `ScreenRouter` (saved stack, transitions as USS classes), `DialogService` with `Confirm`/`Alert`/`Choice`/`Input` presets, `ToastService`, `LoadingOverlay`, `SafeAreaPanel` and `SafeAreaProvider` (no padding on render-texture and world-space panels), `PanelScaleDriver` (works on a runtime copy of `PanelSettings`), `UiProfileWatcher` (`fdp-portrait`, `fdp-compact`, `fdp-platform-*`, `fdp-input-*`), `FocusTrap` and `UiFocus` (nested traps), `UiInputGate`, `UiTextSource`, `ScreenDefinition`, asset sources, `PlayerPrefsUiStateStore`, `TopBar`, `ListRow`, `SectionHeader`, `StatCell`, `BannerView`, `PauseMenu`; style sheets `Foundation.uss` and `Foundation.Tokens.uss`.
 - `Tools~/PureTests`: `dotnet test` runs the pure tests of every Core assembly in seconds, with no Unity.
-- `Documentation~/Foundation/README.md`: guide, and the table that maps the card game's `FCS.UI` names to the kit.
+- `Documentation~/Foundation/README.md`: guide, and the table that maps the card game's `ColorSolitaire.UI` names to the kit.
 - New module `Interaction` (`Interaction.Core` pure C#, `Interaction`, optional `Interaction.InputSystem`): `InputProfile` (last-used device as classes `fdp-input-mouse|touch|keyboard|gamepad` and `fdp-input-nav`, `ModeChanged`, `Force`, `NavigationEnabled`), `Activate.Register` (Submit and click fire once), `BackKeySource` (Escape, Android back, gamepad B, `NavigationCancelEvent`, one press once per frame), `AccessibilityApplier` (`fdp-reduce-motion`, `fdp-text-scale-125..200`, `fdp-bold-text`, `fdp-high-contrast`; options plus OS font scale and bold text), `ISystemAccessibility`, `InteractionStyles` with `Focus.uss` (focus ring only for keyboard and gamepad) and `A11y.uss`. Works with the legacy Input Manager, the Input System, or both; nothing is required of the game.
 - `Components`: event interfaces `IOnNavigationSubmit`, `IOnNavigationCancel`, `IOnFocusIn`, `IOnFocusOut`, `IOnPointerDown`, `IOnPointerUp`, `IOnPointerMove`, `IOnKeyDown`.
 - `Animation`: `EatkMotion.Scaler` / `EatkMotion.Scale`, the reduced-motion hook for every animation the module starts.

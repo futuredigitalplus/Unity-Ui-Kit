@@ -26,7 +26,7 @@ upstream modules these files are also ours, with no upstream header: DesignSyste
 `Shaders/Kawase.shader`. Changes to upstream-derived files are listed in each module's `SOURCE.md` and marked `FutureDigitalPlus:` in the file.
 Licence review of 2026-10-06: every text file of the package (C#, USS, UXML, shaders, asmdef, scripts) was compared, by 10-token shingles, with every text file of the four upstream clones at the commits above. Files we wrote
 share nothing with the clones beyond one-line boilerplate (asmdef templates, `[assembly: InternalsVisibleTo]`, UXML headers); no licence, copyright or repository text was found in them; and no font, icon, texture or binary was added
-for them: the samples draw with the 120 design system icons covered by section 1 and with procedural shapes. Foundation, Language and the font-order code were modelled on, and partly carried over from, the card game's own UI foundation (`FCS.UI`, Future
+for them: the samples draw with the 120 design system icons covered by section 1 and with procedural shapes. Foundation, Language and the font-order code were modelled on, and partly carried over from, the card game's own UI foundation (`ColorSolitaire.UI`, Future
 Digital Plus' own code, which carries no third-party text). The NeutralDark and NeutralLight themes use colour values of the Tailwind CSS default palette (greys and most accents); colour values are facts, no Tailwind code or CSS is included.
 If a file is later copied from another project, add it here with its licence before it is merged.
 

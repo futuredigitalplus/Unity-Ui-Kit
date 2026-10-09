@@ -9,7 +9,7 @@ time, or fetched live at runtime, in a WebGL build, shaped.
 
 ### 1. Import at edit time (bundled, offline, zero-latency)
 
-1. **Tools > Future Digital Plus UI Kit > Design System > Google Fonts**, search a family, pick your weights, **Import**.
+1. **Tools > FDP UI Kit > Design System > Google Fonts**, search a family, pick your weights, **Import**.
 2. Add the generated sheet to your root, **after** `DesignSystem.uss`:
 
 ```xml
@@ -96,7 +96,7 @@ and re-points the type ramp at the weights it was always specified at — `.ds-h
 > text generator walks the table hunting for cycles and, finding a face that references itself,
 > throws the whole table away and floods the console with *"Circular reference detected."* — which
 > silently kills real bold while every bold check stays green. The importer enforces this;
-> `Tools > Future Digital Plus UI Kit > Design System > Showcase > Verify Fonts` asserts it.
+> `Tools > FDP UI Kit > Design System > Showcase > Verify Fonts` asserts it.
 
 ---
 
@@ -230,7 +230,7 @@ var hit = DsFonts.Coverage(family, "私はガラスを食べられます", out i
 var arabic = DsFonts.Coverage(family, text, out int miss, requireShaping: true);
 ```
 
-`Tools > Future Digital Plus UI Kit > Design System > Showcase > Verify Fonts` runs this over every bundled family, asserts real bold and
+`Tools > FDP UI Kit > Design System > Showcase > Verify Fonts` runs this over every bundled family, asserts real bold and
 the weight-table shape, renders Arabic from a bare file path to prove runtime shaping still works,
 and fails loudly on any gap.
 

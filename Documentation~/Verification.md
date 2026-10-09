@@ -67,7 +67,7 @@ Run by a small Python script (kept in the scratch directory, not shipped) over e
 | `package.json` parses; has `name`, `version`, `displayName`, `unity`, `description`; name and semver well formed; every `samples[].path` exists | pass |
 | Stray files (`Library`, `Temp`, `Logs`, `obj`, `*.csproj`, `*.sln`, `.DS_Store`, `*.orig`, `*.swp`) | 0 |
 | Absolute local user or temp paths (macOS home and `/private` temp prefixes) in `.cs`, `.asmdef`, `.json`, `.md`, `.uss`, `.uxml` | 0 |
-| References to the Solitaire game (`FCS.`, `FCSolitaire`) in `.cs` and `.asmdef` | 0 |
+| References to the Solitaire game (`ColorSolitaire.`, `FCSolitaire`) in `.cs` and `.asmdef` | 0 |
 | `THIRD_PARTY_NOTICES.md`: all four repo URLs, commit hashes, copyright holders, MIT and Unlicense texts present | pass |
 | The 12 binaries (4 Roslyn DLLs, 4 PDBs, 4 test DLLs) hashed with SHA-256: each hash appears in the notices | 12 of 12 |
 | Upstream licence file in each module folder (`LICENSE.md` x3, `UNLICENSE.md`) and a `SOURCE.md` per module (5 including UIKit) | present |
@@ -98,7 +98,7 @@ then equalled the verified copy file for file (`diff -r`) and was verified again
 | Roslyn analyzers | each `-analyzer:` list (generated `.rsp`) holds the four DLLs for the Components assemblies and their dependents only; the generator produces code (a `[Query]` component compiles and the Roslyn integration tests pass); `UIC003` is reported for a `readonly` `[Query]` field; a non-partial component gives `CS0260` exactly as with upstream's DLLs |
 | Baked themes | `ThemeBaker.RebakeAll` on the renamed copy gives the same asset as `RebakeAll` on the unrenamed package once names are mapped (only `m_ContentHash` differs); the shipped assets keep their original serialisation |
 | Resources at run time | base sheets, tokens, icons, themes, Extras and Animation sheets load by their new paths; the old paths load nothing; `Shader.Find("Hidden/FutureDigitalPlus/UIKit/DsFx/Blueprint")` finds the shader |
-| Menus (listed from the editor with `TypeCache`) | `Tools/Future Digital Plus UI Kit/Design System/` Theme Configurator, Google Fonts, Generate Built-in Themes, Rebake All Themes; `Assets/Future Digital Plus UI Kit/Design System/Add Stylesheet To Selected Layout Asset`; `Window/Future Digital Plus UI Kit/Components/Validate Registry Asset Paths`; `[AddComponentMenu]` and `CreateAssetMenu` entries under `Future Digital Plus UI Kit`. The Components sample menus (`Tools/Future Digital Plus UI Kit/Components Examples/...`) compile but were not opened |
+| Menus (listed from the editor with `TypeCache`) | `Tools/FDP UI Kit/Design System/` Theme Configurator, Google Fonts, Generate Built-in Themes, Rebake All Themes; `Assets/FDP UI Kit/Design System/Add Stylesheet To Selected Layout Asset`; `Window/FDP UI Kit/Components/Validate Registry Asset Paths`; `[AddComponentMenu]` and `CreateAssetMenu` entries under `FDP UI Kit`. The Components sample menus (`Tools/FDP UI Kit/Components Examples/...`) compile but were not opened |
 | Licences | the licence files, the licence texts in `THIRD_PARTY_NOTICES.md` and the upstream README copy are byte-identical to before |
 
 Findings worth knowing: a rebake on Unity 6000.3.25f1 writes the baked sheet with `m_Specificity: 11` and a `resourcePaths` field where the shipped

@@ -1,7 +1,7 @@
 # Samples
 
 Eleven samples ship with the kit: five from the first release (one per upstream module) and six for global use, one per kind of game. Import one from
-Window > Package Manager > Future Digital Plus UI Kit > Samples (UPM install), or copy its folder from `Samples~/<Name>` to `Assets/Samples/<Name>` (classic Assets install, where `Samples~` stays hidden). Each is a single `MonoBehaviour` you put on an empty GameObject in an empty scene; it builds its own camera, document and
+Window > Package Manager > FDP UI Kit > Samples (UPM install), or copy its folder from `Samples~/<Name>` to `Assets/Samples/<Name>` (classic Assets install, where `Samples~` stays hidden). Each is a single `MonoBehaviour` you put on an empty GameObject in an empty scene; it builds its own camera, document and
 panel settings in code, so it runs in any render pipeline, with the legacy Input Manager, the Input System or both, and with none of the optional packages. Each has a README of its own.
 
 | Sample | Kind of game | Shows | Modules |

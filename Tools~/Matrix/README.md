@@ -28,7 +28,7 @@ warnings seen in the logs, player compile result per platform, IL2CPP export res
 `--classic` installs the kit as a classic Assets package instead (no manifest entry, no `testables`; `Tools~/make_classic_kit.py` writes `<project>/Assets/FutureDigitalPlus/UIKit`; the row is labelled `<variant>-classic`). Same variants, same expected numbers.
 
 Rules of the runner:
-- It never touches the base project (it clones it with `cp -Rc`) and refuses a path that contains `FCSolitaireUnity`. Unity must only ever run on a scratch project.
+- It never touches the base project (it clones it with `cp -Rc`) and refuses a path that contains `Color-Solitaire`. Unity must only ever run on a scratch project.
 - By default the variant references a **copy** of the package (`<work>/<variant>/pkg`), so Unity cannot write `.meta` files into the live package. Pass `--live` when that is the point
   (an integration run that harvests the metas of new files).
 - It deletes `Library/Bee` and `Library/ScriptAssemblies` in the clone first, so every compiler warning is printed again; `--no-recompile` keeps them.

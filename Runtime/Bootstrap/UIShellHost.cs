@@ -24,7 +24,7 @@ namespace FutureDigitalPlus.UIKit.Bootstrap
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(UIDocument))]
-    [AddComponentMenu("Future Digital Plus UI Kit/UI Shell Host")]
+    [AddComponentMenu("FDP UI Kit/UI Shell Host")]
     public sealed class UIShellHost : MonoBehaviour
     {
         [Tooltip("Name of the theme to wear first: \"dark\" or \"light\", or a name registered on Themes before Start.")]

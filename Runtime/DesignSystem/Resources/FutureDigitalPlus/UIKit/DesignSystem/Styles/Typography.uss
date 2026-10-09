@@ -27,7 +27,7 @@
 
 .ds-h3 {
     font-size: var(--fdp-font-size-h3);
-    -unity-font-style: bold; /* Semibold. UI Toolkit only has normal/bold, so with no font family this is the closest we can get. Import one (Design System > Google Fonts) and the generated sheet re-points this at the real 600 face. */
+    -unity-font-style: bold; /* Semibold. UI Toolkit only has normal/bold, so with no font family this is the closest we can get. Import one (Tools > FDP UI Kit > Design System > Google Fonts) and the generated sheet re-points this at the real 600 face. */
     color: var(--fdp-color-text-primary);
     white-space: normal;
 }
@@ -56,7 +56,7 @@
 
 /* ---------- Typeface ----------
    The design system inherits Unity 6's default UI Toolkit font until you import a
-   family (Design System > Google Fonts). Importing one writes a stylesheet that
+   family (Tools > FDP UI Kit > Design System > Google Fonts). Importing one writes a stylesheet that
    declares `--ds-font-100` … `--ds-font-900`, points `.ds-root` at
    `-unity-font-definition: var(--ds-font-body)`, and adds the `.ds-weight-*`
    classes below. Add that sheet AFTER DesignSystem.uss.

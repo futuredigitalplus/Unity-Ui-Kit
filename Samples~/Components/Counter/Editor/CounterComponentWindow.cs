@@ -6,7 +6,7 @@ namespace FutureDigitalPlus.UIKit.Components.Samples.Counter.Editor
 {
     public class CounterComponentWindow : EditorWindow
     {
-        [MenuItem("Tools/Future Digital Plus UI Kit/Components Examples/Counter")]
+        [MenuItem("Tools/FDP UI Kit/Components Examples/Counter")]
         private static void ShowWindow()
         {
             var window = GetWindow<CounterComponentWindow>();

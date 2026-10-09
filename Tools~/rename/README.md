@@ -20,7 +20,7 @@ stays here so an upstream update can be pushed through the same function before 
 | Resources | `FutureDigitalPlus/UIKit/<Module>/{Styles,Themes,Icons,Shaders}`; tests `.../Tests/...`; samples `.../Samples/...`; fonts `.../Fonts` |
 | USS custom property | `--<name>` becomes `--fdp-<name>` (derived from the files: declarations, `var()` uses, C# literals, baked theme sheets) |
 | USS class | Extras classes (`tooltip`, `color-field`, ...) become `fdp-*`; `.back-btn*` becomes `.ds-back-btn*`; `is-spinning` becomes `ds-is-spinning`; `mobile` becomes `fdp-input-touch` |
-| Strings | menus under `Future Digital Plus UI Kit`, the shader name `Hidden/FutureDigitalPlus/UIKit/DsFx/Blueprint`, the EditorPrefs key, `Assets/_FutureDigitalPlusUIKitTemp` |
+| Strings | menus under `FDP UI Kit` (`MenuItem`, `AddComponentMenu`, `CreateAssetMenu`, and sentences such as `Design System > Google Fonts` in C#, USS, and docs), the shader name `Hidden/FutureDigitalPlus/UIKit/DsFx/Blueprint`, the EditorPrefs key, `Assets/_FutureDigitalPlusUIKitTemp` |
 
 ## Use
 

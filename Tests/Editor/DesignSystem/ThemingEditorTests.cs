@@ -15,7 +15,7 @@ namespace FutureDigitalPlus.UIKit.Tests.DesignSystemModule
     /// <summary>
     /// EditMode tests of the theming work: the built-in theme assets against their palettes, the contrast audit over every
     /// shipped theme, token access, extra tokens, the bake hash and build check, and the rules the stylesheets have to follow.
-    /// The built-in assets are written by <c>Tools &gt; Future Digital Plus UI Kit &gt; Design System &gt; Generate Built-in Themes</c>
+    /// The built-in assets are written by <c>Tools &gt; FDP UI Kit &gt; Design System &gt; Generate Built-in Themes</c>
     /// (<see cref="ThemePresets"/>); the tests named <c>BuiltIn...</c> fail until that has been run after a palette change.
     /// </summary>
     public class ThemingEditorTests
@@ -516,7 +516,7 @@ namespace FutureDigitalPlus.UIKit.Tests.DesignSystemModule
                 .ToList();
 
             Assert.IsNotEmpty(methods);
-            foreach (var item in methods) StringAssert.Contains("Future Digital Plus UI Kit", item);
+            foreach (var item in methods) StringAssert.Contains("FDP UI Kit", item);
         }
     }
 }

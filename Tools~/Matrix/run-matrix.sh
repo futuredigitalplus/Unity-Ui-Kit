@@ -92,7 +92,7 @@ fi
 [ -n "$base" ] || { echo "No base project: pass --base-project <dir> or set FDP_MATRIX_BASE_PROJECT (a clean Unity project that has been opened once)." >&2; exit 2; }
 [ -d "$base/ProjectSettings" ] || { echo "'$base' is not a Unity project (no ProjectSettings)." >&2; exit 2; }
 case "$base" in
-  *FCSolitaireUnity*) echo "Refusing to use a game project as the base project." >&2; exit 2 ;;
+  *Color-Solitaire*) echo "Refusing to use a game project as the base project." >&2; exit 2 ;;
 esac
 
 [ -n "$version" ] || version="$(python3 -c "import json,sys; print(json.load(open('$variants'))['unity'])")"

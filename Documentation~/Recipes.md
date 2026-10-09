@@ -605,7 +605,7 @@ The [Responsive sample](../Samples~/Responsive/README.md) shows the classes, a f
 
 ## 10. The ready-made host
 
-Recipe 0 is what `UIShellHost` (assembly `FutureDigitalPlus.UIKit.Bootstrap`, [Bootstrap/README.md](Bootstrap/README.md)) does for you. Add **Future Digital Plus UI Kit > UI Shell Host** to the GameObject of the `UIDocument`, then
+Recipe 0 is what `UIShellHost` (assembly `FutureDigitalPlus.UIKit.Bootstrap`, [Bootstrap/README.md](Bootstrap/README.md)) does for you. Add **FDP UI Kit > UI Shell Host** to the GameObject of the `UIDocument`, then
 register your screens when it is ready. The HUD, Controls and Gameplay style sheets are the one thing it does not install (it does not reference those modules): install them from `Ready`.
 
 ```csharp

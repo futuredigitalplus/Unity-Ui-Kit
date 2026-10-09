@@ -1,6 +1,6 @@
 # Getting started
 
-Install the Future Digital Plus UI Kit in another Unity game, build a first themed screen, and see which module to
+Install the FDP UI Kit in another Unity game, build a first themed screen, and see which module to
 reference for what. The package id (`com.futuredigitalplus.uikit`) and display name are placeholders the owner may
 rename; see the README. After this page, [Recipes.md](Recipes.md) has copy-paste solutions for the common tasks (one bootstrap
 component, screens, dialogs, toasts, gamepad navigation, HUD, inventory, localization, brand theme, responsive layout).
@@ -97,9 +97,9 @@ Running the kit's own tests (section 6) also needs `com.unity.test-framework`, w
    A `ds-btn` has no colours of its own: always add a variant (`ds-btn--primary`, `--secondary`, `--tertiary`, `--ghost` or `--danger`).
    A bare `ds-btn` falls back to Unity's default button colour, and on a dark theme its light text is hard to read on it.
 3. **Scene.** Add an empty GameObject, add a `UIDocument` (Panel Settings = step 1, Source Asset = `MainMenu`), then
-   *Add Component > Future Digital Plus UI Kit > UI Kit Host*. (The menu path uses the package display name.)
+   *Add Component > FDP UI Kit > UI Kit Host*. (The menu path uses the package display name.)
 4. **Theme.** In the host, set *Theme* to `Light` (click the circle next to the field and pick it; it is listed under
-   *Assets* and *Packages*, and lives in `Packages/Future Digital Plus UI Kit/Runtime/DesignSystem/Resources/FutureDigitalPlus/UIKit/DesignSystem/Themes`, or below `Assets/FutureDigitalPlus/UIKit` in the classic layout),
+   *Assets* and *Packages*, and lives in `Packages/FDP UI Kit/Runtime/DesignSystem/Resources/FutureDigitalPlus/UIKit/DesignSystem/Themes`, or below `Assets/FutureDigitalPlus/UIKit` in the classic layout),
    or leave it empty for the dark base tokens. Press Play: you see the card on the dark or light background.
 
 The host puts the design system stylesheet on the panel root, the theme on the document root, the `fdp-input-touch` class
@@ -127,7 +127,7 @@ code have no background of their own, so a leftover `MainMenu` would show throug
 | A component class with its own UXML/USS, queried fields and dependency injection | Create an asmdef for your UI code and add `FutureDigitalPlus.UIKit.Components` to its `references` (by name). Put `MainMenu.uxml` at `Resources/UI/MainMenu.uxml`. Write `using FutureDigitalPlus.UIKit.Components; [Layout("UI/MainMenu")] public partial class MainMenu : UIComponent { [Query("play")] Button play; }` (the classes must be `partial`; the bundled generators write the loading and query code), then `root.Add(new MainMenu());`. The component loads its assets when it is attached to a panel. See [Components/README.md](Components/README.md). |
 | Fade, slide, hover animations | `using FutureDigitalPlus.UIKit.Animation;` then `element.AnimateOpacity(0f, 1f, 250)`, `element.AnimateWidth(0f, 300f, 600)`, `element.HoverBackground(...)`. From the facade: `using FutureDigitalPlus.UIKit;` then `element.FadeIn(250)` / `element.FadeOut()`. The element must be in the tree first. See [Animation/README.md](Animation/README.md). |
 | Tooltip, popup, colour picker | `using FutureDigitalPlus.UIKit.Extras;` then `var tooltip = new Tooltip(); root.Add(tooltip); button.AddManipulator(new TooltipManipulator(tooltip));` (add the tooltip last so it paints over the rest; the text comes from the element's `tooltip` property). With the design system's base sheet on the panel (the facade and the shell put it there) the Extras controls take their colours from the active theme; without it they use the upstream demo palette. To restyle them, see [Extras/README.md](Extras/README.md), "Using the module". |
-| Fonts | The kit bundles no font. Use Tools > Future Digital Plus UI Kit > Design System > Google Fonts to import what the game wants. |
+| Fonts | The kit bundles no font. Use Tools > FDP UI Kit > Design System > Google Fonts to import what the game wants. |
 
 ## 4. Module matrix
 

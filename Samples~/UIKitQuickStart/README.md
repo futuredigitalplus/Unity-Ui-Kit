@@ -2,9 +2,9 @@
 
 The smallest screen that uses the facade: a themed card, a Light/Dark switch, a tooltip and a fade-in.
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > UI Kit Quick Start > Import.
+1. Window > Package Manager > FDP UI Kit > Samples > UI Kit Quick Start > Import.
 2. Create an empty scene, add an empty GameObject, add the component
-   `Future Digital Plus UI Kit > UI Kit Quick Start Sample`.
+   `FDP UI Kit > UI Kit Quick Start Sample`.
 3. Press Play.
 
 `UIKitQuickStart.cs` is about 100 lines and meant to be read and copied. It shows the three things most games need:

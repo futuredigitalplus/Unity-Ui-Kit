@@ -29,7 +29,7 @@ namespace FutureDigitalPlus.UIKit.Lint.Tests
         [Test]
         public void AGameAssemblyIsForeign()
         {
-            var findings = AsmdefRules.Check("x.asmdef", Asmdef("FutureDigitalPlus.UIKit.X", "\"FCS.Game\"")).ToList();
+            var findings = AsmdefRules.Check("x.asmdef", Asmdef("FutureDigitalPlus.UIKit.X", "\"ColorSolitaire.Game\"")).ToList();
             Assert.AreEqual(1, findings.Count);
             Assert.AreEqual("asmdef-foreign-reference", findings[0].Rule);
         }

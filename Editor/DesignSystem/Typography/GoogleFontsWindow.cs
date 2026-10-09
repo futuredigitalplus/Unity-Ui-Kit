@@ -37,7 +37,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Typography
         private string _outputRoot = GoogleFontsImporter.DefaultRoot;
         private readonly List<FontAsset> _fallbacks = new();
 
-        [MenuItem("Tools/Future Digital Plus UI Kit/Design System/Google Fonts", priority = 20)]
+        [MenuItem("Tools/FDP UI Kit/Design System/Google Fonts", priority = 20)]
         public static void Open()
         {
             var window = GetWindow<GoogleFontsWindow>("Google Fonts");

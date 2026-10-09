@@ -56,7 +56,7 @@ ThemeRuntime.Apply(root, tokyo);             // or drive it directly, for panels
 
 That is the whole mechanism. Because the theme arrives as a real stylesheet rather than as inline styles, every `:hover`, `:disabled` and `:checked` rule in the design system re-resolves against the new token values on its own — no per-component work, and nothing to update when you add a component.
 
-`Dark` and `Light` ship in `Resources/FutureDigitalPlus/UIKit/DesignSystem/Themes/`. Duplicate `Dark` and edit it in `Tools > Future Digital Plus UI Kit > Design System > Theme Configurator`, which previews live against real components.
+`Dark` and `Light` ship in `Resources/FutureDigitalPlus/UIKit/DesignSystem/Themes/`. Duplicate `Dark` and edit it in `Tools > FDP UI Kit > Design System > Theme Configurator`, which previews live against real components.
 
 **Why the asset has to be baked at EDIT time.** Unity's public UI Toolkit API cannot set a `var(--…)` custom property at runtime, and cannot compile a `StyleSheet` from a string in a player build. So a palette that first exists at RUNTIME can only be applied by walking the tree and stamping inline styles on every element — which is exactly what the showcase's `Randomize` button still has to do, and why `CodigrateThemeApplier` is 1,100 lines. Bake the theme at edit time and the whole problem evaporates.
 

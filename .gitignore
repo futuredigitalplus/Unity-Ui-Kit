@@ -1,4 +1,4 @@
-# Future Digital Plus UI Kit: the repository root is the package root (package.json is here).
+# FDP UI Kit: the repository root is the package root (package.json is here).
 #
 # Rules for this file:
 #   - never ignore *.meta (GUIDs must be committed, Unity needs them in every consumer)

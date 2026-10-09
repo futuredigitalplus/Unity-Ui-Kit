@@ -1,4 +1,4 @@
-# Future Digital Plus UI Kit: guides
+# FDP UI Kit: guides
 
 | Guide | About |
 |---|---|
@@ -6,7 +6,7 @@
 | [Recipes.md](Recipes.md) | Copy-paste solutions: one bootstrap component, the ready-made shell host, themed screen, dialogs, toasts, gamepad navigation, HUD bar, inventory grid, localization hook, brand theme, one UI on every screen size |
 | [Samples.md](Samples.md) | The eleven samples: kind of game, what each shows, modules used, what was verified |
 | [ChooseModules.md](ChooseModules.md) | Which modules and assemblies a game needs, by game type, platform and optional package |
-| [Migration.md](Migration.md) | Moving the card game's UI foundation (`FCS.UI`, `--fcs-*`, `fcs-*`) onto the kit: name, token and class tables |
+| [Migration.md](Migration.md) | Moving the card game's UI foundation (`ColorSolitaire.UI`, `--color-solitaire-*`, `color-solitaire-*`) onto the kit: name, token and class tables |
 | [CompatibilityMatrix.md](CompatibilityMatrix.md) | What was run: tests per render pipeline, colour space, input backend and optional package, player compile per target, the samples, and what is not verified |
 | [Platforms.md](Platforms.md) | Render pipelines, platforms and Unity versions: what is verified, what is not, per platform notes, what ships in a build, how to reproduce |
 | [Upgrading.md](Upgrading.md) | Re-sync a module from upstream, diff, test, bump the version |
@@ -16,7 +16,7 @@
 | [UpstreamFeatures.md](UpstreamFeatures.md) | Exactly what is included, excluded and modified per upstream project |
 | [UIKit/README.md](UIKit/README.md) | The facade: `UIKitHost`, `UIKitInstaller`, safe area, mobile class |
 | [Bootstrap/README.md](Bootstrap/README.md) | `UIShellHost`: one component that runs the shell, theme, input, accessibility, language and back key |
-| [Foundation/README.md](Foundation/README.md) | Shell, screen router, dialogs, toasts, loading, safe area, panel scale, profile classes; the card game's `FCS.UI` names mapped to the kit |
+| [Foundation/README.md](Foundation/README.md) | Shell, screen router, dialogs, toasts, loading, safe area, panel scale, profile classes; the card game's `ColorSolitaire.UI` names mapped to the kit |
 | [Interaction/README.md](Interaction/README.md) | Input mode classes, focus ring, activation, back key, accessibility (reduced motion, text size, bold) |
 | [Language/README.md](Language/README.md) | Localized text (`UiLocalization`, `LocalizedLabel`, `BindText`), language classes, right-to-left layout, Unity Localization adapter, system-font fallbacks |
 | [Hud/README.md](Hud/README.md) | In-game overlay widgets: meter bar, radial progress, cooldown icon, rolling counters, countdown, floating text, world anchors, feed, zones |

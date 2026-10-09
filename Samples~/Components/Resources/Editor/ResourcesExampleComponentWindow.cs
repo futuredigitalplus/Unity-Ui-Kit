@@ -6,7 +6,7 @@ namespace FutureDigitalPlus.UIKit.Components.Samples.Resources.Editor
 {
     public class ResourcesExampleComponentWindow : EditorWindow
     {
-        [MenuItem("Tools/Future Digital Plus UI Kit/Components Examples/Loading Assets/Resources")]
+        [MenuItem("Tools/FDP UI Kit/Components Examples/Loading Assets/Resources")]
         private static void ShowWindow()
         {
             var window = GetWindow<ResourcesExampleComponentWindow>();

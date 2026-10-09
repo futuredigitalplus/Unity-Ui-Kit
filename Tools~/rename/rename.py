@@ -174,7 +174,7 @@ MOBILE_MD_RULES = [
 # --------------------------------------------------------------------------------------------------
 # 5. Strings: menus, prefs, temp folders, defines, shader name, caches
 # --------------------------------------------------------------------------------------------------
-MENU = "Future Digital Plus UI Kit"
+MENU = "FDP UI Kit"
 STRING_RULES = [
     # menus (must run BEFORE the UIComponents namespace rule)
     (r'(\[(?:UnityEngine\.)?AddComponentMenu\(")Design System/',      rf'\1{MENU}/Design System/'),
@@ -183,6 +183,10 @@ STRING_RULES = [
     (r'(MenuItem\(")Design System/',                                   rf'\1Tools/{MENU}/Design System/'),
     (r'(MenuItem\(")Window/UIComponents/',                             rf'\1Window/{MENU}/Components/'),
     (r'(MenuItem\(")UIComponents Examples/',                           rf'\1Tools/{MENU}/Components Examples/'),   # samples
+    # sentences that name the menu (tooltips, warnings, USS comments, doc comments). The lookbehind keeps a second run from stacking the prefix.
+    (r'(?<!UI Kit/)Tools/Design System/',                             f'Tools/{MENU}/Design System/'),
+    (r'(?<!UI Kit > )Design System > ',                                f'Tools > {MENU} > Design System > '),
+    (r'(?<!UI Kit &gt; )Design System &gt; ',                          f'Tools &gt; {MENU} &gt; Design System &gt; '),
     (r'\[UIComponents\] ',                                             '[UIKit.Components] '),                    # log prefix
     # editor prefs, temp + font folders, caches
     (r'"DesignSystem\.ThemeConfigurator\.PreviewUxmlGuid"',            f'"{FDP}.DesignSystem.ThemeConfigurator.PreviewUxmlGuid"'),
@@ -199,9 +203,8 @@ ASM_STRING_RULES = [
     (r'(InternalsVisibleTo\(")UIComponents((?:\.[A-Za-z]+)*)"',  rf'\1{FDP}.Components\2"'),
     (r'(Name\.StartsWith\(")UIComponents\.Tests"',             rf'\1{FDP}.Components.Tests"'),
 ]
-# markdown-only: menu prose
+# markdown-only: menu prose that is not also a C# or USS string
 MD_ONLY_RULES = [
-    (r'(?<!UI Kit > )Design System > ',                                f'Tools > {MENU} > Design System > '),
     (r'Window > UIComponents > ',                                      f'Window > {MENU} > Components > '),
     (r'`UIComponents Examples( > |`)',                                 rf'`Tools > {MENU} > Components Examples\1'),
 ]
@@ -611,7 +614,7 @@ PROSE = {
     "vars": f"USS custom properties: `--<name>` became `--{VAR_PREFIX}<name>` (`--unity-*` and `--ds-*` untouched); the baked theme sheets (`Themes/*.asset`) follow.",
     "ds": "`.back-btn*` became `.ds-back-btn*`, `is-spinning` became `ds-is-spinning`; the shader name became `Hidden/FutureDigitalPlus/UIKit/DsFx/Blueprint`.",
     "touch": f"The touch-size class `mobile` became `{TOUCH_CLASS}`.",
-    "menus": "Menus moved under `Future Digital Plus UI Kit` (`Tools/`, `Assets/`, `Window/`, `AddComponentMenu`).",
+    "menus": "Menus moved under `FDP UI Kit` (`Tools/`, `Assets/`, `Window/`, `AddComponentMenu`, and `Design System >` sentences in code and stylesheets).",
     "autoattach": "Not mechanical, recorded in the modification table: the auto-attach define (opt-out `DS_DISABLE_AUTO_ATTACH` became opt-in `FDP_UIKIT_AUTO_ATTACH`).",
     "extras": f"Extras classes `{', '.join(EXTRAS_CLASS_BASES)}` got the prefix `{CLASS_PREFIX}`.",
     "generator": "The four Roslyn DLLs were rebuilt from the upstream source with the namespace literals patched (see `Tools~/rename/README.md` and `THIRD_PARTY_NOTICES.md`).",

@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace FutureDigitalPlus.UIKit.DesignSystem.Theme.Applier.UIDocument
 {
-    [UnityEngine.AddComponentMenu("Future Digital Plus UI Kit/Design System/UI Document Theme Applier")]
+    [UnityEngine.AddComponentMenu("FDP UI Kit/Design System/UI Document Theme Applier")]
     [UnityEngine.RequireComponent(typeof(UnityEngine.UIElements.UIDocument))]
     public class ThemeApplier : ThemeApplierBase<UnityEngine.UIElements.UIDocument>
     {

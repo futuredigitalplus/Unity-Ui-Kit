@@ -26,7 +26,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Theme.Data
     /// whole problem. A genuinely runtime-generated palette (the showcase's Randomize
     /// button) is the only case that still needs the inline path.
     /// </summary>
-    [CreateAssetMenu(fileName = "Theme", menuName = "Future Digital Plus UI Kit/Design System/Theme", order = 100)]
+    [CreateAssetMenu(fileName = "Theme", menuName = "FDP UI Kit/Design System/Theme", order = 100)]
     // FutureDigitalPlus: partial. Runtime themes, token access, extra tokens and the bake hash live in ThemeData.Runtime.cs.
     public partial class ThemeData : ScriptableObject
     {
@@ -98,7 +98,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Theme.Data
         public Color selectionColor      = new(0.133f, 0.773f, 0.369f, 0.35f);
 
         [Header("Typography")]
-        [Tooltip("The theme's typeface. Import one with Design System > Google Fonts.\n\n" +
+        [Tooltip("The theme's typeface. Import one with Tools > FDP UI Kit > Design System > Google Fonts.\n\n" +
                  "Leave it empty and the theme changes only colours and sizes, inheriting " +
                  "whatever face is already active. Set it and the theme is a complete look.")]
         public FutureDigitalPlus.UIKit.DesignSystem.Typography.DsFontFamily typeface;

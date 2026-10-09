@@ -16,7 +16,7 @@ namespace FutureDigitalPlus.UIKit.Samples.Responsive
     /// device safe area or a made-up one. The same function is how a game tests safe-area handling without a phone.
     /// </para>
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/Responsive Sample")]
+    [AddComponentMenu("FDP UI Kit/Responsive Sample")]
     public sealed class ResponsiveSample : MonoBehaviour
     {
         private const string ThemeResource = "FutureDigitalPlus/UIKit/Samples/Responsive/UnityDefaultRuntimeTheme";

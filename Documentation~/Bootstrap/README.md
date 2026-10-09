@@ -11,7 +11,7 @@ It is its own assembly so that the facade (`UIKit`) and the modules stay free of
 ## Use
 
 1. A scene with a `UIDocument` whose Panel Settings has a Theme Style Sheet ([GettingStarted.md](../GettingStarted.md), step 1).
-2. Add **Future Digital Plus UI Kit > UI Shell Host** to the same GameObject.
+2. Add **FDP UI Kit > UI Shell Host** to the same GameObject.
 3. Register your screens and boot the first one when the host says it is ready:
 
 ```csharp

@@ -22,7 +22,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Fx
     /// </summary>
     public static class DsFxCompileCheck
     {
-        [MenuItem("Tools/Future Digital Plus UI Kit/Design System/FX/Compile Check")]
+        [MenuItem("Tools/FDP UI Kit/Design System/FX/Compile Check")]
         private static void RunMenu()
         {
             var messages = Check(out var failed);

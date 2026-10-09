@@ -3,8 +3,8 @@
 The plumbing every game with more than one screen needs: a screen router, dialogs, toasts, a loading overlay, safe area and back handling, with localized texts.
 Genre: card, puzzle, casual, any game with menus around a board. Modules: Foundation, Controls, Language.
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > Shell Quick Start > Import.
-2. Create an empty scene, add an empty GameObject, add the component `Future Digital Plus UI Kit > Shell Quick Start Sample`.
+1. Window > Package Manager > FDP UI Kit > Samples > Shell Quick Start > Import.
+2. Create an empty scene, add an empty GameObject, add the component `FDP UI Kit > Shell Quick Start Sample`.
 3. Press Play.
 
 ## What you see

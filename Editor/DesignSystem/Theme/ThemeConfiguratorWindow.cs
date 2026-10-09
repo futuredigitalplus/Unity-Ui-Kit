@@ -45,7 +45,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
         private ObjectField _previewUxmlField;
         private Vector2 _fieldsScroll;
 
-        [MenuItem("Tools/Future Digital Plus UI Kit/Design System/Theme Configurator")]
+        [MenuItem("Tools/FDP UI Kit/Design System/Theme Configurator")]
         public static void Open() => GetWindow<ThemeConfiguratorWindow>("Theme Configurator");
 
         public static void OpenWith(ThemeData theme)

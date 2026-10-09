@@ -2,8 +2,8 @@
 
 A backpack and a chest with drag and drop, keyboard and gamepad pick-up, a context menu, tooltips and a tab bar with badges. Genre: RPG, strategy, roguelike, survival. Modules: Gameplay, Controls (and the Extras tooltip).
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > RPG Inventory > Import.
-2. Create an empty scene, add an empty GameObject, add the component `Future Digital Plus UI Kit > RPG Inventory Sample`.
+1. Window > Package Manager > FDP UI Kit > Samples > RPG Inventory > Import.
+2. Create an empty scene, add an empty GameObject, add the component `FDP UI Kit > RPG Inventory Sample`.
 3. Press Play.
 
 ## How to play with it

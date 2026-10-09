@@ -5,9 +5,9 @@ badges, icons, toasts, and a switch between the base dark tokens and the bundled
 
 ## Use
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > Design System Showcase > Import.
+1. Window > Package Manager > FDP UI Kit > Samples > Design System Showcase > Import.
 2. Create an empty scene, add an empty GameObject, add the component
-   `Future Digital Plus UI Kit > Design System Showcase Sample`.
+   `FDP UI Kit > Design System Showcase Sample`.
 3. Press Play.
 
 The sample needs nothing but this package: no uGUI, no Input System, no EventSystem, no extra fonts.

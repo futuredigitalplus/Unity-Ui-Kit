@@ -6,7 +6,7 @@ namespace FutureDigitalPlus.UIKit.Components.Samples.EventInterfaces.Editor
 {
     public class EventInterfacesWindow : EditorWindow
     {
-        [MenuItem("Tools/Future Digital Plus UI Kit/Components Examples/Event Interfaces")]
+        [MenuItem("Tools/FDP UI Kit/Components Examples/Event Interfaces")]
         private static void ShowWindow()
         {
             var window = GetWindow<EventInterfacesWindow>();

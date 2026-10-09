@@ -6,7 +6,7 @@ namespace FutureDigitalPlus.UIKit.Components.Samples.UxmlTraits.Editor
 {
     public class UxmlTraitsExampleWindow : UnityEditor.EditorWindow
     {
-        [UnityEditor.MenuItem("Tools/Future Digital Plus UI Kit/Components Examples/UxmlTraits and UxmlName")]
+        [UnityEditor.MenuItem("Tools/FDP UI Kit/Components Examples/UxmlTraits and UxmlName")]
         private static void ShowWindow()
         {
             var window = GetWindow<UxmlTraitsExampleWindow>();

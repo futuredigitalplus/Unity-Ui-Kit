@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace FutureDigitalPlus.UIKit.DesignSystem.Behaviour.PanelRenderer
 {
-    [AddComponentMenu("Future Digital Plus UI Kit/Design System/Panel Renderer Behaviour")]
+    [AddComponentMenu("FDP UI Kit/Design System/Panel Renderer Behaviour")]
     public class DesignSystemBehaviour : DesignSystemBehaviourBase<UnityEngine.UIElements.PanelRenderer>
     {
         private UnityEngine.UIElements.PanelRenderer _panelRenderer;

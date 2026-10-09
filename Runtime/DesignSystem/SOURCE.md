@@ -65,7 +65,7 @@ Nothing that needs Unity 6000.5+ is excluded; it is guarded instead (see "Unity 
 |---|---|
 | `Assets/Showcase/` (20 MB: `ShowcaseBootstrap`, world-space corridor, doc overlay, mode HUD, FX probe runners, first-person controller, scene `Showcase.unity`, `DefaultPanelSettings`, `ShowcaseTheme.uss`, `ShowcaseFocusRing.uss`, `DsRtScreen.shader`, `CorridorLit.mat`, `sinanata.jpg`, WebGL `.jslib`) | Host scene for the upstream demo, not library code; depends on uGUI and the Input System; the corridor needs Unity 6000.5. Only the small sample above was kept. |
 | `Assets/Showcase/Resources/CodigrateThemes/` (13 JSON files) and `Themes/` (12 baked theme assets) | Third-party IDE-theme palettes from codigrate.com, with no licence file in the upstream repo. Not bundled, so no unverified-licence data enters the kit. |
-| `Assets/Showcase/Resources/DsFonts/` (Noto Sans family and 7 script families: `.ttf`, SDF font assets, `LICENSE.txt` each) and `GoogleFontsManifest.json`, `ShowcaseFont*` | Font binaries, with their own licences (SIL OFL). The module bundles NO font; it ships the importer and runtime fetcher instead. A game imports the fonts it wants with Design System > Google Fonts and records their licences itself. |
+| `Assets/Showcase/Resources/DsFonts/` (Noto Sans family and 7 script families: `.ttf`, SDF font assets, `LICENSE.txt` each) and `GoogleFontsManifest.json`, `ShowcaseFont*` | Font binaries, with their own licences (SIL OFL). The module bundles NO font; it ships the importer and runtime fetcher instead. A game imports the fonts it wants with Tools > FDP UI Kit > Design System > Google Fonts and records their licences itself. |
 | `Assets/Editor/` (`BuildCli`, `FxRenderProbe`, `PipelineProbe`, `PopupProbe`, `ShowcaseBlueprintProbe`, `ShowcaseFontBaker`, `ShowcaseFontVerifier`, `ShowcaseThemeBaker`, `WorldLayoutProbe`) | Build and probe tooling for the upstream showcase project. |
 | `Assets/Settings/`, `DefaultVolumeProfile.asset`, `UniversalRenderPipelineGlobalSettings.asset`, `Assets/WebGLTemplates/` | Upstream project settings and WebGL template, not part of the library. |
 | `ProjectSettings/`, `Packages/` (manifest, lock), `.vsconfig`, `.gitattributes`, `.gitignore`, `.gitmodules` | Project files. Package dependencies were read from the manifest; see below. |
@@ -179,7 +179,7 @@ USS custom properties: `--<name>` became `--fdp-<name>` (`--unity-*` and `--ds-*
 
 The touch-size class `mobile` became `fdp-input-touch`.
 
-Menus moved under `Future Digital Plus UI Kit` (`Tools/`, `Assets/`, `Window/`, `AddComponentMenu`).
+Menus moved under `FDP UI Kit` (`Tools/`, `Assets/`, `Window/`, `AddComponentMenu`, and `Design System >` sentences in code and stylesheets).
 
 Not mechanical, recorded in the modification table: the auto-attach define (opt-out `DS_DISABLE_AUTO_ATTACH` became opt-in `FDP_UIKIT_AUTO_ATTACH`).
 <!-- rename-record:end -->

@@ -2,8 +2,8 @@
 
 A menu that works with a gamepad, a keyboard, a mouse and a finger alike. Genre: console, handheld, TV, desktop. Modules: Interaction, Foundation, Controls.
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > Gamepad Menu > Import.
-2. Create an empty scene, add an empty GameObject, add the component `Future Digital Plus UI Kit > Gamepad Menu Sample`.
+1. Window > Package Manager > FDP UI Kit > Samples > Gamepad Menu > Import.
+2. Create an empty scene, add an empty GameObject, add the component `FDP UI Kit > Gamepad Menu Sample`.
 3. Press Play. Use the arrow keys (or a gamepad D-pad), Enter (or A) to select, Escape (or B) to go back.
 
 No gamepad? The "Input device" row pins the input mode to Keyboard, Gamepad or Mouse, so the focus ring and the prompts can be checked with a mouse.

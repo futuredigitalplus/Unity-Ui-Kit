@@ -20,7 +20,7 @@ namespace FutureDigitalPlus.UIKit.Samples.ThemingLanguage
     /// compiled only when <c>com.unity.localization</c> is installed). The labels keep working unchanged.
     /// </para>
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/Theming and Language Sample")]
+    [AddComponentMenu("FDP UI Kit/Theming and Language Sample")]
     public sealed class ThemingLanguageSample : MonoBehaviour
     {
         private const string ThemeResource = "FutureDigitalPlus/UIKit/Samples/ThemingLanguage/UnityDefaultRuntimeTheme";

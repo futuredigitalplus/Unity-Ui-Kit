@@ -18,7 +18,7 @@ namespace FutureDigitalPlus.UIKit.Samples.RpgInventory
     /// backpack is locked, and the chest refuses keys, to show the two ways a move can be refused.
     /// </para>
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/RPG Inventory Sample")]
+    [AddComponentMenu("FDP UI Kit/RPG Inventory Sample")]
     public sealed class RpgInventorySample : MonoBehaviour
     {
         private const string ThemeResource = "FutureDigitalPlus/UIKit/Samples/RpgInventory/UnityDefaultRuntimeTheme";

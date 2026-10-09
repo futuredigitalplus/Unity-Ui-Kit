@@ -2,8 +2,8 @@
 
 One UI for a phone, a tablet, a foldable, a desktop window and a TV. Modules: Foundation (and the design system it reads).
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > Responsive > Import.
-2. Create an empty scene, add an empty GameObject, add the component `Future Digital Plus UI Kit > Responsive Sample`.
+1. Window > Package Manager > FDP UI Kit > Samples > Responsive > Import.
+2. Create an empty scene, add an empty GameObject, add the component `FDP UI Kit > Responsive Sample`.
 3. Press Play, then resize the Game view or switch to the Device Simulator.
 
 ## What you see

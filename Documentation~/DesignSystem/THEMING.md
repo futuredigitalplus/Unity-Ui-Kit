@@ -17,7 +17,7 @@ theme's sheet repaints the tree. The scope decides when the sheet paints: `:root
 | `HighContrastDark`, `HighContrastLight` | `.theme-hc-dark`, `.theme-hc-light` | players who need 7:1 text and 4.5:1 borders |
 
 All six are pure data in `ThemePalettes` (no UnityEngine) and are checked by `ContrastAudit` in the EditMode tests: a palette that drops below WCAG AA fails the build of the package.
-The assets are written and baked by the menu **Tools > Future Digital Plus UI Kit > Design System > Generate Built-in Themes** (batch: `ThemePresets.GenerateBatch`).
+The assets are written and baked by the menu **Tools > FDP UI Kit > Design System > Generate Built-in Themes** (batch: `ThemePresets.GenerateBatch`).
 Run it after changing a palette; the tests named `BuiltIn...` fail until you have.
 
 ## Where the theme goes

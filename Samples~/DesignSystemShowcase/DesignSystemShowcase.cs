@@ -15,7 +15,7 @@ namespace FutureDigitalPlus.UIKit.Samples
     /// New code written for this package. The page it shows is an excerpt of the upstream
     /// showcase UXML; see ../../Runtime/DesignSystem/SOURCE.md.
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/Design System Showcase Sample")]
+    [AddComponentMenu("FDP UI Kit/Design System Showcase Sample")]
     public class DesignSystemShowcase : MonoBehaviour
     {
         // Resources paths of the sample's own files (the sample folder carries a Resources folder).

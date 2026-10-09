@@ -4,7 +4,7 @@ The plumbing every UI Toolkit game needs and none wants to rewrite: one **shell*
 **safe-area** handling that knows which panels are the screen, a **panel scale** policy for phones, tablets, desktop windows, consoles and the web, **profile classes** on the root (orientation, size class,
 platform, input mode) and the small views that sit on top of them (top bar, list row, banner, pause menu).
 
-Nothing in it knows what game it serves. It was generalised from the UI foundation of the card game (`FCS.UI`); the mapping from the old names is at the end of this page.
+Nothing in it knows what game it serves. It was generalised from the UI foundation of the card game (`ColorSolitaire.UI`); the mapping from the old names is at the end of this page.
 
 ## Assemblies
 
@@ -201,13 +201,13 @@ The Unity tests above ran in Unity 6000.3.25f1 in every variant of [../Compatibi
 - `DialogService` needs a design system base sheet for its look; without it the frame is unstyled but works.
 - World-space panels (Unity 6000.5) are detected (`UiPanelKind.WorldSpace`) but untested.
 
-## From the card game (`FCS.UI`) to the kit: names in, names out
+## From the card game (`ColorSolitaire.UI`) to the kit: names in, names out
 
 Everything moved to namespace `FutureDigitalPlus.UIKit.Foundation` unless the table says otherwise.
 
-| FCS | Kit | Change |
+| Color Solitaire | Kit | Change |
 |---|---|---|
-| `ScreenStack`, `ScreenEntry`, `ScreenChange`, `ScreenChangeKind` | same, in `Foundation.Core` | format tag `fdp-nav-v1` (saved `fcs-nav-v1` blobs are not read: the first start shows the initial screen) |
+| `ScreenStack`, `ScreenEntry`, `ScreenChange`, `ScreenChangeKind` | same, in `Foundation.Core` | format tag `fdp-nav-v1` (saved `color-solitaire-nav-v1` blobs are not read: the first start shows the initial screen) |
 | `RouterStateDocument` | `ScreenStack.Capture` / `TryParse` and `ScreenRouter.CaptureState` / `TryRestoreState` | no separate document type |
 | `ScreenRouter`, `UiScreen`, `UiContext` | same | `UiContext` has `Text`, `SafeArea`, `State` and layer access; the router takes a catalog instance |
 | `ScreenCatalog` (static) | `ScreenCatalog` instance, `ScreenCatalog.Default` keeps the static pattern | `Register(id, factory)` is now an instance method; `Default.Register(...)` replaces `ScreenCatalog.Register(...)` |
@@ -226,7 +226,7 @@ Everything moved to namespace `FutureDigitalPlus.UIKit.Foundation` unless the ta
 | `SafeAreaPanel` | same | no padding on render-texture or world-space panels |
 | `SafeAreaProvider` (static) | `SafeAreaProvider` instance; `SafeAreaProvider.Default` | `Poll(root)` is an instance method; `UiShell` owns one |
 | `PanelScalePolicy.Compute(handheld, dpi, w, h)`, `PanelScale` | `PanelScalePolicy.Compute(profile, input)` with `PanelScaleProfile.CardPortrait()` | reproduces the same phone and tablet constants; `PanelScaleDriver` applies it |
-| `UiProfile`, `UiProfileWatcher` | `UiProfile(Orientation, SizeClass, InputMode)`, `UiProfileWatcher` | `UiFormFactor` (compact, regular) is `UiSizeClass` (compact, regular, expanded); classes `fcs-*` are `fdp-*` |
+| `UiProfile`, `UiProfileWatcher` | `UiProfile(Orientation, SizeClass, InputMode)`, `UiProfileWatcher` | `UiFormFactor` (compact, regular) is `UiSizeClass` (compact, regular, expanded); classes `color-solitaire-*` are `fdp-*` |
 | `UiText`, `LocalizationKey`, `LocalizationKeyResolver`, `LookupStatus`, `TableLookup` | same, in `Foundation.Core` | the game's default table names (`Core`, `Borderline`, `UI`) are no longer built in: pass them to the resolver; `LocalizationKey.DefaultTable` is `UI` |
 | `LocaleStyle` | same | prefix `fdp-lang-`; right-to-left list extended (ar, he, fa, ur, ps, sd, ug, yi, dv, ku) |
 | `UiLocalization`, `LocalizedLabel`, `LocalizedButton`, `LocalizedTextBinder`, `LocalizedTextExtensions` | Language module | |
@@ -237,4 +237,4 @@ Everything moved to namespace `FutureDigitalPlus.UIKit.Foundation` unless the ta
 | `FocusTrap`, `UiFocus` | same, in `Foundation` | nests across layers; restores focus when the opener is gone |
 | `UiNames`, `UiStorageKeys`, `UiFallbackViews` | `UiNames` (kit element and class names); the rest stay in the game | `IUiStateStore` and `PlayerPrefsUiStateStore` replace the storage keys |
 | `PDebug` | `UiLog.Sink` | set once; the shell points an unset sink at the Unity console |
-| `fcs-*` classes, `--fcs-*` tokens | `ds-*`, `fdp-*`, `--fdp-*` | see `Documentation~/Migration.md` |
+| `color-solitaire-*` classes, `--color-solitaire-*` tokens | `ds-*`, `fdp-*`, `--fdp-*` | see `Documentation~/Migration.md` |

@@ -10,7 +10,7 @@ namespace FutureDigitalPlus.UIKit
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(UIDocument))]
-    [AddComponentMenu("Future Digital Plus UI Kit/UI Kit Host")]
+    [AddComponentMenu("FDP UI Kit/UI Kit Host")]
     public class UIKitHost : MonoBehaviour
     {
         [SerializeField] private UIKitOptions options = new UIKitOptions();

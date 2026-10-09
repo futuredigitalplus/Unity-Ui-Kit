@@ -11,7 +11,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor
     {
         private const string DESIGN_SYSTEM_USS_GUID = "2fe121bab235f2a4f8cbc07737f87fe2";
 
-        [MenuItem("Assets/Future Digital Plus UI Kit/Design System/Add Stylesheet To Selected Layout Asset")]
+        [MenuItem("Assets/FDP UI Kit/Design System/Add Stylesheet To Selected Layout Asset")]
         public static void AddStyleSheet()
         {
             var obj = Selection.activeObject;
@@ -69,7 +69,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor
                 $"Added DesignSystem.uss to\n{assetPath}", "OK");
         }
 
-        [MenuItem("Assets/Future Digital Plus UI Kit/Design System/Add Stylesheet To Selected Layout Asset", true)]
+        [MenuItem("Assets/FDP UI Kit/Design System/Add Stylesheet To Selected Layout Asset", true)]
         public static bool AddStyleSheetValidate()
         {
             var selected = Selection.GetFiltered<Object>(SelectionMode.Assets);

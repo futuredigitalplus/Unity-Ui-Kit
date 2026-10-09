@@ -6,7 +6,7 @@ namespace FutureDigitalPlus.UIKit.Components.Samples.Addressables.Editor
 {
     public class AddressablesExampleComponentWindow : EditorWindow
     {
-        [MenuItem("Tools/Future Digital Plus UI Kit/Components Examples/Loading Assets/Addressables")]
+        [MenuItem("Tools/FDP UI Kit/Components Examples/Loading Assets/Addressables")]
         private static void ShowWindow()
         {
             var window = GetWindow<AddressablesExampleComponentWindow>();

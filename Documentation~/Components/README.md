@@ -6,7 +6,7 @@ front-end framework for UI Toolkit: a `UIComponent` base class that loads its la
 (USS), queries elements into fields, registers event callbacks from interfaces, and gets dependencies injected.
 C# source generators (Roslyn) write the boilerplate, and Roslyn analyzers check your component classes.
 
-This page explains how the module sits inside the Future Digital Plus UI Kit. The framework's own documentation
+This page explains how the module sits inside the FDP UI Kit. The framework's own documentation
 is kept next to this file:
 
 - `UIComponents-upstream-README.md`: the upstream README (overview, example, testing, validation, requirements).
@@ -112,7 +112,7 @@ The Addressables sample (`Samples~/Components/Addressables`) shows the setup and
 ## Validation
 
 `FutureDigitalPlus.UIKit.Components.Editor.ConventionValidator` checks that the asset paths of all components resolve. From the editor
-use the menu `Window > Future Digital Plus UI Kit > Components > Validate Registry Asset Paths`, or in CI:
+use the menu `Window > FDP UI Kit > Components > Validate Registry Asset Paths`, or in CI:
 
 ```shell
 Unity -batchmode -projectPath . -quit -executeMethod FutureDigitalPlus.UIKit.Components.Editor.ConventionValidator.ValidateForBatchMode
@@ -122,9 +122,9 @@ In batch mode it skips assemblies whose names start with `FutureDigitalPlus.UIKi
 
 ## Samples
 
-Six samples are available from the Package Manager (package "Future Digital Plus UI Kit", tab Samples; classic Assets install: copy `Samples~/Components` to `Assets/Samples/Components`):
+Six samples are available from the Package Manager (package "FDP UI Kit", tab Samples; classic Assets install: copy `Samples~/Components` to `Assets/Samples/Components`):
 Counter (dependency injection), Resources, Addressables, Query, Event interfaces and UXML code generation.
-They open as editor windows under the menu `Tools > Future Digital Plus UI Kit > Components Examples`. The sample asmdefs reference `FutureDigitalPlus.UIKit.Components`
+They open as editor windows under the menu `Tools > FDP UI Kit > Components Examples`. The sample asmdefs reference `FutureDigitalPlus.UIKit.Components`
 by name. The Resources sample puts files in `Resources/Components/` and `Resources/Margins.uss` of your project
 when imported; delete the imported sample when you no longer need it.
 

@@ -2,8 +2,8 @@
 
 Everything a player can change about how a UI looks and reads, in one small page. Modules: DesignSystem, Language, Interaction (and Controls for the segmented picker).
 
-1. Window > Package Manager > Future Digital Plus UI Kit > Samples > Theming and Language > Import.
-2. Create an empty scene, add an empty GameObject, add the component `Future Digital Plus UI Kit > Theming and Language Sample`.
+1. Window > Package Manager > FDP UI Kit > Samples > Theming and Language > Import.
+2. Create an empty scene, add an empty GameObject, add the component `FDP UI Kit > Theming and Language Sample`.
 3. Press Play.
 
 ## What you can change while it runs

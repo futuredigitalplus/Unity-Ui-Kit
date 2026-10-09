@@ -399,7 +399,7 @@ belongs in your shader, driven by `DsFxVariant.Params`.
 
 ### The fast loop
 
-**`Tools > Future Digital Plus UI Kit > Design System > FX > Compile Check`** force-compiles every registered family and gives you the file
+**`Tools > FDP UI Kit > Design System > FX > Compile Check`** force-compiles every registered family and gives you the file
 and line. Use it. Importing a shader only *parses* it — the first real compile otherwise happens at
 first draw inside play mode, where a failure is a magenta element and one console line, minutes into a
 run and far from the edit that caused it.

@@ -18,7 +18,7 @@ namespace FutureDigitalPlus.UIKit.Samples.GamepadMenu
     /// No gamepad at hand? The "Input device" row pins the input mode to Keyboard, Gamepad or Mouse, so the focus ring and the prompts can be checked with a mouse.
     /// </para>
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/Gamepad Menu Sample")]
+    [AddComponentMenu("FDP UI Kit/Gamepad Menu Sample")]
     public sealed class GamepadMenuSample : MonoBehaviour
     {
         private const string ThemeResource = "FutureDigitalPlus/UIKit/Samples/GamepadMenu/UnityDefaultRuntimeTheme";

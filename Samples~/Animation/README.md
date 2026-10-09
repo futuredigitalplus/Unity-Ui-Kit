@@ -1,11 +1,11 @@
 # Animation Toolkit Demo
 
-A small runtime page that shows the Animation module of the Future Digital Plus UI Kit. It is new code written for this
+A small runtime page that shows the Animation module of the FDP UI Kit. It is new code written for this
 package; the upstream example scene and editor window are not part of it (see `Runtime/Animation/SOURCE.md`).
 
 ## Use it
 
-1. Import the sample from Package Manager (*Future Digital Plus UI Kit > Samples > Animation Toolkit Demo*).
+1. Import the sample from Package Manager (*FDP UI Kit > Samples > Animation Toolkit Demo*).
 2. Create a GameObject with a `UIDocument` component. Any `PanelSettings` asset works, no UXML is needed.
 3. Add the `AnimationToolkitDemo` component to the same GameObject and press Play.
 

@@ -7,7 +7,7 @@ It does not reference Components or Extras, so it does not run the Roslyn genera
 
 | Type | What it is |
 |---|---|
-| `UIKitHost` | MonoBehaviour next to a `UIDocument`. Installs the kit on the document root whenever the tree is (re)built; `Theme` property swaps the theme. Add via *Add Component > Future Digital Plus UI Kit > UI Kit Host*. |
+| `UIKitHost` | MonoBehaviour next to a `UIDocument`. Installs the kit on the document root whenever the tree is (re)built; `Theme` property swaps the theme. Add via *Add Component > FDP UI Kit > UI Kit Host*. |
 | `UIKitInstaller.Install(root, options)` | The same thing from code, for any `VisualElement`. Returns a `UIKitInstallation` (null for a null root). |
 | `UIKitInstaller.CreatePanelSettings(themeStyleSheet, referenceResolution, match)` | A `PanelSettings` that scales with the screen (default 1080 x 1920, match 0.5). The caller owns it. |
 | `UIKitInstallation` | Handle: `SetTheme(theme)`, `Refresh()`, `IsMobile`, `AppliedInsets`, `Dispose()` (takes everything off again). |

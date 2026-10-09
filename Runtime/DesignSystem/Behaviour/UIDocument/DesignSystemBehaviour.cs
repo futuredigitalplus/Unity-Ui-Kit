@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FutureDigitalPlus.UIKit.DesignSystem.Behaviour.UIDocument
 {
-    [AddComponentMenu("Future Digital Plus UI Kit/Design System/UI Document Behaviour")]
+    [AddComponentMenu("FDP UI Kit/Design System/UI Document Behaviour")]
     public class DesignSystemBehaviour : DesignSystemBehaviourBase<UnityEngine.UIElements.UIDocument>
     {
         private UnityEngine.UIElements.UIDocument _doc;

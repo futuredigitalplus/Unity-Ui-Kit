@@ -14,7 +14,7 @@ namespace FutureDigitalPlus.UIKit.Samples.ShellQuickStart
     /// button, the top bar arrow, Escape or the Android back button. Every text is a key resolved by the Language module, so the Language row on the settings page
     /// switches English and German while the pages stay open.
     /// </summary>
-    [AddComponentMenu("Future Digital Plus UI Kit/Shell Quick Start Sample")]
+    [AddComponentMenu("FDP UI Kit/Shell Quick Start Sample")]
     public sealed class ShellQuickStartSample : MonoBehaviour
     {
         private const string ThemeResource = "FutureDigitalPlus/UIKit/Samples/ShellQuickStart/UnityDefaultRuntimeTheme";
@@ -224,7 +224,7 @@ namespace FutureDigitalPlus.UIKit.Samples.ShellQuickStart
 
                 var about = new ListRow();
                 Ui.SetText(about.TitleLabel, Key("ABOUT", "About"));
-                about.Clicked += () => Ui.Dialogs.Alert(Key("ABOUT", "About"), Key("ABOUT-TEXT", "A sample built with the Future Digital Plus UI Kit."));
+                about.Clicked += () => Ui.Dialogs.Alert(Key("ABOUT", "About"), Key("ABOUT-TEXT", "A sample built with the FDP UI Kit."));
                 Root.Add(about);
             }
 
@@ -269,7 +269,7 @@ namespace FutureDigitalPlus.UIKit.Samples.ShellQuickStart
                 ("LOADING", "Loading...", "Wird geladen ..."),
                 ("LANGUAGE", "Language", "Sprache"),
                 ("ABOUT", "About", "Über"),
-                ("ABOUT-TEXT", "A sample built with the Future Digital Plus UI Kit.", "Ein Beispiel mit dem Future Digital Plus UI Kit."),
+                ("ABOUT-TEXT", "A sample built with the FDP UI Kit.", "Ein Beispiel mit dem FDP UI Kit."),
                 ("FDP-OK", "OK", "OK"),
                 ("FDP-CANCEL", "Cancel", "Abbrechen"),
             })

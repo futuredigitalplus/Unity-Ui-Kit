@@ -44,8 +44,8 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Theme.Applier
             {
                 Debug.LogWarning(
                     $"[ThemeApplier] Theme '{theme.name}' has no baked stylesheet, so it will not " +
-                    "paint anything. Open it in Design System > Theme Configurator and press Save, " +
-                    "or run Design System > Rebake All Themes.", theme);
+                    "paint anything. Open it in Tools > FDP UI Kit > Design System > Theme Configurator and press Save, " +
+                    "or run Tools > FDP UI Kit > Design System > Rebake All Themes.", theme);
             }
 
             // ThemeRuntime tracks what each root wears, so this takes the previous theme off for

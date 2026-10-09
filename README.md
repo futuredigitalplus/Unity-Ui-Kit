@@ -1,4 +1,4 @@
-# Future Digital Plus UI Kit
+# FDP UI Kit
 
 `com.futuredigitalplus.uikit` is a Unity 6 (6000.3+) package for UI Toolkit. It bundles four open-source
 projects as independent modules, adds seven modules of our own (screens and dialogs, input and accessibility, localization, HUD, menu controls, inventory, and a ready-made shell host) and a small facade,
@@ -8,7 +8,7 @@ so any game, of any genre, on any platform and render pipeline, can take the who
 > 6000.3.25f1 and pass their tests there in 13 variants (render pipelines, colour spaces, input backends, optional packages; see "Verification").
 > Player-script compile checked for iOS, Android and macOS. Not yet used in a shipping game, not run on a device, a console or a headset.
 >
-> **Names:** the package id, display name and the `FutureDigitalPlus.UIKit` prefix are placeholders the owner may
+> **Names:** the display name is `FDP UI Kit` (Unity menus under Tools, Assets, Window, Add Component, and Create). The package id and the `FutureDigitalPlus.UIKit` prefix are still placeholders the owner may
 > rename (checklist in `Documentation~/Upgrading.md`, "Renaming the package"). Every name the kit puts into a game's
 > global namespaces is collision-proof: assemblies and namespaces `FutureDigitalPlus.UIKit.<Module>`, Resources under
 > `FutureDigitalPlus/UIKit/<Module>/`, USS custom properties `--fdp-*`, Extras classes `fdp-*`. The generic names of the four
@@ -83,7 +83,7 @@ and picker, and the UI half of a blur/glass panel.
 ### Foundation
 The UI plumbing every game needs, in plain C# with no singleton: `UiShell` (ordered layers, one per panel), a screen router with a saved stack, dialogs with a priority queue, toasts, a loading overlay, a safe-area provider that
 knows render-texture and world-space panels, a panel scale policy for phones, tablets, desktop, console and web, profile classes on the root (orientation, size class, platform, input mode), focus trapping and a few views
-(top bar, list row, banner, pause menu). The pure logic is in `Foundation.Core` (no `UnityEngine`), tested by dotnet. See `Documentation~/Foundation/README.md`, which also maps the card game's `FCS.UI` names to the kit.
+(top bar, list row, banner, pause menu). The pure logic is in `Foundation.Core` (no `UnityEngine`), tested by dotnet. See `Documentation~/Foundation/README.md`, which also maps the card game's `ColorSolitaire.UI` names to the kit.
 
 ### Interaction
 Which device the player uses and what the UI must do about it: classes on the root for mouse, touch, keyboard and gamepad (`fdp-input-nav` shows the focus ring only for keyboard and gamepad), `Activate`

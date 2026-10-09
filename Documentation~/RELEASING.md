@@ -86,7 +86,7 @@ cd <path>/UnityPackages/com.futuredigitalplus.uikit
 git config user.name && git config user.email
 git status --short | head                      # everything is untracked; nothing under Library, Temp or .DS_Store
 git add .
-git commit -m "Future Digital Plus UI Kit 0.2.2"
+git commit -m "FDP UI Kit 0.2.2"
 git tag -a v0.2.2 -m "0.2.2"
 git push -u origin main
 git push origin v0.2.2
