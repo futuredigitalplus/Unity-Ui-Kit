@@ -7,7 +7,8 @@
         "FutureDigitalPlus.UIKit.Foundation",
         "FutureDigitalPlus.UIKit.Foundation.Core",
         "FutureDigitalPlus.UIKit.Foundation.Tests",
-        "FutureDigitalPlus.UIKit.Location.Editor"
+        "FutureDigitalPlus.UIKit.Location.Editor",
+        "FutureDigitalPlus.UIKit.Foundation.Editor"
     ],
     "includePlatforms": [
         "Editor"

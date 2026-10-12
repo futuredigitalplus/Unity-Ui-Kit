@@ -6,6 +6,13 @@ All notable changes to this package are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Responsive form factors (Foundation): `DeviceFormFactor` (`Phone`, `Pad`, `FlipCover`, `FoldCover`, `FoldInner`), `DeviceFormFactors.Classify` (by the panel size in units: short side 600, ratios 1.3 and 1.75, measured on current flip and fold phones), `DevicePosture`, `HingeAxis`, `ResponsiveRule` and `ResponsiveRules` (scale multiplier and column width per form factor and orientation, with fallback from the covers to the phone and from the inner screen to the pad), `ResponsiveRulesAsset`, and the device catalog types `ResponsiveDeviceCatalogData`, `ResponsiveDeviceSpec`, `ResponsiveScreenSpec`.
+- `PanelScaleDriver.Rules`, `FormFactor`, `Rule`, `Landscape`, `Environment` and the static `Active` list; `PanelScaleEnvironment.PixelExact` (apply a physical scale as a constant pixel scale, for previews drawn on a monitor). Without rules the driver behaves as before.
+- `ResponsiveRootBinder`: `fdp-ff-*`, `fdp-posture-half-opened`, `fdp-hinge-horizontal` and `fdp-hinge-vertical` classes on the root, and the rule's column width on elements with `ColumnClass`.
+- Responsive Manager (`Tools > FDP UI Kit > Responsive Manager`, new editor assembly `FutureDigitalPlus.UIKit.Foundation.Editor`): device catalog of phones, tablets and 28 flip and fold profiles (`Editor/Foundation/Responsive/ResponsiveDevices.json`, extendable in `ProjectSettings/FdpResponsiveDevices.json`), overview of units and scale per device, Play mode preview of the game's panel per device, orientation and posture with safe-area and hinge overlays, layout check (`ResponsiveLayoutAudit`), rule editor with undo, a check of every device with a Markdown report and PNG export, and `IResponsivePreviewHost` for a game's screen list.
+- Tests: `Tests/Pure/Foundation/ResponsiveTests.cs` (classifier on real screen sizes and thresholds, rules, screen specs, catalog validation) and `Tests/Editor/Foundation/ResponsiveEditorTests.cs` (driver rules, pixel-exact mode, registries, binder classes and columns, catalog load and merge).
+
 ### Changed
 - Display name and Unity editor menus are `FDP UI Kit` (Tools, Assets, Window, Add Component, and Create). They were `Future Digital Plus UI Kit`. Tooltips, bake warnings, and stylesheet comments that still named the old top-level Design System menu now say `Tools > FDP UI Kit > Design System`.
 

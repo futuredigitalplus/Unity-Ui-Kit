@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,6 +22,12 @@ namespace FutureDigitalPlus.UIKit.Foundation
 
         /// <summary>Screen height in pixels.</summary>
         public int Height;
+
+        /// <summary>
+        /// Apply the scale as a pixel scale even when it is physical. Physical size uses the DPI of the screen the panel is drawn on; a preview that renders the panel
+        /// into a texture in the Editor draws on the monitor, so it needs the device's pixels per unit as a constant pixel scale to look like the device.
+        /// </summary>
+        public bool PixelExact;
     }
 
     /// <summary>
@@ -36,7 +43,11 @@ namespace FutureDigitalPlus.UIKit.Foundation
     /// </summary>
     public sealed class PanelScaleDriver : IDisposable
     {
+        static readonly List<PanelScaleDriver> s_active = new List<PanelScaleDriver>();
+
         readonly PanelSettings _source;
+        ResponsiveRules _rules;
+        int _rulesHash;
         PanelScaleProfile _profile;
         float _userScale = 1f;
         PanelScaleEnvironment _lastEnvironment;
@@ -58,6 +69,42 @@ namespace FutureDigitalPlus.UIKit.Foundation
         /// <summary>Raised after a new scale was applied.</summary>
         public event Action<PanelScale> Applied;
 
+        /// <summary>The drivers that exist and are not disposed, oldest first. Tools (the Responsive Manager) find the panel of a running game here.</summary>
+        public static IReadOnlyList<PanelScaleDriver> Active
+        {
+            get { return s_active; }
+        }
+
+        /// <summary>
+        /// The size and scale the game wants per form factor (null: none, the scale is the policy's alone). Each evaluation classifies the panel by its size in units at
+        /// the policy's scale (<see cref="DeviceFormFactors.Classify"/>), resolves the rule (<see cref="ResponsiveRules.Resolve"/>) and multiplies the user scale by
+        /// its scale. Edits to the table are noticed on the next <see cref="Tick"/>.
+        /// </summary>
+        public ResponsiveRules Rules
+        {
+            get { return _rules; }
+            set
+            {
+                _rules = value;
+                _hasEvaluated = false;
+            }
+        }
+
+        /// <summary>The form factor of the last evaluation (from the panel size in units before any rule scale).</summary>
+        public DeviceFormFactor FormFactor { get; private set; }
+
+        /// <summary>The rule that was applied last (an identity rule when <see cref="Rules"/> is null or has none for the form factor).</summary>
+        public ResponsiveRule Rule { get; private set; }
+
+        /// <summary>True when the last evaluation found the panel wider than tall.</summary>
+        public bool Landscape { get; private set; }
+
+        /// <summary>The environment of the last evaluation.</summary>
+        public PanelScaleEnvironment Environment
+        {
+            get { return _lastEnvironment; }
+        }
+
         /// <summary>Creates the driver and the runtime copy of <paramref name="source"/>, and evaluates once.</summary>
         public PanelScaleDriver(PanelSettings source, PanelScaleProfile profile)
         {
@@ -68,6 +115,7 @@ namespace FutureDigitalPlus.UIKit.Foundation
             Settings = UnityEngine.Object.Instantiate(source);
             Settings.name = source.name + " (runtime)";
             Settings.hideFlags = HideFlags.HideAndDontSave;
+            s_active.Add(this);
             Tick();
         }
 
@@ -105,15 +153,24 @@ namespace FutureDigitalPlus.UIKit.Foundation
             if (_disposed)
                 return false;
             PanelScaleEnvironment environment = EnvironmentSource();
-            if (_hasEvaluated && SameEnvironment(environment, _lastEnvironment))
+            int rulesHash = _rules != null ? _rules.ContentHash() : 0;
+            if (_hasEvaluated && SameEnvironment(environment, _lastEnvironment) && rulesHash == _rulesHash)
                 return false;
             _lastEnvironment = environment;
+            _rulesHash = rulesHash;
             _hasEvaluated = true;
 
-            PanelScaleInput input = new PanelScaleInput(environment.Handheld, environment.Device, environment.Dpi, environment.Width, environment.Height, _userScale);
+            // the form factor is read at the policy scale with the user's scale left out, so a larger "UI size" never turns a phone into a cover
+            PanelScale baseScale = PanelScalePolicy.Compute(_profile, new PanelScaleInput(environment.Handheld, environment.Device, environment.Dpi, environment.Width, environment.Height, 1f));
+            float basePixels = baseScale.PixelsPerUnit > 0f ? baseScale.PixelsPerUnit : 1f;
+            FormFactor = DeviceFormFactors.Classify(environment.Width / basePixels, environment.Height / basePixels);
+            Landscape = environment.Width > environment.Height;
+            Rule = _rules != null ? _rules.Resolve(FormFactor, Landscape) : ResponsiveRule.Identity(FormFactor, ResponsiveOrientation.Any);
+
+            PanelScaleInput input = new PanelScaleInput(environment.Handheld, environment.Device, environment.Dpi, environment.Width, environment.Height, _userScale * Rule.Scale);
             PanelScale scale = PanelScalePolicy.Compute(_profile, input);
             Scale = scale;
-            if (scale.Physical)
+            if (scale.Physical && !environment.PixelExact)
             {
                 Settings.scaleMode = PanelScaleMode.ConstantPhysicalSize;
                 Settings.referenceDpi = scale.ReferenceDpi;
@@ -123,7 +180,8 @@ namespace FutureDigitalPlus.UIKit.Foundation
             else
             {
                 Settings.scaleMode = PanelScaleMode.ConstantPixelSize;
-                Settings.scale = scale.PixelScale;
+                // a physical scale shown pixel-exact (a preview) uses the device's pixels per unit; a pixel scale is its own pixels per unit
+                Settings.scale = scale.Physical ? scale.PixelsPerUnit : scale.PixelScale;
                 PixelsPerUnit = scale.PixelsPerUnit;
             }
 
@@ -139,6 +197,7 @@ namespace FutureDigitalPlus.UIKit.Foundation
             if (_disposed)
                 return;
             _disposed = true;
+            s_active.Remove(this);
             if (Settings != null)
             {
                 if (Application.isPlaying)
@@ -187,7 +246,8 @@ namespace FutureDigitalPlus.UIKit.Foundation
 
         static bool SameEnvironment(PanelScaleEnvironment a, PanelScaleEnvironment b)
         {
-            return a.Width == b.Width && a.Height == b.Height && Mathf.Approximately(a.Dpi, b.Dpi) && a.Handheld == b.Handheld && a.Device == b.Device;
+            return a.Width == b.Width && a.Height == b.Height && Mathf.Approximately(a.Dpi, b.Dpi) && a.Handheld == b.Handheld && a.Device == b.Device
+                && a.PixelExact == b.PixelExact;
         }
     }
 }

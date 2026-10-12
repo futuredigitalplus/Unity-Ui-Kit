@@ -11,9 +11,10 @@ Nothing in it knows what game it serves. It was generalised from the UI foundati
 | Assembly | Contents | References |
 |---|---|---|
 | `FutureDigitalPlus.UIKit.Foundation.Core` | Pure logic with no `UnityEngine` reference (`noEngineReferences`): `ScreenStack`, `DialogQueue`, `ToastQueue`, `LoadingTokens`, `InputBlockCounter`, `BackDispatcher`, `UiText` and the key resolver, `UiProfile`, `PanelScalePolicy`, `SafeAreaInsets` and math, `UiAccessibility`, the service interfaces. Unit tested by dotnet in under a second. | nothing |
-| `FutureDigitalPlus.UIKit.Foundation` | Views and services on UI Toolkit: `UiShell`, `UiScreen`, `ScreenRouter`, `DialogService`, `ToastService`, `LoadingOverlay`, `SafeAreaPanel`, `UiProfileWatcher`, `PanelScaleDriver`, `FocusTrap`, `TopBar`, `ListRow`, `BannerView`, `PauseMenu` and more. Style sheets under `Runtime/Foundation/Resources`. | `Foundation.Core` |
+| `FutureDigitalPlus.UIKit.Foundation` | Views and services on UI Toolkit: `UiShell`, `UiScreen`, `ScreenRouter`, `DialogService`, `ToastService`, `LoadingOverlay`, `SafeAreaPanel`, `UiProfileWatcher`, `PanelScaleDriver`, `ResponsiveRootBinder`, `ResponsiveRulesAsset`, `FocusTrap`, `TopBar`, `ListRow`, `BannerView`, `PauseMenu` and more. Style sheets under `Runtime/Foundation/Resources`. | `Foundation.Core` |
+| `FutureDigitalPlus.UIKit.Foundation.Editor` | The Responsive Manager window, its device catalog, preview session and layout check. Editor only, not auto-referenced (a game that implements `IResponsivePreviewHost` references it from its editor assembly). | `Foundation`, `Foundation.Core`, `Location.Editor` |
 
-Both are auto-referenced. Neither references the DesignSystem assembly: the views skin themselves with the design system's `ds-*` classes and tokens when its base sheet is present, and with
+The two runtime assemblies are auto-referenced. Neither references the DesignSystem assembly: the views skin themselves with the design system's `ds-*` classes and tokens when its base sheet is present, and with
 literal fallbacks in every `var(--fdp-x, fallback)` when it is not. Neither references Input System, Unity Localization, Addressables, TextMeshPro, uGUI or any game code, and neither reads `UnityEngine.Input`.
 
 ## Quick start
@@ -152,6 +153,48 @@ from a preset and change fields. The user scale multiplies a pixel scale and is 
 `ListRow` and `TopBar` mirror under `fdp-rtl` (rows list their parts from the right; Unity's `languageDirection` only shapes text and never mirrors a flex row).
 Locale (`fdp-lang-*`, `fdp-rtl`) and accessibility (`fdp-reduce-motion`, `fdp-text-scale-*`) classes belong to the Language and Interaction modules.
 
+## Responsive form factors and the Responsive Manager
+
+Profile classes answer "how big is the panel"; flip and fold phones also need "what kind of screen is it". The driver classifies the panel by its size in units at the policy scale
+(`DeviceFormFactors.Classify`, size only, so it works on every platform without a plugin), and a game sets a scale multiplier and a column width per form factor:
+
+| Form factor | Rule (short side in units, long side over short side) | Typical screens | Root class |
+|---|---|---|---|
+| `Phone` | below 600, ratio 1.75 or more | phones, the tall cover screens of book folds, the main screen of flip phones | `fdp-ff-phone` |
+| `Pad` | 600 or more, ratio 1.3 or more | tablets | `fdp-ff-pad` |
+| `FlipCover` | below 600, ratio below 1.3 | the outer screen of a flip phone (about 380 by 400 units) | `fdp-ff-flip-cover` |
+| `FoldCover` | below 600, ratio 1.3 to 1.75 | the wide cover screen of a passport fold | `fdp-ff-fold-cover` |
+| `FoldInner` | 600 or more, ratio below 1.3 | the inner screen of a book fold (nearly square) | `fdp-ff-fold-inner` |
+
+- `ResponsiveRules` (Core, serializable) holds `ResponsiveRule` entries: form factor, orientation (`Any`, `Portrait`, `Landscape`), `scale` (0.5 to 2, multiplied with the user scale) and `maxContentWidth`
+  (units, 0 for none). `Resolve` takes the exact orientation, then `Any`, then the same for the fallback form factor (covers use the phone's rule, the inner screen the pad's), then a rule that changes nothing.
+  An empty table keeps the old behaviour exactly. An explicit scale 1 rule on a cover stops the fallback.
+- `ResponsiveRulesAsset` (`Create > FDP UI Kit > Responsive Rules`) stores one table. `driver.Rules = asset.Rules;` Edits are noticed on the next `Tick`, so the Manager changes a running game at once.
+- `PanelScaleDriver.FormFactor`, `Rule`, `Landscape` give the result; the user scale never changes the form factor.
+- `ResponsiveRootBinder(root, driver)` keeps `fdp-ff-*` on the root, `fdp-posture-half-opened` with `fdp-hinge-horizontal` or `fdp-hinge-vertical` while `Posture` is half opened (a posture source or the
+  Manager sets it: the size of a screen cannot show a hinge), and sets `max-width` on every element with `ColumnClass` from the rule. Style with descendant selectors:
+  `.fdp-ff-flip-cover .my-row { min-height: 48px; }`.
+
+```csharp
+_scale = new PanelScaleDriver(document.panelSettings, PanelScaleProfile.CardPortrait());
+var rules = Resources.Load<ResponsiveRulesAsset>("ResponsiveRules");
+if (rules != null) _scale.Rules = rules.Rules;
+_binder = new ResponsiveRootBinder(shell.Root, _scale) { ColumnClass = "my-page-column" };
+```
+
+**Responsive Manager** (`Tools > FDP UI Kit > Responsive Manager`, assembly `FutureDigitalPlus.UIKit.Foundation.Editor`, `Editor/Foundation`):
+
+| Area | What |
+|---|---|
+| Device list | the kit catalog `Editor/Foundation/Responsive/ResponsiveDevices.json` (phones, tablets, and the cover and main or inner screens of 28 flip and fold profiles with DPI, safe areas and hinge) plus the project's own devices in `ProjectSettings/FdpResponsiveDevices.json` (same format; a device with a kit id replaces it). Pixel sizes held upright; safe areas in pixels as top, bottom, left, right; `hinge` 1 horizontal, 2 vertical when held upright |
+| Outside Play mode | every catalog screen with its size in units, form factor and scale under the current rules |
+| Play mode preview | `ResponsivePreviewSession` renders the game's panel into a texture of the device's pixel size with the driver fed the device's size and DPI (`PanelScaleEnvironment.PixelExact`), the shell's safe area set to the device's insets, and the binder's posture; portrait or landscape, flat or half opened; overlays for the safe area and the hinge; page up and down in the main list; PNG export |
+| Layout check | `ResponsiveLayoutAudit`: single-line text wider than its box, wrapped text taller than its box, text past the side edges, controls below the minimum touch target (44 units by default) |
+| Rules | the project's `ResponsiveRulesAsset` (created at `Assets/Resources/ResponsiveRules.asset` on request), per form factor and orientation, with undo |
+| Check every device | each catalog screen (optionally both orientations and every game screen) in turn: findings per preview, a Markdown report, PNGs in `Temp/ResponsiveCaptures` |
+
+A game lists its screens by implementing `IResponsivePreviewHost` (`Profile`, `Screens`, `Show(screen)`) in an editor assembly with a parameterless constructor; the Manager finds it with `TypeCache`.
+
 ## Views
 
 | Type | What |
@@ -187,7 +230,7 @@ root class or on `.fdp-shell` in a later sheet. The sheets use no `gap`, `calc`,
 | Where | What | How to run |
 |---|---|---|
 | `Tests/Pure/Foundation` | pure tests: the ported tests of the card game plus size classes, scale presets, accessibility, log, templates | `dotnet test Tools~/PureTests -p:Module=Foundation` (seconds, no Unity); also compiled by Unity as `FutureDigitalPlus.UIKit.Foundation.Core.Tests` (EditMode) |
-| `Tests/Editor/Foundation` | view logic without a panel: shell, router, dialogs, toasts, loading, scale driver, styles | Unity EditMode |
+| `Tests/Editor/Foundation` | view logic without a panel: shell, router, dialogs, toasts, loading, scale driver and its rules, root binder, device catalog, styles | Unity EditMode |
 | `Tests/Runtime/Foundation` | PlayMode on a render-texture panel: the Home, Settings, dialog, toast, loading sample; transitions; back; input gate; safe area on screen, render-texture and fake devices; profile classes; scale driver; `FocusTrap`; pause menu; touch targets | Unity PlayMode |
 
 The Unity tests above ran in Unity 6000.3.25f1 in every variant of [../CompatibilityMatrix.md](../CompatibilityMatrix.md), which also has the current counts. Not verified: real devices (notch, rotation, touch), consoles.

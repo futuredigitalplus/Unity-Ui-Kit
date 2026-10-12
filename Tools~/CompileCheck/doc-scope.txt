@@ -11,6 +11,7 @@ Runtime/Gameplay/
 Runtime/UIKit/
 Runtime/Bootstrap/
 Editor/Location/
+Editor/Foundation/
 Runtime/Extras/BlurOrGlassEffect/BlurSource.cs
 Runtime/Animation/Enhancements/Tasks/WaitUntil.cs
 Tests/Editor/Lint/Pure/
