@@ -85,7 +85,8 @@ namespace FutureDigitalPlus.UIKit.Foundation.Responsive
             if (box.width < 1f)
                 return;
             bool singleLine = text.resolvedStyle.whiteSpace == WhiteSpace.NoWrap;
-            UnityEngine.Vector2 need = text.MeasureTextSize(text.text, singleLine ? 0f : box.width,
+            // a wrapped text is measured with a little more than its box: a label sized to its own text can wrap at exactly that width from rounding alone
+            UnityEngine.Vector2 need = text.MeasureTextSize(text.text, singleLine ? 0f : box.width + Slack,
                 singleLine ? VisualElement.MeasureMode.Undefined : VisualElement.MeasureMode.Exactly, 0f, VisualElement.MeasureMode.Undefined);
             if (singleLine && need.x > box.width + Slack)
                 issues.Add(new ResponsiveLayoutIssue(ResponsiveIssueKind.TextTruncated, Describe(text), text.text, "needs " + need.x.ToString("0") + " has " + box.width.ToString("0")));
