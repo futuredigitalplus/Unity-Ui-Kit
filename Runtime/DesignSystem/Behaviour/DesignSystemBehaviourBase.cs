@@ -944,7 +944,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Behaviour
             // fresh instance per open — search from the very top of the panel.
             var menu = panel.visualTree.Q(className: POPUP_CLASS);
             var outer = menu?.Q(className: POPUP_OUTER_CLASS);
-            var scroll = menu?.Q<ScrollView>();
+            var scroll = menu?.Q<UnityEngine.UIElements.ScrollView>();
             if (outer == null || scroll == null) return false;   // not there YET; the poller retries
 
             if (DesignSystemEvents.DropdownDiagnostics)

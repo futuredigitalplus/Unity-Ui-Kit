@@ -1,0 +1,22 @@
+{
+    "name": "FutureDigitalPlus.UIKit.ScrollView.Tests",
+    "rootNamespace": "FutureDigitalPlus.UIKit.ScrollView.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FutureDigitalPlus.UIKit.ScrollView.Core",
+        "FutureDigitalPlus.UIKit.ScrollView"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

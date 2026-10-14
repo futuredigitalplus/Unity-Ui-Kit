@@ -22,6 +22,7 @@
 | [Hud/README.md](Hud/README.md) | In-game overlay widgets: meter bar, radial progress, cooldown icon, rolling counters, countdown, floating text, world anchors, feed, zones |
 | [Controls/README.md](Controls/README.md) | Tab bar and segmented control with badges, context menu, select field, bottom sheet, list and grid helpers, reward popup |
 | [Gameplay/README.md](Gameplay/README.md) | Inventory model (stacks, merge, split, swap, rules), item slots, slot grid with drag and keyboard pick-up |
+| [ScrollView/README.md](ScrollView/README.md) | FancyScrollView for UI Toolkit: carousels with loop and snap, lists and grids that build only the cells in view; differences from upstream |
 | [DesignSystem/README.md](DesignSystem/README.md) | Tokens, themes, components, icons, fonts (upstream guides) |
 | [DesignSystem/THEMING.md](DesignSystem/THEMING.md) | Runtime and brand themes, token list, contrast, high contrast, `ThemeManager`, the touch tier |
 | [Components/README.md](Components/README.md) | UIComponents framework: layouts, queries, dependency injection, generators |

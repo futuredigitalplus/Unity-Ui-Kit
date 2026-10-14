@@ -28,7 +28,10 @@
         "FutureDigitalPlus.UIKit.Components.Samples.Query",
         "FutureDigitalPlus.UIKit.Components.Samples.Resources",
         "FutureDigitalPlus.UIKit.Components.Samples.EventInterfaces",
-        "FutureDigitalPlus.UIKit.Components.Samples.UxmlTraits"
+        "FutureDigitalPlus.UIKit.Components.Samples.UxmlTraits",
+        "FutureDigitalPlus.UIKit.ScrollView.Core",
+        "FutureDigitalPlus.UIKit.ScrollView",
+        "FutureDigitalPlus.UIKit.Samples.ScrollViewBasics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

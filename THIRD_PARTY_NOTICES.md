@@ -1,6 +1,6 @@
 # Third-party notices
 
-This package bundles code and assets from four open-source projects. Each is used under its own permissive
+This package bundles code and assets from five open-source projects. Each is used under its own permissive
 licence, reproduced in full below. The upstream copyright notices are also kept in the source files and in a
 licence file inside each module folder. Code, tests, samples and documentation written for this package by
 Future Digital Plus are new files; the package's own licence is still to be chosen by the owner (see README).
@@ -16,6 +16,7 @@ C# file starts with a `FutureDigitalPlus:` comment, and every module's `SOURCE.m
 | 2 | Components | https://github.com/jonisavo/uicomponents | MIT | `dc64355910f52fd42924b9af44dca9f20340dfd9` |
 | 3 | Animation | https://github.com/instance-id/ElementAnimationToolkit | MIT | `a5d518427e8c7fa7a30e3345d62107356e26e046` |
 | 4 | Extras | https://github.com/plyoung/UIElements | Unlicense (public domain dedication) | `8fac81337c5929010c84d8038160fe3406b7137c` |
+| 5 | ScrollView | https://github.com/setchi/FancyScrollView | MIT | `8fce45dd69f36813ba5d4894f9adb0905e4ce465` |
 
 Per-module detail (what was copied, excluded and modified) is in each module's `Runtime/<Module>/SOURCE.md`.
 
@@ -356,7 +357,50 @@ For more information, please refer to <http://unlicense.org/>
 
 ---
 
-## 5. Referenced but not bundled
+## 5. ScrollView: FancyScrollView
+
+- Upstream: https://github.com/setchi/FancyScrollView
+- Commit: `8fce45dd69f36813ba5d4894f9adb0905e4ce465` (2022-07-08)
+- Licence: MIT
+- Copyright: (c) 2020 setchi
+- Package folders from this upstream: `Runtime/ScrollView/` (the 17 C# files of `Sources/Runtime/`, ported from uGUI to UI Toolkit; the file map and
+  every change are in `Runtime/ScrollView/SOURCE.md`). `Tests/Pure/ScrollView/`, `Tests/Runtime/ScrollView/`, `Samples~/ScrollViewBasics/`,
+  `Documentation~/ScrollView/` and `Tools~/SamplesSmoke/ScrollViewBasicsSmokeTests.cs` are new files written for this package. The module came
+  from the stand-alone package `com.futuredigitalplus.scrollview` 0.1.0 (same files, renamed; see the "Rename record" of `SOURCE.md`).
+- FancyScrollView bundles EasingCore (https://github.com/setchi/EasingCore, same author, MIT) as `Sources/Runtime/Scroller/EasingCore.cs`;
+  it is ported as `Runtime/ScrollView/Core/Ease.cs` and keeps its own header. EasingCore's licence is the MIT text below with the line
+  "Copyright (c) 2019 setchi"; the file header says 2020.
+- Licence file kept in the module: `Runtime/ScrollView/LICENSE.md` (upstream `LICENSE`, byte for byte)
+
+### Licence text
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2020 setchi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
+
+## 6. Referenced but not bundled
 
 Nothing below is copied into the package or shipped by it; it is listed so that nobody has to look for it here.
 

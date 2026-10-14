@@ -1,0 +1,1550 @@
+{
+ "devices": [
+  {
+   "id": "iphone-se-3rd-gen",
+   "name": "iPhone SE (3rd gen)",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 750,
+     "height": 1334,
+     "dpi": 326,
+     "hinge": 0,
+     "safePortrait": [
+      40,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iphone-13-mini",
+   "name": "iPhone 13 mini",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2340,
+     "dpi": 476,
+     "hinge": 0,
+     "safePortrait": [
+      150,
+      102,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      63,
+      150,
+      150
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iphone-16",
+   "name": "iPhone 16",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1179,
+     "height": 2556,
+     "dpi": 460,
+     "hinge": 0,
+     "safePortrait": [
+      177,
+      102,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      63,
+      177,
+      177
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iphone-16-pro-max",
+   "name": "iPhone 16 Pro Max",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1320,
+     "height": 2868,
+     "dpi": 460,
+     "hinge": 0,
+     "safePortrait": [
+      186,
+      102,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      63,
+      186,
+      186
+     ]
+    }
+   ]
+  },
+  {
+   "id": "small-android-720p",
+   "name": "Small Android (720p)",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 720,
+     "height": 1600,
+     "dpi": 269,
+     "hinge": 0,
+     "safePortrait": [
+      60,
+      48,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      48,
+      60,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pixel-8",
+   "name": "Pixel 8",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2400,
+     "dpi": 428,
+     "hinge": 0,
+     "safePortrait": [
+      128,
+      63,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      63,
+      128,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-s24",
+   "name": "Galaxy S24",
+   "group": "Phone",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2340,
+     "dpi": 416,
+     "hinge": 0,
+     "safePortrait": [
+      110,
+      63,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      63,
+      110,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ipad-mini-6th-gen",
+   "name": "iPad mini (6th gen)",
+   "group": "Pad",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1488,
+     "height": 2266,
+     "dpi": 326,
+     "hinge": 0,
+     "safePortrait": [
+      48,
+      40,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      48,
+      40,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ipad-10th-gen",
+   "name": "iPad (10th gen)",
+   "group": "Pad",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1640,
+     "height": 2360,
+     "dpi": 264,
+     "hinge": 0,
+     "safePortrait": [
+      48,
+      40,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      48,
+      40,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ipad-pro-13",
+   "name": "iPad Pro 13",
+   "group": "Pad",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 2064,
+     "height": 2752,
+     "dpi": 264,
+     "hinge": 0,
+     "safePortrait": [
+      48,
+      40,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      48,
+      40,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-tab-s9",
+   "name": "Galaxy Tab S9",
+   "group": "Pad",
+   "screens": [
+    {
+     "name": "Main",
+     "width": 1600,
+     "height": 2560,
+     "dpi": 274,
+     "hinge": 0,
+     "safePortrait": [
+      60,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      60,
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-flip-like",
+   "name": "Galaxy Z Flip-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 720,
+     "height": 748,
+     "dpi": 320.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2640,
+     "dpi": 420.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-flip5-like",
+   "name": "Galaxy Z Flip5-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 720,
+     "height": 748,
+     "dpi": 306.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2640,
+     "dpi": 426.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-flip6-like",
+   "name": "Galaxy Z Flip6-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 720,
+     "height": 748,
+     "dpi": 306.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2640,
+     "dpi": 426.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-flip7-fe-like",
+   "name": "Galaxy Z Flip7 FE-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 720,
+     "height": 748,
+     "dpi": 306.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2640,
+     "dpi": 426.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-flip7-like",
+   "name": "Galaxy Z Flip7-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 948,
+     "height": 1048,
+     "dpi": 373.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 397.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-flip8-like",
+   "name": "Galaxy Z Flip8-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 948,
+     "height": 1048,
+     "dpi": 342.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 400.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold-special-edition-like",
+   "name": "Galaxy Z Fold Special Edition-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 422.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1968,
+     "height": 2184,
+     "dpi": 368.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold2-like",
+   "name": "Galaxy Z Fold2-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 816,
+     "height": 2260,
+     "dpi": 386.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1768,
+     "height": 2208,
+     "dpi": 373.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold5-like",
+   "name": "Galaxy Z Fold5-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 904,
+     "height": 2316,
+     "dpi": 414.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1812,
+     "height": 2176,
+     "dpi": 373.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold6-like",
+   "name": "Galaxy Z Fold6-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 968,
+     "height": 2376,
+     "dpi": 410.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1856,
+     "height": 2160,
+     "dpi": 374.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold7-like",
+   "name": "Galaxy Z Fold7-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 422.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1968,
+     "height": 2184,
+     "dpi": 368.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold8-ultra-like",
+   "name": "Galaxy Z Fold8 Ultra-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 422.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2256,
+     "height": 2504,
+     "dpi": 422.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-fold8-like",
+   "name": "Galaxy Z Fold8-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1248,
+     "height": 1972,
+     "dpi": 428.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1848,
+     "height": 2448,
+     "dpi": 403.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-z-trifold-like",
+   "name": "Galaxy Z TriFold-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 422.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1584,
+     "height": 2160,
+     "dpi": 269.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "honor-magic-v2-like",
+   "name": "Honor Magic V2-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1060,
+     "height": 2376,
+     "dpi": 402.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2156,
+     "height": 2344,
+     "dpi": 402.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "honor-magic-v3-like",
+   "name": "Honor Magic V3-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1060,
+     "height": 2376,
+     "dpi": 402.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2156,
+     "height": 2344,
+     "dpi": 402.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "huawei-mate-x3-like",
+   "name": "Huawei Mate X3-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2504,
+     "dpi": 426.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2224,
+     "height": 2496,
+     "dpi": 426.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "huawei-mate-xt-like",
+   "name": "Huawei Mate XT-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1008,
+     "height": 2232,
+     "dpi": 381.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2232,
+     "height": 3184,
+     "dpi": 381.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "motorola-razr-50-ultra-like",
+   "name": "Motorola Razr 50 Ultra-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 1272,
+     "dpi": 417.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2640,
+     "dpi": 413.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "motorola-razr-like",
+   "name": "Motorola Razr+-like",
+   "group": "Flip",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1056,
+     "height": 1066,
+     "dpi": 413.0,
+     "hinge": 0,
+     "safePortrait": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Main",
+     "width": 1080,
+     "height": 2640,
+     "dpi": 413.0,
+     "hinge": 1,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "oneplus-open-like",
+   "name": "OnePlus Open-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1116,
+     "height": 2484,
+     "dpi": 420.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2268,
+     "height": 2440,
+     "dpi": 426.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "oppo-find-n5-like",
+   "name": "Oppo Find N5-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1140,
+     "height": 2616,
+     "dpi": 431.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2248,
+     "height": 2480,
+     "dpi": 412.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pixel-9-pro-fold-like",
+   "name": "Pixel 9 Pro Fold-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2424,
+     "dpi": 422.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2076,
+     "height": 2152,
+     "dpi": 374.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pixel-fold-like",
+   "name": "Pixel Fold-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2092,
+     "dpi": 420.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1840,
+     "height": 2208,
+     "dpi": 420.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vivo-x-fold3-pro-like",
+   "name": "Vivo X Fold3 Pro-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1172,
+     "height": 2748,
+     "dpi": 450.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2200,
+     "height": 2480,
+     "dpi": 413.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-mix-fold3-like",
+   "name": "Xiaomi Mix Fold3-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 418.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1916,
+     "height": 2160,
+     "dpi": 360.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-mix-fold4-like",
+   "name": "Xiaomi Mix Fold4-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1080,
+     "height": 2520,
+     "dpi": 418.0,
+     "hinge": 0,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 2224,
+     "height": 2488,
+     "dpi": 418.0,
+     "hinge": 2,
+     "safePortrait": [
+      120,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      120,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iphone-duo-like",
+   "name": "iPhone Duo-like",
+   "group": "Fold",
+   "screens": [
+    {
+     "name": "Cover",
+     "width": 1398,
+     "height": 2034,
+     "dpi": 460.0,
+     "hinge": 0,
+     "safePortrait": [
+      177,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      177,
+      0
+     ]
+    },
+    {
+     "name": "Inner",
+     "width": 1878,
+     "height": 2670,
+     "dpi": 430.0,
+     "hinge": 1,
+     "safePortrait": [
+      60,
+      0,
+      0,
+      0
+     ],
+     "safeLandscape": [
+      0,
+      0,
+      60,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

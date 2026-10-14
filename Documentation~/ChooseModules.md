@@ -24,6 +24,7 @@ The README has a shorter "Which modules do I need?" table, and [Recipes.md](Reci
 | Hud | New | `Hud.Core`, `Hud` | meters, radial progress, cooldowns, counters, countdown, floating text, world anchors, feed, HUD zones | nothing |
 | Controls | New | `Controls.Core`, `Controls` | tab bar and segmented control, context menu, select field, bottom sheet, list and grid helpers, reward popup | Foundation (the `FocusTrap` class only) |
 | Gameplay | New | `Gameplay.Core`, `Gameplay` | inventory model, item slots and slot grids with drag, keyboard and gamepad pick-up | nothing |
+| ScrollView | New (not yet run through the matrix) | `ScrollView.Core`, `ScrollView` | FancyScrollView for UI Toolkit: carousels and wheels whose cells animate by position (loop, snap, inertia), lists of fixed-height rows and grids that build only the cells in view | nothing |
 
 Rules that hold for every new module (so the table does not change when a module is added):
 
@@ -61,6 +62,8 @@ Why:
 - **Language** is needed for more than one language or any right-to-left language. With no localization package it shows
   the fallback text and never throws.
 - **Hud** and **Gameplay** are separate because a menu game should not carry them.
+- **ScrollView** is for any game type that shows a carousel (level or mode select, a shop shelf) or a list or grid too long to build at once
+  (leaderboard, chat, collection). For a short list, UI Toolkit's own `ScrollView` or Controls' `ListViewBinder` and `VirtualGrid` are enough.
 - **Components** is only for teams that want the attribute-driven component pattern; nothing else in the kit needs it.
 
 ## 3. Minimum assembly sets
@@ -79,6 +82,7 @@ every runtime assembly of the kit except Components and the optional adapters is
 | HUD widgets | `FutureDigitalPlus.UIKit.Hud.Core`, `FutureDigitalPlus.UIKit.Hud` |
 | Tab bar, context menu, select field, sheets | `FutureDigitalPlus.UIKit.Controls.Core`, `FutureDigitalPlus.UIKit.Controls` (which pulls in `FutureDigitalPlus.UIKit.Foundation` and `Foundation.Core` at run time) |
 | Inventory | `FutureDigitalPlus.UIKit.Gameplay.Core`, `FutureDigitalPlus.UIKit.Gameplay` |
+| Carousel, long list or grid | `FutureDigitalPlus.UIKit.ScrollView.Core`, `FutureDigitalPlus.UIKit.ScrollView` |
 | Game logic tests with no engine | any `*.Core` assembly alone: plain C#, no UnityEngine |
 
 The `*.Core` types (for example `HudZone`, `OffScreenMode` and `FloatingTextKind` in `Hud.Core`) share the namespace of their views assembly, so a file that uses them lists both assemblies.

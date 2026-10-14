@@ -167,7 +167,7 @@ namespace FutureDigitalPlus.UIKit.Foundation
             panel.AddToClassList(UiNames.ClassDialog);
             if (hasContent)
                 panel.AddToClassList(UiNames.ClassDialogWithContent);
-            ScrollView body = new ScrollView(ScrollViewMode.Vertical) { name = UiNames.DialogBody, focusable = false };
+            UnityEngine.UIElements.ScrollView body = new UnityEngine.UIElements.ScrollView(ScrollViewMode.Vertical) { name = UiNames.DialogBody, focusable = false };
             body.AddToClassList("fdp-dialog__body");
             Label title = new Label { name = UiNames.DialogTitle };
             title.AddToClassList(hasContent ? "ds-modal__title" : "ds-dialog__title");

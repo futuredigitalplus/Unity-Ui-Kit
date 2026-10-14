@@ -2,7 +2,7 @@
   "name": "com.futuredigitalplus.uikit",
   "version": "0.2.2",
   "displayName": "FDP UI Kit",
-  "description": "A modular UI Toolkit kit for Unity 6, for any genre and platform: a design system (tokens, themes, components, icons), the UIComponents framework with its source generators, an animation toolkit, small UI extras (tooltip, popup, colour picker, blur), and modules for screens and dialogs, gamepad and accessibility, localization, HUD widgets, menu controls and inventories, a ready-made shell host, plus a thin facade. Built from four open-source projects; see THIRD_PARTY_NOTICES.md.",
+  "description": "A modular UI Toolkit kit for Unity 6, for any genre and platform: a design system (tokens, themes, components, icons), the UIComponents framework with its source generators, an animation toolkit, small UI extras (tooltip, popup, colour picker, blur), and modules for screens and dialogs, gamepad and accessibility, localization, HUD widgets, menu controls and inventories, FancyScrollView carousels, lists and grids that build only the cells in view, a ready-made shell host, plus a thin facade. Built from five open-source projects; see THIRD_PARTY_NOTICES.md.",
   "unity": "6000.3",
   "dependencies": {
     "com.unity.modules.unitywebrequest": "1.0.0",
@@ -21,7 +21,10 @@
     "gamepad",
     "localization",
     "accessibility",
-    "shell"
+    "shell",
+    "scrollview",
+    "carousel",
+    "virtualized-list"
   ],
   "author": {
     "name": "Future Digital Plus"
@@ -82,6 +85,11 @@
       "displayName": "Theming and Language",
       "description": "Dark, light and run-time brand themes, high contrast, text size, reduced motion and a language switch with a right-to-left language.",
       "path": "Samples~/ThemingLanguage"
+    },
+    {
+      "displayName": "Scroll View Basics",
+      "description": "ScrollView module: a looping carousel with snapping and a selection, a vertical list of 1,000 rows with a scrollbar and jump buttons, and a grid, each built in code on one UIDocument.",
+      "path": "Samples~/ScrollViewBasics"
     }
   ]
 }

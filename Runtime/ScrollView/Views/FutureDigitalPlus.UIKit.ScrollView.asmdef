@@ -1,0 +1,16 @@
+{
+    "name": "FutureDigitalPlus.UIKit.ScrollView",
+    "rootNamespace": "FutureDigitalPlus.UIKit.ScrollView",
+    "references": [
+        "FutureDigitalPlus.UIKit.ScrollView.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

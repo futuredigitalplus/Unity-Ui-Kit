@@ -39,7 +39,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
         private double _debounceUntil;
 
         private VisualElement _previewTree;
-        private ScrollView _previewContainer;
+        private UnityEngine.UIElements.ScrollView _previewContainer;
         private StyleSheet _previewSheet;
         private ObjectField _themeField;
         private ObjectField _previewUxmlField;
@@ -159,7 +159,7 @@ namespace FutureDigitalPlus.UIKit.DesignSystem.Editor.Theming
             };
             root.Add(split);
 
-            _previewContainer = new ScrollView(ScrollViewMode.Vertical) { style = { flexGrow = 1 } };
+            _previewContainer = new UnityEngine.UIElements.ScrollView(ScrollViewMode.Vertical) { style = { flexGrow = 1 } };
             split.Add(_previewContainer);
 
             split.Add(new IMGUIContainer(DrawFields)
