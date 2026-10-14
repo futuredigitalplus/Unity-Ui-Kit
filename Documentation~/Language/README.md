@@ -64,7 +64,7 @@ list from the right; the gap between an icon and its label moves to the other si
 toggle knob and travel; side drawers swap sides; left-aligned text aligns right and the other way round. Numbers and Latin words keep their direction (Unicode bidi does that).
 
 Not mirrored (known limits): `Slider` and the range slider (Unity computes the thumb position from the left edge), the side of a `ScrollView`'s vertical scrollbar, and elements the kit does not style.
-Your own screens: write `.fdp-rtl .my-row { flex-direction: row-reverse; }` for each row that needs it, or use `row-reverse` with `justify-content` in the component. The Foundation module carries its own `fdp-rtl` rules for its views; the other modules' sheets do not mirror yet.
+Your own screens: write `.fdp-rtl .my-row { flex-direction: row-reverse; }` for each row that needs it, or use `row-reverse` with `justify-content` in the component. The Foundation module carries its own `fdp-rtl` rules for its views. The Controls module's `TabBar` and `SegmentedControl` mirror themselves (items from the right, arrow keys that follow the screen; see [../Controls/README.md](../Controls/README.md), "Right to left"), also without `Rtl.uss`; the other modules' sheets do not mirror yet. To ask whether an element is right to left from code, use `UiDirection.IsRightToLeft(element)` (Foundation): the nearest `languageDirection` set on the way to the root, else `fdp-rtl`; the element's own `languageDirection` is `Inherit` almost everywhere.
 
 ## Fonts for other scripts
 

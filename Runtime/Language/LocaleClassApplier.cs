@@ -13,7 +13,7 @@ namespace FutureDigitalPlus.UIKit.Language
     public static class LocaleClassApplier
     {
         /// <summary>Added to the root while the language is written right to left.</summary>
-        public const string RtlClass = "fdp-rtl";
+        public const string RtlClass = ReadingDirection.RtlClass;
 
         /// <summary>
         /// Puts the classes of <paramref name="localeCode"/> on <paramref name="root"/> and removes those of the language it had

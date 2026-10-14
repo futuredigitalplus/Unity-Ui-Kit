@@ -251,6 +251,19 @@ Findings: (1) Unity did not change a single copied `.meta` file when it imported
 
 Not verified in the classic layout: the other ten matrix variants (Gamma and Linear Built-in, Input System variants, uGUI, Localization alone, Addressables alone, URP 3D, HDRP), the samples (`--samples`), IL2CPP export, and a host game other than the Solitaire game. They differ from the verified ones only in packages and pipeline, which the layout does not touch.
 
+## Release check for 0.2.3 (right-to-left TabBar; without Unity, Windows)
+
+| Check | Result |
+|---|---|
+| `dotnet test Tools~/PureTests` | 717 of 717 (699 + 8 `ReadingDirectionTests` + 10 `TabNavigationTests`) |
+| `dotnet test Tools~/CompileCheck/LintRunner` | 45 of 45 |
+| CompileCheck (`plan.py --tests` against the Windows editor's Data folder and a project's TestRunner and NUnit DLLs, then `CompileCheck.dll --docs --hazards`) | 0 errors, 0 documentation findings, 0 name hazards; the new PlayMode cases of `TabBarTests` compile |
+| `python -m unittest discover -s Tools~ -p test_make_classic_kit.py` | 12 of 12 |
+| `Tools~/DocsCheck/check-docs.py` | 0 problems |
+| Solitaire game (classic copy regenerated): its dotnet `UI.Tests`, compile projects and checks | pass |
+
+Not run: Unity EditMode and PlayMode. The 9 new right-to-left PlayMode cases of `TabBarTests` (order on screen, arrows, Home and End in both skins, `languageDirection` alone, a live switch, a left-to-right island, the badge corner, a stacked bar) and the `CustomStyleResolvedEvent` path of a live language switch need a Unity run.
+
 ## Not verified
 
 The list for the whole package, after the integration run, is in [CompatibilityMatrix.md](CompatibilityMatrix.md) ("What is NOT verified"). In short:

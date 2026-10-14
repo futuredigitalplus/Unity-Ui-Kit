@@ -30,6 +30,8 @@
 .gitignore      text eol=lf
 .gitattributes  text eol=lf
 .gitkeep        text eol=lf
+# The classic copy's VERSION (no extension) is written with LF by make_classic_kit.py; keep it so in every checkout.
+VERSION         text eol=lf
 
 # Binary: never converted, never diffed as text.
 *.dll           binary

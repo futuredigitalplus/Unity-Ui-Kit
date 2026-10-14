@@ -22,9 +22,12 @@
     bottom: 0;
 }
 
-/* ---------- TabBar ---------- */
+/* ---------- TabBar ----------
+   --fdp-tab-bar-watch is read by nobody: a custom property makes UI Toolkit send the bar a CustomStyleResolvedEvent each time it
+   resolves the bar's style again, which is how the bar notices a language switch (fdp-rtl put on or taken off the root) and mirrors itself. */
 .fdp-tab-bar {
     flex-direction: row;
+    --fdp-tab-bar-watch: 1;
 }
 
 .fdp-tab-bar__badge {
@@ -50,6 +53,18 @@
     padding-left: 0;
     padding-right: 0;
     border-radius: var(--fdp-radius-pill-4, 4px);
+}
+
+/* Right to left: TabBar puts fdp-tab-bar--rtl on itself in a right-to-left context (the nearest languageDirection, or fdp-rtl on the
+   root). The items run from the right in the order they were added, so the first item is at the right edge; the tree, focus and
+   reading order stay the item order, and the arrow keys follow the layout. Two classes, so a plain `.my-bar { flex-direction: row; }`
+   does not undo it; a bar that a stylesheet stacks as a column needs a selector of three classes (or one that names fdp-tab-bar--rtl). */
+.fdp-tab-bar.fdp-tab-bar--rtl {
+    flex-direction: row-reverse;
+}
+.fdp-tab-bar--rtl .fdp-tab-bar__badge {
+    right: auto;
+    left: 2px;
 }
 
 /* Segmented skin: one rounded track, the selected segment is filled. */
