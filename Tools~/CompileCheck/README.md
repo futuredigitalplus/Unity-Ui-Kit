@@ -43,5 +43,7 @@ sources run in Unity EditMode (assembly `FutureDigitalPlus.UIKit.Lint.Tests.Edit
 | `name-hazard-namespace`, `name-hazard-type` | no namespace segment or public type of the kit equals a loaded Unity type name (Unity only: `NameHazardScanTests`; without Unity: this tool's `--hazards`) | assemblies of the kit, not tests or samples |
 
 Accepted exceptions are in `Tests/Editor/Lint/LintAllowList.cs`, each with a reason; an entry that matches nothing fails the test, so the list cannot rot. The name-hazard list holds the nine upstream names
-(`Behaviour`, `UIDocument`, `Editor`, `Animation`, `EditorHelpers`, `Scope`, `ILogger`, `Easing`, `ColorField`); new names do not go there.
+(`Behaviour`, `UIDocument`, `Editor`, `Animation`, `EditorHelpers`, `Scope`, `ILogger`, `Easing`, `ColorField`) and one chosen module name, `ScrollView`
+(kit `Runtime` and `Editor` code writes `UnityEngine.UIElements.ScrollView`; this check compiles per assembly and does not catch a bare one
+outside the module's own assemblies, a one-unit compile such as Color Solitaire's `UikitCompile` does; see `Runtime/ScrollView/SOURCE.md`); new names do not go there.
 `meta-missing` fails for files that Unity has not imported yet: let Unity generate the metas, never write them by hand.

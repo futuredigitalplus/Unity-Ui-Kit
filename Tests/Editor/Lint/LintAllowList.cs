@@ -38,6 +38,8 @@ namespace FutureDigitalPlus.UIKit.Lint
         /// <c>Easing</c>, <c>ColorField</c>): renaming them would make every upstream diff expensive (<c>Tools~/rename/rename-map.md</c>, explicit exception 1).
         /// Compile checked: none of them changes the meaning of a name inside the kit (a member or an explicit <c>UnityEditor.</c> qualifier wins), and a
         /// consumer file that imports both a kit namespace and the Unity one aliases the type. New names must not be added here.
+        /// The one exception is <c>ScrollView</c>, the name chosen for the module: kit <c>Runtime</c> and <c>Editor</c> code writes
+        /// <c>UnityEngine.UIElements.ScrollView</c> (a bare <c>ScrollView</c> is CS0118, never a silent change; see <c>Runtime/ScrollView/SOURCE.md</c>).
         /// </summary>
         public static readonly string[] NameHazards =
         {
@@ -52,6 +54,7 @@ namespace FutureDigitalPlus.UIKit.Lint
             "FutureDigitalPlus.UIKit.Components.ILogger",
             "FutureDigitalPlus.UIKit.Animation.Easing",
             "FutureDigitalPlus.UIKit.Extras.ColorField",
+            "FutureDigitalPlus.UIKit.ScrollView",
         };
 
         /// <summary>The findings that no entry accepts.</summary>

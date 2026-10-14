@@ -27,14 +27,14 @@ namespace FutureDigitalPlus.UIKit.Foundation.Responsive
             return issues;
         }
 
-        /// <summary>The largest shown <see cref="ScrollView"/> of the panel (the screen's main list), or null.</summary>
-        public static ScrollView MainScrollView(VisualElement panelRoot)
+        /// <summary>The largest shown <see cref="UnityEngine.UIElements.ScrollView"/> of the panel (the screen's main list), or null.</summary>
+        public static UnityEngine.UIElements.ScrollView MainScrollView(VisualElement panelRoot)
         {
-            ScrollView best = null;
+            UnityEngine.UIElements.ScrollView best = null;
             float bestArea = 0f;
             if (panelRoot == null)
                 return null;
-            panelRoot.Query<ScrollView>().ForEach(view =>
+            panelRoot.Query<UnityEngine.UIElements.ScrollView>().ForEach(view =>
             {
                 if (!IsShown(view))
                     return;
@@ -51,7 +51,7 @@ namespace FutureDigitalPlus.UIKit.Foundation.Responsive
         /// <summary>Scrolls the main list of the panel by <paramref name="pages"/> viewports (negative scrolls up). False when there is no list to scroll.</summary>
         public static bool ScrollPages(VisualElement panelRoot, int pages)
         {
-            ScrollView view = MainScrollView(panelRoot);
+            UnityEngine.UIElements.ScrollView view = MainScrollView(panelRoot);
             if (view == null)
                 return false;
             float viewport = view.contentViewport.layout.height;

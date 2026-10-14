@@ -4,7 +4,7 @@
     with LangVersion 9 (Unity 6) and runs NUnit. Takes seconds, needs no Unity.
 
       dotnet test Tools~/PureTests                        all modules
-      dotnet test Tools~/PureTests -p:Module=Foundation   one module (Foundation, Interaction, Hud, Controls, Gameplay, Typography)
+      dotnet test Tools~/PureTests -p:Module=Foundation   one module (Foundation, Interaction, Hud, Controls, Gameplay, ScrollView, Typography)
 
     Pass an artifacts path option with your own temp folder, so parallel runs never share build output.
   -->
@@ -38,6 +38,10 @@
   <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Gameplay'">
     <Compile Include="$(PackageRoot)Runtime/Gameplay/Core/**/*.cs" />
     <Compile Include="$(PackageRoot)Tests/Pure/Gameplay/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'ScrollView'">
+    <Compile Include="$(PackageRoot)Runtime/ScrollView/Core/**/*.cs" />
+    <Compile Include="$(PackageRoot)Tests/Pure/ScrollView/**/*.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(Module)' == '*' Or '$(Module)' == 'Typography'">
     <!-- The system-font order is pure data and logic that lives next to the font code of the design system and its tests next to the Language tests. -->

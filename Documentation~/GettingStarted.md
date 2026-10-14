@@ -144,6 +144,7 @@ code have no background of their own, so a leftover `MainMenu` would show throug
 | Hud | `FutureDigitalPlus.UIKit.Hud.Core`, `...Hud` | both | nothing | yes | `FutureDigitalPlus/UIKit/Hud/Styles/Hud` |
 | Controls | `FutureDigitalPlus.UIKit.Controls.Core`, `...Controls` | both | nothing | yes | `FutureDigitalPlus/UIKit/Controls/Styles/Controls` |
 | Gameplay | `FutureDigitalPlus.UIKit.Gameplay.Core`, `...Gameplay` | both | nothing | yes | `FutureDigitalPlus/UIKit/Gameplay/Styles/Gameplay` |
+| ScrollView | `FutureDigitalPlus.UIKit.ScrollView.Core` (pure C#), `...ScrollView` | both | nothing | yes | none |
 
 "Auto-referenced" means only that the predefined `Assembly-CSharp` sees the assembly. Code in your own asmdef must
 list every module it uses in its `references`, by name (for example `FutureDigitalPlus.UIKit.DesignSystem` and `FutureDigitalPlus.UIKit`).

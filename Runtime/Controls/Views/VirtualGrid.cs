@@ -49,7 +49,7 @@ namespace FutureDigitalPlus.UIKit.Controls
             _sameContent = sameContent ?? EqualityComparer<T>.Default.Equals;
 
             AddToClassList("fdp-virtual-grid");
-            ScrollView = new ScrollView(ScrollViewMode.Vertical);
+            ScrollView = new UnityEngine.UIElements.ScrollView(ScrollViewMode.Vertical);
             ScrollView.AddToClassList("fdp-virtual-grid__scroll");
             ScrollView.contentContainer.AddToClassList("fdp-virtual-grid__content");
             Add(ScrollView);
@@ -61,7 +61,7 @@ namespace FutureDigitalPlus.UIKit.Controls
         }
 
         /// <summary>The inner scroll view.</summary>
-        public ScrollView ScrollView { get; }
+        public UnityEngine.UIElements.ScrollView ScrollView { get; }
 
         /// <summary>Number of items.</summary>
         public int Count => _items.Count;
