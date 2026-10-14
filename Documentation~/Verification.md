@@ -264,6 +264,19 @@ Not verified in the classic layout: the other ten matrix variants (Gamma and Lin
 
 Not run: Unity EditMode and PlayMode. The 9 new right-to-left PlayMode cases of `TabBarTests` (order on screen, arrows, Home and End in both skins, `languageDirection` alone, a live switch, a left-to-right island, the badge corner, a stacked bar) and the `CustomStyleResolvedEvent` path of a live language switch need a Unity run.
 
+## Release check for 0.2.4 (localization fallbacks, formatting failures, hidden scrollers; without Unity, Windows)
+
+| Check | Result |
+|---|---|
+| `dotnet test Tools~/PureTests` | 730 of 730 (717 + 13 `LocaleFallbackLookupTests`) |
+| `dotnet test Tools~/CompileCheck/LintRunner` | 45 of 45 |
+| CompileCheck (`plan.py --tests` against the Windows editor's Data folder and a project's TestRunner and NUnit DLLs, then `CompileCheck.dll --docs --hazards`; with `com.unity.localization` in `--installed` and the plan's two Localization adapter assemblies given `Unity.Localization.dll` and `Unity.ResourceManager.dll` from that project's `Library/ScriptAssemblies`) | 0 errors, 0 documentation findings, 0 name hazards; the adapter, its EditMode tests and the new PlayMode cases compile; the adapter also with `--define UNITY_WEBGL` |
+| `python -m unittest discover -s Tools~ -p test_make_classic_kit.py` | 12 of 12 |
+| `Tools~/DocsCheck/check-docs.py` | 0 problems |
+| Solitaire game (classic copy regenerated, `--check` clean): its dotnet `UI.Tests`, `UnityCompile`, `EditorCompile`, `UikitCompile`, `check_kit_duplicates.py --enforce` | pass |
+
+Not run: Unity EditMode and PlayMode. `UnityLocalizationBackendFallbackTests` (5 EditMode; the two formatting cases run only in a project with Localization settings) and the 4 new `ScrollViewPlayModeTests` cases need a Unity run; the PlayMode cases also confirm that UI Toolkit empties the layout of a `display: none` subtree (the scroller pauses only then).
+
 ## Not verified
 
 The list for the whole package, after the integration run, is in [CompatibilityMatrix.md](CompatibilityMatrix.md) ("What is NOT verified"). In short:

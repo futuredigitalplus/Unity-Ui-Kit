@@ -14,7 +14,8 @@
 // move with no button pressed ends a press whose release was lost. A release snaps only when nothing started an animation during the
 // press, so a click on a cell that calls ScrollTo is not overridden by the snap (upstream: uGUI sends the click after the scroller's
 // pointer-up). The viewport is the element's padding box, where the cells are. The scroll direction is fixed at construction, as
-// upstream. If the view is resized during a drag, the drag continues from where the pointer is.
+// upstream. If the view is resized during a drag, the drag continues from where the pointer is. The tick pauses while the viewport is
+// hidden by display:none on it or an ancestor (a screen under another one), as upstream's Update stops on an inactive GameObject.
 
 using System;
 using UnityEngine;
@@ -24,8 +25,10 @@ namespace FutureDigitalPlus.UIKit.ScrollView
 {
     /// <summary>
     /// Scrolls a fancy view by pointer drag, mouse wheel, trackpad and an optional scrollbar, with inertia, a rubber band at the ends and
-    /// snapping to the nearest item (all in <see cref="Model"/>). Attach it to the viewport element; it ticks while the viewport is in a
-    /// panel. Subscribe the view to <see cref="ValueChanged"/>; <see cref="FancyScrollRect{TItemData, TContext}"/> has its own.
+    /// snapping to the nearest item (all in <see cref="Model"/>). Attach it to the viewport element; it ticks every frame while the
+    /// viewport is in a panel and shown, and pauses while it or an ancestor has <c>display: none</c> (see <see cref="IsTicking"/>): an
+    /// animation or inertia in progress then waits and goes on when the viewport is shown again. Subscribe the view to
+    /// <see cref="ValueChanged"/>; <see cref="FancyScrollRect{TItemData, TContext}"/> has its own.
     /// </summary>
     public sealed class FancyScroller
     {
@@ -38,6 +41,8 @@ namespace FutureDigitalPlus.UIKit.ScrollView
         private VisualElement _capturedChild;
         private VisualElement _panelRoot;
         private bool _skipTick = true;
+        private bool _hidden;
+        private bool _disposed;
 
         /// <summary>Attaches a scroller to <paramref name="viewport"/>: pointer and wheel input on it (and on its children) scroll.</summary>
         /// <param name="viewport">The element whose size is the viewport and which takes the input, usually the view itself.</param>
@@ -64,6 +69,13 @@ namespace FutureDigitalPlus.UIKit.ScrollView
 
         /// <summary>The element that gives the viewport size and takes the input.</summary>
         public VisualElement Viewport { get; }
+
+        /// <summary>
+        /// Whether the scheduled tick runs: true while the viewport is in a panel and not hidden by <c>display: none</c> on it or an
+        /// ancestor. The scroller notices hiding when the layout zeroes the hidden viewport, and showing when the viewport is laid out
+        /// again or takes input. False after <see cref="Dispose"/>.
+        /// </summary>
+        public bool IsTicking => !_disposed && !_hidden && Viewport.panel != null;
 
         /// <summary>The engine-free scroll state; everything below forwards to it.</summary>
         public ScrollerModel Model { get; }
@@ -163,14 +175,25 @@ namespace FutureDigitalPlus.UIKit.ScrollView
         public void SetTotalCount(int totalCount) => Model.SetTotalCount(totalCount);
 
         /// <inheritdoc cref="ScrollerModel.ScrollTo(float, float, Action)"/>
-        public void ScrollTo(float position, float duration, Action onComplete = null) => Model.ScrollTo(position, duration, onComplete);
+        public void ScrollTo(float position, float duration, Action onComplete = null)
+        {
+            UpdateTicking();
+            Model.ScrollTo(position, duration, onComplete);
+        }
 
         /// <inheritdoc cref="ScrollerModel.ScrollTo(float, float, Ease, Action)"/>
-        public void ScrollTo(float position, float duration, Ease ease, Action onComplete = null) => Model.ScrollTo(position, duration, ease, onComplete);
+        public void ScrollTo(float position, float duration, Ease ease, Action onComplete = null)
+        {
+            UpdateTicking();
+            Model.ScrollTo(position, duration, ease, onComplete);
+        }
 
         /// <inheritdoc cref="ScrollerModel.ScrollTo(float, float, EaseFunction, Action)"/>
-        public void ScrollTo(float position, float duration, EaseFunction easeFunction, Action onComplete = null) =>
+        public void ScrollTo(float position, float duration, EaseFunction easeFunction, Action onComplete = null)
+        {
+            UpdateTicking();
             Model.ScrollTo(position, duration, easeFunction, onComplete);
+        }
 
         /// <inheritdoc cref="ScrollerModel.JumpTo"/>
         public void JumpTo(int index) => Model.JumpTo(index);
@@ -189,6 +212,7 @@ namespace FutureDigitalPlus.UIKit.ScrollView
         public void Dispose()
         {
             if (_pointerId != PointerId.invalidPointerId) Release();
+            _disposed = true;
             _tick.Pause();
             Scrollbar = null;
             Model.ValueChanged -= OnModelValueChanged;
@@ -215,12 +239,54 @@ namespace FutureDigitalPlus.UIKit.ScrollView
                 return;
             }
 
-            Tick(timer.deltaTime / 1000f);
+            // Hidden since the last frame (a screen covered this one): stop ticking until the viewport is shown again.
+            if (UpdateTicking()) Tick(timer.deltaTime / 1000f);
         }
 
         private void SyncViewportSize() => Model.ViewportSize = ViewportSize;
 
-        private void OnGeometryChanged(GeometryChangedEvent evt) => SyncViewportSize();
+        private void OnGeometryChanged(GeometryChangedEvent evt)
+        {
+            SyncViewportSize();
+            UpdateTicking();
+        }
+
+        // Pauses the tick while the viewport is hidden and resumes it when it is shown again; true when it ticks. Hidden means its
+        // layout is empty and display:none is set on it or an ancestor: the layout empties a hidden subtree and lays it out again when
+        // it is shown, which raises the GeometryChangedEvent that resumes the tick. A viewport that is hidden while its layout keeps
+        // its size goes on ticking (as before), so the tick is never paused without a layout change to wake it up.
+        private bool UpdateTicking()
+        {
+            if (_disposed) return false;
+
+            var hidden = Viewport.panel != null && IsHidden(Viewport);
+            if (hidden == _hidden) return !hidden;
+
+            _hidden = hidden;
+            if (hidden)
+            {
+                _tick.Pause();
+                return false;
+            }
+
+            _skipTick = true; // the first step after resuming would measure the time spent hidden
+            _tick.Resume();
+            return true;
+        }
+
+        /// <summary>
+        /// Whether <paramref name="element"/> is hidden by <c>display: none</c> on itself or an ancestor and has an empty layout (the
+        /// layout of a hidden subtree is emptied). An element that was never laid out but is not hidden is not hidden.
+        /// </summary>
+        internal static bool IsHidden(VisualElement element)
+        {
+            var size = PaddingBoxSize(element);
+            if (size.x > 0f || size.y > 0f) return false;
+
+            for (var e = element; e != null; e = e.hierarchy.parent)
+                if (e.resolvedStyle.display == DisplayStyle.None) return true;
+            return false;
+        }
 
         /// <summary>The size of <paramref name="element"/>'s padding box (its layout size less its borders); zero before the first layout.</summary>
         internal static Vector2 PaddingBoxSize(VisualElement element)
@@ -238,6 +304,7 @@ namespace FutureDigitalPlus.UIKit.ScrollView
         private void OnPointerDown(PointerDownEvent evt)
         {
             if (evt.pointerId == _pointerId) Release(); // the release of the last press never reached us
+            UpdateTicking(); // input only reaches a shown viewport
             if (evt.button != 0 || _pointerId != PointerId.invalidPointerId || IsOnScrollbar(evt.target)) return;
 
             SyncViewportSize();
@@ -329,6 +396,7 @@ namespace FutureDigitalPlus.UIKit.ScrollView
         {
             _skipTick = true;
             WatchPanelRoot(evt.destinationPanel.visualTree);
+            UpdateTicking();
         }
 
         private void OnDetachFromPanel(DetachFromPanelEvent evt)
@@ -369,6 +437,7 @@ namespace FutureDigitalPlus.UIKit.ScrollView
         {
             if (!Model.Draggable) return;
 
+            UpdateTicking();
             SyncViewportSize();
             var dx = evt.delta.x;
             var dy = evt.delta.y;

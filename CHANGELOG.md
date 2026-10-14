@@ -6,6 +6,21 @@ All notable changes to this package are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-10-14
+
+Localization and scrolling fixes found in the Solitaire game. No API removed; lookups that worked before return the same text.
+
+### Fixed
+- `UnityLocalizationBackend`: one entry that cannot be formatted no longer turns its whole table into English. `TryGet` caught every exception, a formatting one too (a malformed Smart String or `{0}` pattern, an argument it cannot take: Unity Localization's Smart Format throws by default), and answered `TableMissing`, so `LocalizationKeyResolver` stopped asking that table (about 475 keys in the game) until the next locale change. Now only a table that cannot be loaded is `TableMissing`; a formatting failure is caught around the format call, logged once per locale, table and key, and the entry counts as missing (`EntryMissing`): the fallback locale's entry, else the `UiText` fallback or `[KEY]`, shows. The raw pattern is not shown instead, because it would put Smart String markup such as `{0:plural:...}` on screen.
+- `UnityLocalizationBackend` follows the locale fallbacks. It read only the selected locale's table, so a regional locale with a partial table (es-AR, es-ES, es-MX, pt-BR, pt-PT, fr-CA, fil-PH in the game: about 247 of 475 entries) showed every other string in English although its `Locale` asset declares a `FallbackLocale` (es, pt, fr, fil, then en). An entry that is missing or empty in the selected locale now comes from the fallback chain, breadth first, each locale once (a chain that loops back ends), like Unity's own `LocalizedString` when the string database's Use Fallback is on (the setting is honoured; without Localization settings the declared `FallbackLocale` metadata is followed). Fallback tables load like the selected locale's tables (synchronously except on WebGL, where a lookup reports the entry missing until the table arrived and `Changed` was raised); a fallback locale without the table is skipped, never reported as a missing table.
+- `FancyScroller` no longer ticks every frame while its view is hidden. It scheduled `Every(0)` for as long as the viewport was in a panel, also under `display: none` (a screen covered by another one). Now the tick pauses when the viewport or an ancestor has `display: none` and the layout has emptied the viewport, and resumes when the viewport is laid out again (shown), takes pointer or wheel input, or is told to `ScrollTo`; the first step after resuming is skipped, so the time spent hidden is not caught up. An animation or inertia in progress waits and goes on from where it was, as upstream's `Update` stops on an inactive GameObject. While shown nothing changes; `visibility: hidden` (which keeps the layout) keeps ticking.
+
+### Added
+- `LocaleFallbackLookup` and `LocaleEntryLookup<TLocale>` (Foundation.Core, pure): the fallback walk (`Find`, `MaxLocales`).
+- `UnityLocalizationBackend.Preload(string, StringTable, Locale)`: hands in a table of a fallback locale.
+- `FancyScroller.IsTicking`.
+- Tests: `Tests/Pure/Foundation/LocaleFallbackLookupTests.cs` (13, also in `dotnet test Tools~/PureTests`: 730); `Tests/Editor/Language/UnityLocalization/UnityLocalizationBackendFallbackTests.cs` (5 EditMode: regional to language to English, an empty entry, through `UiLocalization`, an unformattable entry with the rest of its table, an entry no locale can format; the two formatting cases need a project with Localization settings and are ignored without); `ScrollViewPlayModeTests` gains 4 PlayMode cases (an ancestor with `display: none` pauses the tick and holds the animation, which finishes after showing; the view hidden itself; `visibility: hidden` keeps ticking; a disposed scroller stays stopped).
+
 ## [0.2.3] - 2026-10-14
 
 Right-to-left `TabBar` and `SegmentedControl`, plus the ScrollView module and the responsive form factors that were waiting on `main`. No breaking change; left-to-right bars behave as before.

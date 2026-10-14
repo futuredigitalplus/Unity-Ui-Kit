@@ -22,7 +22,7 @@ namespace FutureDigitalPlus.UIKit.Language
         /// <summary>
         /// Looks one entry up. Must not throw. Returns <see cref="LookupStatus.TableMissing"/> when the table does not exist or is not
         /// loaded yet (the caller then stops asking that table until <see cref="Changed"/>), <see cref="LookupStatus.EntryMissing"/>
-        /// when only the key is unknown.
+        /// when only this entry is unknown, empty or cannot be formatted: one bad entry must not make the caller drop its whole table.
         /// </summary>
         /// <param name="table">The table name; never null here.</param>
         /// <param name="key">The entry key.</param>
