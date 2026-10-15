@@ -8,7 +8,7 @@ namespace FutureDigitalPlus.UIKit.Language.Tests
 {
     /// <summary>
     /// The Unity Localization adapter, against in-memory string tables (no Localization settings asset needed: a table handed to
-    /// <see cref="UnityLocalizationBackend.Preload"/> is used as it is). This assembly only exists when the package is installed.
+    /// <see cref="UnityLocalizationBackend.Preload(string, StringTable)"/> is used as it is). This assembly only exists when the package is installed.
     /// </summary>
     public class UnityLocalizationBackendTests
     {

@@ -123,6 +123,11 @@ A scrollbar: create a UI Toolkit `Scroller`, add it to the view, and assign it t
 - **Drag versus tap.** A press becomes a drag after 8 panel units (`FancyScroller.DragThreshold`). Until then, buttons in cells get their
   click; once it is a drag, the scroller takes the pointer and the button does not click. A click handler that calls `ScrollTo` is not
   undone by the snap of the release.
+- **Hidden views do not tick.** `FancyScroller` ticks every frame while its viewport is in a panel and shown. When the viewport or an
+  ancestor gets `display: none` (a screen under another one), the layout empties it and the scroller pauses its tick; it resumes when the
+  viewport is laid out again (shown), takes input, or is told to `ScrollTo`. An animation or inertia in progress waits meanwhile and goes on
+  from where it was, as upstream's `Update` stops on an inactive GameObject. `FancyScroller.IsTicking` tells. `visibility: hidden` keeps the
+  layout and keeps ticking.
 - **Viewport.** The viewport is the view's padding box: give the view a border if you like, but use `PaddingHead`/`PaddingTail` (or a
   wrapper element) for space around the cells; the view's own padding does not inset them. The scroll direction is set in the constructor.
 - **Positions.** Scroller positions are in items: 0 is the first, `count - 1` the last. On a `FancyScrollRect`, `Scroller.Position` is in

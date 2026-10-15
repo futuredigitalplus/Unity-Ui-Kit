@@ -202,5 +202,139 @@ namespace FutureDigitalPlus.UIKit.Controls.Tests
             yield return ControlsPanel.Frames();
             Assert.AreEqual("b", bar.value);
         }
+
+        // ---- right to left ----
+
+        private static float X(VisualElement element) => element.worldBound.center.x;
+
+        // home, shop, bag from the left (left to right) or from the right (right to left).
+        private static void AssertOrder(TabBar bar, bool rightToLeft, string message)
+        {
+            float home = X(ButtonOf(bar, "home")), shop = X(ButtonOf(bar, "shop")), bag = X(ButtonOf(bar, "bag"));
+            if (rightToLeft)
+            {
+                Assert.Greater(home, shop, message + ": the first item is at the right");
+                Assert.Greater(shop, bag, message);
+            }
+            else
+            {
+                Assert.Less(home, shop, message + ": the first item is at the left");
+                Assert.Less(shop, bag, message);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator LeftToRight_TheBarIsNotMirrored([Values(TabBarSkin.Tabs, TabBarSkin.Segmented)] TabBarSkin skin)
+        {
+            var bar = AddBar(skin);
+            yield return ControlsPanel.Frames();
+            Assert.IsFalse(bar.IsRightToLeft);
+            Assert.IsFalse(bar.ClassListContains(TabBar.RightToLeftUssClassName));
+            AssertOrder(bar, false, "left to right");
+            bar.value = "shop";
+            Send.Move(ButtonOf(bar, "shop"), NavigationMoveEvent.Direction.Right);
+            Assert.AreEqual("bag", bar.value, "Right goes to the item on the right");
+        }
+
+        [UnityTest]
+        public IEnumerator TheRtlClassOnTheRoot_MirrorsTheItems_AndTheArrowsFollowTheScreen([Values(TabBarSkin.Tabs, TabBarSkin.Segmented)] TabBarSkin skin)
+        {
+            var bar = AddBar(skin);
+            _panel.Root.AddToClassList("fdp-rtl");
+            yield return ControlsPanel.Frames();
+            Assert.IsTrue(bar.IsRightToLeft);
+            Assert.IsTrue(bar.ClassListContains(TabBar.RightToLeftUssClassName));
+            Assert.AreEqual(FlexDirection.RowReverse, bar.resolvedStyle.flexDirection);
+            AssertOrder(bar, true, "right to left");
+            Assert.AreEqual(0, bar.hierarchy.IndexOf(ButtonOf(bar, "home")), "the tree (focus and reading) order stays the item order");
+
+            bar.value = "shop";
+            Send.Move(ButtonOf(bar, "shop"), NavigationMoveEvent.Direction.Right);
+            Assert.AreEqual("home", bar.value, "Right goes to the item on the right: the first one");
+            Send.Move(ButtonOf(bar, "home"), NavigationMoveEvent.Direction.Right);
+            Assert.AreEqual("home", bar.value, "no wrap at the right edge");
+            Send.Move(ButtonOf(bar, "home"), NavigationMoveEvent.Direction.Left);
+            Assert.AreEqual("shop", bar.value, "Left goes to the item on the left");
+            Send.Key(ButtonOf(bar, "shop"), KeyCode.End);
+            Assert.AreEqual("bag", bar.value, "End: the last item, at the left edge");
+            Send.Key(ButtonOf(bar, "bag"), KeyCode.Home);
+            Assert.AreEqual("home", bar.value, "Home: the first item, at the right edge");
+        }
+
+        [UnityTest]
+        public IEnumerator LanguageDirectionOnTheRoot_WithoutTheClass_MirrorsTheBar()
+        {
+            var bar = AddBar(TabBarSkin.Segmented);
+            _panel.Root.languageDirection = LanguageDirection.RTL;
+            bar.RefreshDirection(); // a languageDirection change alone is not announced by UI Toolkit
+            yield return ControlsPanel.Frames();
+            Assert.IsTrue(bar.IsRightToLeft, "the bar inherits the direction of the root (its own languageDirection is Inherit)");
+            AssertOrder(bar, true, "languageDirection only");
+            Send.Move(ButtonOf(bar, "home"), NavigationMoveEvent.Direction.Left);
+            Assert.AreEqual("shop", bar.value);
+        }
+
+        [UnityTest]
+        public IEnumerator ALanguageSwitchWhileShown_MirrorsAndUnmirrorsTheBar()
+        {
+            var bar = AddBar(TabBarSkin.Segmented);
+            yield return ControlsPanel.Frames();
+            AssertOrder(bar, false, "before");
+
+            _panel.Root.AddToClassList("fdp-rtl");
+            _panel.Root.languageDirection = LanguageDirection.RTL;
+            yield return ControlsPanel.Frames();
+            Assert.IsTrue(bar.IsRightToLeft, "the style pass after the class change told the bar");
+            AssertOrder(bar, true, "after switching to a right-to-left language");
+
+            _panel.Root.RemoveFromClassList("fdp-rtl");
+            _panel.Root.languageDirection = LanguageDirection.LTR;
+            yield return ControlsPanel.Frames();
+            Assert.IsFalse(bar.IsRightToLeft);
+            Assert.IsFalse(bar.ClassListContains(TabBar.RightToLeftUssClassName));
+            AssertOrder(bar, false, "back to left to right");
+        }
+
+        [UnityTest]
+        public IEnumerator ALeftToRightIslandInsideARightToLeftScreen_StaysLeftToRight()
+        {
+            _panel = ControlsPanel.Create();
+            _panel.Root.AddToClassList("fdp-rtl");
+            _panel.Root.languageDirection = LanguageDirection.RTL;
+            var island = new VisualElement { languageDirection = LanguageDirection.LTR };
+            _panel.Root.Add(island);
+            var bar = new SegmentedControl { Items = "home:Home,shop:Shop,bag:Bag" };
+            island.Add(bar);
+            yield return ControlsPanel.Frames();
+            Assert.IsFalse(bar.IsRightToLeft);
+            AssertOrder(bar, false, "inside the island");
+            Send.Move(ButtonOf(bar, "home"), NavigationMoveEvent.Direction.Right);
+            Assert.AreEqual("shop", bar.value);
+        }
+
+        [UnityTest]
+        public IEnumerator RightToLeft_TheBadgeMovesToTheTopLeftCorner()
+        {
+            var bar = AddBar(TabBarSkin.Segmented);
+            _panel.Root.AddToClassList("fdp-rtl");
+            bar.SetBadge("shop", new BadgeValue(3, false));
+            yield return ControlsPanel.Frames();
+            var button = ButtonOf(bar, "shop");
+            var badge = button.Q<Label>(null, "fdp-tab-bar__badge");
+            Assert.Less(badge.worldBound.center.x, button.worldBound.center.x, "the badge sits at the end corner, the left one");
+        }
+
+        [UnityTest]
+        public IEnumerator AStackedBar_KeepsItsColumn_AndRightGoesBackInRightToLeft()
+        {
+            var bar = AddBar(TabBarSkin.Segmented);
+            bar.style.flexDirection = FlexDirection.Column; // a game that stacks long labels (an inline style, the strongest rule)
+            _panel.Root.AddToClassList("fdp-rtl");
+            yield return ControlsPanel.Frames();
+            Assert.AreEqual(FlexDirection.Column, bar.resolvedStyle.flexDirection);
+            bar.value = "shop";
+            Send.Move(ButtonOf(bar, "shop"), NavigationMoveEvent.Direction.Right);
+            Assert.AreEqual("home", bar.value, "a column has no sides: Right goes back, as in a right-to-left row");
+        }
     }
 }

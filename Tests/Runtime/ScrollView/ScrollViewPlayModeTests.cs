@@ -316,5 +316,84 @@ namespace FutureDigitalPlus.UIKit.ScrollView.Tests
             grid.UpdateContents(new[] { 1, 2, 3 });
             Assert.Throws<System.InvalidOperationException>(() => grid.StartAxisCellCount = 4);
         }
+
+        private static IEnumerator Seconds(float seconds)
+        {
+            var end = Time.realtimeSinceStartup + seconds;
+            while (Time.realtimeSinceStartup < end) yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator List_UnderAHiddenScreen_StopsTicking_AndGoesOnWhenShown()
+        {
+            var screen = new VisualElement();
+            _panel.Root.Add(screen);
+            var list = new RowList();
+            screen.Add(list);
+            list.Show(Enumerable.Range(0, 100).ToArray());
+            yield return TestPanel.Frames();
+            Assert.IsTrue(list.Scroller.IsTicking, "a shown list ticks");
+
+            list.Scroller.ScrollTo(50f, 2f);
+            yield return TestPanel.Frames(2);
+            screen.style.display = DisplayStyle.None;
+            yield return TestPanel.Frames();
+            Assert.IsFalse(list.Scroller.IsTicking, "display:none on an ancestor pauses the tick");
+
+            var held = list.Scroller.Position;
+            yield return Seconds(0.8f);
+            Assert.AreEqual(held, list.Scroller.Position, 1e-4f, "the animation waits while the list is hidden");
+            Assert.IsTrue(list.Scroller.Model.IsAutoScrolling);
+
+            screen.style.display = DisplayStyle.Flex;
+            yield return TestPanel.Frames();
+            Assert.IsTrue(list.Scroller.IsTicking, "shown again: the tick resumes");
+            Assert.IsTrue(list.Scroller.Model.IsAutoScrolling, "the time spent hidden is not caught up in one step");
+
+            var end = Time.realtimeSinceStartup + 4f;
+            while (Time.realtimeSinceStartup < end && list.Scroller.Model.IsAutoScrolling) yield return null;
+            Assert.AreEqual(50f, list.Scroller.Position, 1e-3f, "the animation finished after the list came back");
+        }
+
+        [UnityTest]
+        public IEnumerator List_HiddenItself_StopsTicking_AndResumesWhenShown()
+        {
+            var list = new RowList();
+            yield return ShowList(list, 100);
+
+            list.style.display = DisplayStyle.None;
+            yield return TestPanel.Frames();
+            Assert.IsFalse(list.Scroller.IsTicking);
+
+            list.style.display = DisplayStyle.Flex;
+            yield return TestPanel.Frames();
+            Assert.IsTrue(list.Scroller.IsTicking);
+
+            Send.Wheel(list, list.worldBound.center, 3f);
+            Assert.Greater(list.Scroller.Position, 0f, "input still scrolls");
+        }
+
+        [UnityTest]
+        public IEnumerator List_InvisibleButLaidOut_KeepsTicking()
+        {
+            var list = new RowList();
+            yield return ShowList(list, 100);
+
+            list.style.visibility = Visibility.Hidden; // keeps its layout: not a display:none screen
+            yield return TestPanel.Frames();
+            Assert.IsTrue(list.Scroller.IsTicking);
+        }
+
+        [UnityTest]
+        public IEnumerator List_Disposed_DoesNotTick()
+        {
+            var list = new RowList();
+            yield return ShowList(list, 100);
+
+            list.Scroller.Dispose();
+            Assert.IsFalse(list.Scroller.IsTicking);
+            list.Scroller.ScrollTo(10f, 0.1f);
+            Assert.IsFalse(list.Scroller.IsTicking, "a disposed scroller stays stopped");
+        }
     }
 }
